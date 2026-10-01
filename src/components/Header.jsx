@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { to: '/services', label: 'Services' },
   { to: '/benefits', label: 'Benefits' },
   { to: '/why-choose-us', label: 'Why Choose Us' },
+  { to: '/gallery', label: 'Facility Tour' },
   { to: '/contact', label: 'Contact' },
 ];
 
@@ -70,8 +71,13 @@ export default function Header() {
         'choose': '/why-choose-us',
         'mission': '/why-choose-us',
         'vision': '/why-choose-us',
+        'gallery': '/gallery',
+        'photo': '/gallery',
+        'facility': '/gallery',
+        'house': '/gallery',
+        'bedroom': '/gallery',
         'contact': '/contact',
-        'tour': '/contact',
+        'tour': '/gallery',
         'phone': '/contact',
         'email': '/contact',
         'fax': '/contact',

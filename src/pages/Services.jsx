@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import AnimateIn from '../components/AnimateIn';
+import SectionHeader from '../components/SectionHeader';
 
 const SERVICES = [
   {
@@ -122,8 +123,8 @@ export default function Services() {
       {/* ===== PAGE HERO ===== */}
       <section className="page-hero">
         <img
-          src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1920&q=60"
-          alt=""
+          src="/photos/lovelead_frontyard.jpeg"
+          alt="LoveLead Facility Front View"
           className="page-hero-bg-img"
           aria-hidden="true"
         />
@@ -143,40 +144,43 @@ export default function Services() {
               <Link to="/contact" className="btn btn-primary btn-sm">
                 Request a Care Consultation
               </Link>
-              <a href="tel:+16122603900" className="btn btn-outline-white btn-sm">
-                Call (612) 260-3900
-              </a>
+              <Link to="/gallery" className="btn btn-outline-white btn-sm">
+                Tour Our Facility
+              </Link>
             </div>
           </AnimateIn>
         </div>
       </section>
 
-      {/* ===== SERVICES ALTERNATING LIST ===== */}
+      {/* ===== SERVICES LIST ===== */}
       <section className="section section-cream">
         <div className="container">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4.5rem' }}>
-            {SERVICES.map((service, index) => {
-              const isEven = index % 2 === 0;
+          <SectionHeader
+            label="What We Provide"
+            title="Comprehensive Support, Individual Attention"
+            subtitle="Explore our specialized services below. Every program is customized to meet the unique needs and schedule of each resident."
+          />
+
+          <div style={{ marginTop: '3.5rem' }}>
+            {SERVICES.map((service, idx) => {
+              const isEven = idx % 2 === 1;
               return (
                 <div
                   key={service.id}
                   id={service.id}
-                  className={`service-row ${!isEven ? 'service-row--reverse' : ''}`}
+                  className={`service-row ${isEven ? 'service-row--even' : ''}`}
                 >
-                  {/* Media */}
-                  <AnimateIn direction={isEven ? 'left' : 'right'} className="service-row-media">
+                  <AnimateIn direction={isEven ? 'right' : 'left'} className="service-row-media">
                     <img
                       src={service.image}
                       alt={service.title}
                       loading="lazy"
                     />
+                    <span className="service-row-tag">{service.tag}</span>
                   </AnimateIn>
 
-                  {/* Body Content */}
-                  <AnimateIn direction={isEven ? 'right' : 'left'} className="service-row-body">
-                    <span className="service-row-number">
-                      SERVICE {service.number} &bull; {service.tag}
-                    </span>
+                  <AnimateIn direction={isEven ? 'left' : 'right'} className="service-row-content">
+                    <span className="service-row-number">{service.number}</span>
                     <h2 className="service-row-title">
                       {service.title}
                     </h2>
@@ -208,6 +212,74 @@ export default function Services() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FACILITY ENVIRONMENT SHOWCASE ===== */}
+      <section className="section section-warm">
+        <div className="container">
+          <SectionHeader
+            label="Homelike Setting"
+            title="Care Delivered in an Authentic Home Environment"
+            subtitle="Clinical excellence meets the warmth and dignity of a real residential home in Cottage Grove."
+          />
+
+          <div className="facility-showcase-grid" style={{ marginTop: '2rem' }}>
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_bedroom.jpeg" alt="Private Bedroom Suite" loading="lazy" />
+                <span className="facility-card-tag">ADL & Rest</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Private Resident Suites</h3>
+                <p className="facility-card-desc">Personal bedrooms configured for dignity, comfort, and safe mobility assistance.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_bathroom.jpeg" alt="Accessible Bathroom" loading="lazy" />
+                <span className="facility-card-tag">Hygiene Care</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Accessible Modern Bathrooms</h3>
+                <p className="facility-card-desc">Safety grab bars, accessible vanities, and clean sterile surfaces for gentle personal grooming.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_kitchen.jpeg" alt="Kitchen Prep" loading="lazy" />
+                <span className="facility-card-tag">Dietary Care</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Nutritional & Dietary Preparation</h3>
+                <p className="facility-card-desc">Individualized meal preparation catering to diabetic, cardiac, and custom physician meal plans.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_living_area2.jpeg" alt="Living Room Supervision" loading="lazy" />
+                <span className="facility-card-tag">24/7 Presence</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">24/7 Awake Attentive Care</h3>
+                <p className="facility-card-desc">Open-concept common spaces where caregivers observe vitals and offer attentive companionship.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <div className="btn-group" style={{ justifyContent: 'center' }}>
+              <Link to="/gallery" className="btn btn-primary">
+                Explore Full Facility Photo Tour
+              </Link>
+              <Link to="/contact" className="btn btn-outline-dark">
+                Schedule a Visit
+              </Link>
+            </div>
           </div>
         </div>
       </section>

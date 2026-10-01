@@ -7,26 +7,30 @@
 
 /* ===== 1. DESIGN TOKENS ===== */
 :root {
-  /* Surfaces & Backgrounds (Strictly off-white, no pure #FFFFFF canvas) */
-  --bg-canvas: #FAF8F5;          /* Warm linen alabaster */
-  --bg-surface: #F5F0EA;         /* Warm ivory surface */
-  --bg-card: #FAF7F2;            /* Delicate oatmeal card */
-  --bg-muted: #ECE5DC;           /* Neutral stone wash */
-  --bg-dark: #201F1D;            /* Deep espresso charcoal */
-  --bg-dark-card: #282624;       /* Dark card surface */
-  --bg-dark-surface: #171615;    /* Deepest charcoal tone */
+  /* Surfaces & Backgrounds — Crisp Off-Blue & Blue Themed Palette */
+  --bg-canvas: #EDF4F9;          /* Serene, crisp off-blue background */
+  --bg-surface: #E2ECF5;         /* Soft morning blue surface */
+  --bg-card: #F7FAFD;            /* Ice-tinted crisp off-blue card */
+  --bg-card-hover: #FFFFFF;      /* Bright focus hover */
+  --bg-muted: #D5E4F0;           /* Powder blue-grey wash */
+  --bg-blue-subtle: #E8F2FA;     /* Gentle sky tint */
+  --bg-blue-tint: #DCEAF5;       /* Medium sky wash */
+  --bg-dark: #0D1B2A;            /* Deep nautical midnight navy */
+  --bg-dark-card: #132438;       /* Midnight navy card surface */
+  --bg-dark-surface: #09131F;    /* Deepest navy tone */
 
   /* Brand Palette (Medical-grade, serene sky & warm accents) */
   --color-brand: #1A8DD8;         /* Lovelead Sky Brand */
   --color-brand-deep: #126EA8;    /* Deep sky blue */
+  --color-brand-navy: #0D3B66;    /* Deep royal navy */
   --color-brand-soft: #48B0F2;    /* Soft sky accent */
-  --color-brand-wash: #F0F7FC;    /* Ultra light sky wash */
+  --color-brand-wash: #F0F6FA;    /* Ultra light sky wash */
   --color-brand-pale: #E4F1FA;    /* Light sky pale */
 
   /* Secondary Accents */
-  --color-sage: #58876F;          /* Botanical sage */
-  --color-sage-soft: #7FA993;     /* Muted sage */
-  --color-sage-pale: #EEF4F0;     /* Sage pale wash */
+  --color-sage: #4E8278;          /* Botanical teal-sage */
+  --color-sage-soft: #6FA298;     /* Muted teal */
+  --color-sage-pale: #E7F3F1;     /* Sage pale wash */
 
   --color-terracotta: #B96645;    /* Warm hearth terracotta */
   --color-terracotta-soft: #D18364;
@@ -35,18 +39,18 @@
   --color-amber: #C6923B;         /* Warm sunlight amber */
   --color-amber-pale: #FAF5EB;
 
-  /* Typography Colors */
-  --text-main: #242220;           /* Deep soot, rich legibility */
-  --text-muted: #5E5B55;          /* Subdued body text */
-  --text-light: #8A857D;          /* Footnotes and timestamps */
-  --text-inverse: #FAF8F5;        /* Off-white text on dark */
-  --text-inverse-muted: #DDD7CD;  /* Muted white text */
+  /* Typography Colors — High contrast on off-blue */
+  --text-main: #142230;           /* Deep midnight slate, rich legibility */
+  --text-muted: #475C6F;          /* Subdued slate blue text */
+  --text-light: #71879B;          /* Soft slate footnotes */
+  --text-inverse: #F0F6FA;        /* Ice-white text on dark */
+  --text-inverse-muted: #B8CEDF;  /* Muted sky text on dark */
 
-  /* Borders & Dividers (Crisp hair-lines, strictly NO drop shadows) */
-  --border-subtle: #E6DFD5;
-  --border-mid: #D5C9BD;
-  --border-strong: #9E9385;
-  --border-dark: #383632;
+  /* Borders & Dividers (Crisp ice-blue & slate hair-lines) */
+  --border-subtle: #D2E2EE;
+  --border-mid: #B8D3E6;
+  --border-strong: #7EA6C5;
+  --border-dark: #1F364D;
   --border-brand: #1A8DD8;
 
   /* Form & Status Colors */
@@ -520,9 +524,9 @@ ul, ol {
 }
 
 .site-header--scrolled {
-  background: rgba(250, 248, 245, 0.96) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(237, 244, 249, 0.96) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-subtle) !important;
 }
 
@@ -1267,12 +1271,12 @@ ul, ol {
 
 /* ===== 7. CARDS & EDITORIAL CONTENT CONTAINERS ===== */
 .card {
-  background-color: var(--bg-canvas);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 1.65rem;
-  transition: border-color var(--transition-normal), transform var(--transition-normal);
-  box-shadow: none;
+  transition: border-color var(--transition-normal), transform var(--transition-normal), background-color var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: 0 2px 10px rgba(18, 55, 85, 0.04);
 }
 
 .card--surface {
@@ -1282,6 +1286,8 @@ ul, ol {
 .card-hover:hover {
   transform: translateY(-3px);
   border-color: var(--color-brand);
+  background-color: var(--bg-card-hover);
+  box-shadow: 0 8px 24px rgba(26, 141, 216, 0.09);
 }
 
 .card-media-header {
@@ -1560,6 +1566,428 @@ ul, ol {
   color: var(--border-mid);
   margin-bottom: 0.5rem;
   display: block;
+}
+
+/* ===== BENEFITS CARDS CONTAINER ===== */
+.benefits-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.75rem;
+}
+
+@media (min-width: 1024px) {
+  .benefits-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+.benefit-card-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-normal);
+  box-shadow: 0 2px 10px rgba(18, 55, 85, 0.04);
+}
+
+.benefit-card-container:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-brand);
+  background-color: var(--bg-card-hover);
+  box-shadow: 0 10px 28px rgba(26, 141, 216, 0.1);
+}
+
+.benefit-card-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  margin: -1.5rem -1.5rem 1.25rem -1.5rem;
+  height: 200px;
+}
+
+.benefit-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.benefit-card-container:hover .benefit-card-media img {
+  transform: scale(1.05);
+}
+
+.benefit-card-tag {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  background-color: rgba(13, 27, 42, 0.82);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.benefit-card-num {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  background-color: var(--color-brand);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+}
+
+.benefit-card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.benefit-card-title {
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text-main);
+  margin-bottom: 0.65rem;
+}
+
+.benefit-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.15rem;
+  flex-grow: 1;
+}
+
+.benefit-card-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.35rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.benefit-card-point {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-main);
+  line-height: 1.45;
+}
+
+.benefit-card-point .point-bullet {
+  color: var(--color-brand);
+  font-weight: 800;
+}
+
+.benefit-card-footer {
+  margin-top: auto;
+  display: flex;
+  gap: 0.65rem;
+}
+
+.benefit-card-footer .btn {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+}
+
+/* ===== FACILITY SHOWCASE & PHOTO GRIDS ===== */
+.facility-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .facility-showcase-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+.facility-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: 0 2px 10px rgba(18, 55, 85, 0.04);
+}
+
+.facility-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-brand);
+  box-shadow: 0 10px 28px rgba(26, 141, 216, 0.1);
+}
+
+.facility-card-img-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.facility-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.facility-card:hover .facility-card-img-wrap img {
+  transform: scale(1.05);
+}
+
+.facility-card-tag {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background-color: rgba(13, 27, 42, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.facility-card-body {
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.facility-card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.facility-card-desc {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* Photo Gallery Page Specific Styles */
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-bottom: 2.75rem;
+}
+
+.gallery-filter-btn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.6rem 1.35rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.gallery-filter-btn:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.gallery-filter-btn.active {
+  background-color: var(--color-brand);
+  color: #ffffff;
+  border-color: var(--color-brand);
+  box-shadow: 0 4px 14px rgba(26, 141, 216, 0.25);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-card);
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-brand);
+  box-shadow: 0 12px 30px rgba(18, 55, 85, 0.12);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(13, 27, 42, 0.92) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  transition: opacity var(--transition-normal);
+}
+
+.gallery-item-category {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brand-soft);
+  margin-bottom: 0.25rem;
+}
+
+.gallery-item-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.gallery-item-zoom {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-xs);
+  background-color: rgba(13, 27, 42, 0.65);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all var(--transition-fast);
+}
+
+.gallery-item:hover .gallery-item-zoom {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Lightbox Modal */
+.gallery-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(9, 19, 31, 0.92);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.gallery-modal-content {
+  position: relative;
+  max-width: 960px;
+  width: 100%;
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-modal-img {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  background-color: #050c14;
+}
+
+.gallery-modal-meta {
+  padding: 1.25rem 1.75rem;
+  background-color: var(--bg-dark-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.gallery-modal-title {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.gallery-modal-caption {
+  color: var(--text-inverse-muted);
+  font-size: 0.88rem;
+  margin-top: 0.25rem;
+}
+
+.gallery-modal-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.gallery-modal-close:hover {
+  background-color: var(--color-brand);
+  border-color: var(--color-brand);
 }
 
 /* Admissions Steps */
@@ -2827,6 +3255,120 @@ ul, ol {
   .why-choose-page .reason-desc {
     font-size: 0.76rem !important;
     line-height: 1.42 !important;
+  }
+
+  /* ========================================================================
+     BENEFITS PAGE: TWO-CARD SIDE-BY-SIDE LAYOUT (Mobile View)
+     - User requirement: "in benfits page display the content in cards container, 2 side by side in mobile view"
+     ======================================================================== */
+  .benefits-page .benefits-cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
+  }
+
+  .benefits-page .benefit-card-container {
+    padding: 0.75rem 0.65rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: var(--radius-sm) !important;
+    height: 100% !important;
+  }
+
+  .benefits-page .benefit-card-media {
+    height: 110px !important;
+    margin: -0.75rem -0.65rem 0.65rem -0.65rem !important;
+    position: relative !important;
+    border-radius: var(--radius-xs) var(--radius-xs) 0 0 !important;
+  }
+
+  .benefits-page .benefit-card-tag {
+    font-size: 0.58rem !important;
+    padding: 0.18rem 0.4rem !important;
+    top: 0.45rem !important;
+    left: 0.45rem !important;
+  }
+
+  .benefits-page .benefit-card-num {
+    font-size: 0.62rem !important;
+    padding: 0.15rem 0.35rem !important;
+    top: 0.45rem !important;
+    right: 0.45rem !important;
+  }
+
+  .benefits-page .benefit-card-title {
+    font-size: 0.88rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.3rem !important;
+    font-weight: 700 !important;
+  }
+
+  .benefits-page .benefit-card-desc {
+    font-size: 0.73rem !important;
+    line-height: 1.38 !important;
+    margin-bottom: 0.5rem !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .benefits-page .benefit-card-points {
+    gap: 0.2rem !important;
+    margin-bottom: 0.6rem !important;
+    padding-top: 0.45rem !important;
+  }
+
+  .benefits-page .benefit-card-point {
+    font-size: 0.68rem !important;
+    line-height: 1.3 !important;
+    gap: 0.35rem !important;
+  }
+
+  .benefits-page .benefit-card-footer {
+    margin-top: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.35rem !important;
+  }
+
+  .benefits-page .benefit-card-footer .btn {
+    width: 100% !important;
+    padding: 0.45rem 0.5rem !important;
+    font-size: 0.7rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* Facility Showcases on Mobile (2 cards side by side!) */
+  .facility-showcase-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
+  }
+
+  .facility-card-img-wrap {
+    height: 110px !important;
+  }
+
+  .facility-card-body {
+    padding: 0.65rem 0.65rem !important;
+  }
+
+  .facility-card-title {
+    font-size: 0.85rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .facility-card-desc {
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Gallery grid on mobile (2 columns) */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
   }
 
   /* ========================================================================

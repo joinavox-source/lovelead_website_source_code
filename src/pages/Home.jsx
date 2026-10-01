@@ -10,7 +10,7 @@ const SERVICES_PREVIEW = [
     title: 'Assistance with ADLs & IADLs',
     desc: 'Support with bathing, dressing, grooming, eating, mobility, meal preparation, housekeeping, and transportation.',
     link: '/services#adl',
-    image: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&q=80',
+    image: '/photos/lovelead_bedroom.jpeg',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -242,8 +242,8 @@ export default function Home() {
               <div style={{ position: 'relative' }}>
                 {/* Main Caregiver Photo */}
                 <img
-                  src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=900&q=80"
-                  alt="Attentive caregiver supporting a resident"
+                  src="/photos/lovelead_living_area.jpeg"
+                  alt="Spacious sunlit living room at LoveLead"
                   style={{
                     width: '100%',
                     height: '380px',
@@ -268,7 +268,7 @@ export default function Home() {
                   }}
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&q=80"
+                    src="/photos/lovelead_bedroom.jpeg"
                     alt="Comfortable residential room suite"
                     style={{ width: '100%', height: '140px', objectFit: 'cover' }}
                     loading="lazy"
@@ -490,6 +490,96 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== FACILITY PHOTO SHOWCASE SECTION ===== */}
+      <section className="section section-warm">
+        <div className="container">
+          <SectionHeader
+            label="Facility Showcase"
+            title="A Real Home Filled with Warmth & Dignity"
+            subtitle="Take a look inside our licensed Cottage Grove residence — featuring sunlit common rooms, comfortable private suites, a chef-friendly kitchen, and peaceful outdoor grounds."
+          />
+
+          <div className="facility-showcase-grid">
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_frontyard.jpeg" alt="Front Exterior & Lawn" loading="lazy" />
+                <span className="facility-card-tag">Exterior</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Quiet Suburban Residence</h3>
+                <p className="facility-card-desc">Two-story residential home with a welcoming porch and peaceful neighborhood surroundings.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_living_area2.jpeg" alt="Sunlit Main Living Room" loading="lazy" />
+                <span className="facility-card-tag">Living Lounge</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Sunlit Living & Social Spaces</h3>
+                <p className="facility-card-desc">High ceilings and large picture windows where residents relax, converse, and connect.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_kitchen.jpeg" alt="Modern Residential Kitchen" loading="lazy" />
+                <span className="facility-card-tag">Kitchen & Dining</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Chef-Equipped Kitchen</h3>
+                <p className="facility-card-desc">Wholesome home-cooked meals prepared fresh daily, tailored to individual dietary guidelines.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_bedroom.jpeg" alt="Private Bedroom Suite" loading="lazy" />
+                <span className="facility-card-tag">Private Suite</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Comfortable Private Bedrooms</h3>
+                <p className="facility-card-desc">Serene personal sanctuaries with natural sunlight, closet space, and accessible clearances.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_backyard_staircase.jpeg" alt="Back Deck & Wooded Grounds" loading="lazy" />
+                <span className="facility-card-tag">Outdoor Grounds</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Private Fenced Backyard & Deck</h3>
+                <p className="facility-card-desc">Serene outdoor lawn and elevated deck surrounded by mature trees for peaceful fresh air.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_bathroom.jpeg" alt="Accessible Modern Bathroom" loading="lazy" />
+                <span className="facility-card-tag">Accessible Bath</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Modern Accessible Bathrooms</h3>
+                <p className="facility-card-desc">Bright, safe hygiene spaces with non-slip flooring and handicap-accessible considerations.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '2.75rem' }}>
+            <div className="btn-group" style={{ justifyContent: 'center' }}>
+              <Link to="/gallery" className="btn btn-primary">
+                View Full 15-Photo Facility Tour
+              </Link>
+              <Link to="/contact" className="btn btn-outline-dark">
+                Schedule a Visit in Person
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== WHY CHOOSE LOVELEAD HIGHLIGHT ===== */}
       <section className="section section-cream">
         <div className="container">
@@ -533,8 +623,8 @@ export default function Home() {
             <AnimateIn direction="right">
               <div>
                 <img
-                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=80"
-                  alt="Doctor and resident in conversation"
+                  src="/photos/lovelead_sofa_area.jpeg"
+                  alt="Cozy, spacious family lounge inside our Cottage Grove residence"
                   style={{ width: '100%', height: '420px', objectFit: 'cover', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}
                   loading="lazy"
                 />

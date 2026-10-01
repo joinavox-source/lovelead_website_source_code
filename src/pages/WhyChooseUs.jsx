@@ -5,38 +5,38 @@ import SectionHeader from '../components/SectionHeader';
 const REASONS = [
   {
     number: '01',
-    title: 'Loving, Family-Like Environment',
-    desc: 'Our home is designed to feel exactly like home. Residents are welcomed into a warm, caring atmosphere where they are treated as cherished family members rather than clinical patients.',
+    title: 'Individualized, Dignified Care Plans',
+    desc: 'We recognize that no two residents share the exact same life story or medical requirements. Every care plan is uniquely customized with resident and family input.',
   },
   {
     number: '02',
-    title: 'Personalized Care Plans',
-    desc: 'No two residents are alike. We develop individualized care plans that evolve dynamically with each resident, ensuring the exact right balance of support and self-reliance at every stage.',
+    title: '24/7 Dedicated Caregiver Presence',
+    desc: 'Our staff are present around the clock, fully awake and alert. We provide prompt assistance with activities of daily living, medication schedules, and urgent needs.',
   },
   {
     number: '03',
-    title: '24/7 Supervision and Support',
-    desc: 'Our dedicated caregivers are on-site around the clock, providing safety, comfort, medication oversight, and immediate reassurance whenever assistance is required, day or night.',
+    title: 'Warm, Welcoming Home Atmosphere',
+    desc: 'Unlike large institutional facilities, LoveLead offers an intimate residential home environment where residents quickly form friendships and feel genuinely embraced.',
   },
   {
     number: '04',
-    title: 'Clean, Safe, and Comfortable Home Setting',
-    desc: 'Our residential setting is meticulously maintained to the highest standards of cleanliness, safety, accessibility, and coziness, creating an environment where residents truly feel at ease.',
+    title: 'Family Partnership & Open Communication',
+    desc: 'We consider family members our vital partners. From open visiting arrangements to regular care update calls, you are always informed and involved.',
   },
   {
     number: '05',
-    title: 'Assistance with Medical Appointments',
-    desc: 'We coordinate and assist with scheduling physician consultations, therapy sessions, pharmacy deliveries, and safe transport to ensure seamless health management.',
+    title: 'Holistic Mind-Body Well-Being',
+    desc: 'Through personalized nutrition, physical wellness routines, creative arts, and spiritual support, we care for the whole person with heartfelt dedication.',
   },
   {
     number: '06',
-    title: 'Nutritious Meals and Daily Activities',
-    desc: 'Every meal is prepared with fresh ingredients accommodating dietary needs, while enriching daily group and individual activities keep residents socially engaged and mentally sharp.',
+    title: 'Transparent, Direct Admissions Process',
+    desc: 'We demystify the transition into assisted living with clear assessments, straightforward pricing, and patient guidance through every step of paperwork.',
   },
   {
     number: '07',
-    title: 'Respectful Care Promoting Dignity & Independence',
-    desc: 'We actively empower our residents. Our philosophy honors personal choices, respects personal privacy, and upholds the dignity and autonomy of every individual in our care.',
+    title: 'Experienced, Caring Team Members',
+    desc: 'Our caregivers undergo rigorous background checks, continuous skills training, and cultural sensitivity preparation to ensure the highest care standards.',
   },
 ];
 
@@ -44,32 +44,32 @@ const ADMISSION_STEPS = [
   {
     step: '01',
     title: 'Initial Consultation',
-    desc: 'Connect with us by phone, email, or our inquiry form to share your family circumstances and discuss care needs.',
+    desc: 'Reach out by phone, email, or our online form. We discuss your loved one\'s current living situation, daily needs, and initial questions in complete confidence.',
   },
   {
     step: '02',
-    title: 'Personal Home Tour',
-    desc: 'Visit our Cottage Grove community to explore the bedrooms, dining spaces, living areas, and meet our caregivers in person.',
+    title: 'Personalized Tour & Walkthrough',
+    desc: 'Visit our Cottage Grove residence. Walk the living areas, tour available bedroom suites, meet our caregivers, and experience our community firsthand.',
   },
   {
     step: '03',
-    title: 'Comprehensive Care Assessment',
-    desc: 'Our clinical team assesses the prospective resident medical history, ADL requirements, dietary preferences, and personal goals.',
+    title: 'Comprehensive Needs Assessment',
+    desc: 'Our clinical team reviews medical history, physician orders, ADL assistance requirements, and personal preferences to develop an accurate care profile.',
   },
   {
     step: '04',
-    title: 'Customized Care Plan Scaffolding',
-    desc: 'Together with your family and physicians, we construct a customized daily support plan tailored to exact preferences.',
+    title: 'Custom Care Plan Formulation',
+    desc: 'Working collaboratively with you, your loved one, and healthcare providers, we finalize a personalized care plan outlining all daily services and schedules.',
   },
   {
     step: '05',
-    title: 'Smooth & Warm Move-In Transition',
-    desc: 'We assist with room setup, familiarization routines, and gentle welcome introductions to make move-in day stress-free.',
+    title: 'Agreement & Move-In Preparation',
+    desc: 'We finalize agreements, clarify costs, coordinate medical orders, and provide checklists to ensure a smooth, worry-free moving day transition.',
   },
   {
     step: '06',
-    title: 'Ongoing Family Partnership',
-    desc: 'Regular communication, transparent care check-ins, and flexible plan updates ensure your loved one always receives optimal care.',
+    title: 'Warm Welcome & Settling In',
+    desc: 'On move-in day, our team greets your loved one warmly, helps arrange their room, introduces them to fellow residents, and provides extra support during the settling period.',
   },
 ];
 
@@ -79,8 +79,8 @@ export default function WhyChooseUs() {
       {/* ===== PAGE HERO ===== */}
       <section className="page-hero">
         <img
-          src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1920&q=60"
-          alt=""
+          src="/photos/lovelead_frontyard.jpeg"
+          alt="LoveLead Residential Home Exterior"
           className="page-hero-bg-img"
           aria-hidden="true"
         />
@@ -100,8 +100,8 @@ export default function WhyChooseUs() {
               <Link to="/contact" className="btn btn-primary btn-sm">
                 Schedule a Tour
               </Link>
-              <Link to="/services" className="btn btn-outline-white btn-sm">
-                View Care Services
+              <Link to="/gallery" className="btn btn-outline-white btn-sm">
+                Explore Our Home
               </Link>
             </div>
           </AnimateIn>
@@ -162,7 +162,7 @@ export default function WhyChooseUs() {
                     marginBottom: '1.5rem',
                   }}
                 >
-                  "Making the transition to assisted living is a significant step, and we are here to guide you every step of the way with honesty, patience, and warmth."
+                  &ldquo;Making the transition to assisted living is a significant step, and we are here to guide you every step of the way with honesty, patience, and warmth.&rdquo;
                 </blockquote>
                 <p style={{ color: 'var(--text-muted)', lineHeight: '1.65', marginBottom: '1.75rem' }}>
                   Whether for yourself or a loved one, our team is committed to providing exceptional care with heart and professionalism. We take pride in building genuine relationships with every family who enters our home.
@@ -181,8 +181,71 @@ export default function WhyChooseUs() {
         </div>
       </section>
 
-      {/* ===== 6-STEP ADMISSIONS PROCESS ===== */}
+      {/* ===== TRUE HOME VS INSTITUTION PHOTO SHOWCASE ===== */}
       <section className="section section-cream">
+        <div className="container">
+          <SectionHeader
+            label="A True Home Setting"
+            title="A Genuine Residential Residence — Not an Impersonal Institution"
+            subtitle="LoveLead offers an authentic residential setting with 24/7 licensed professional care."
+          />
+
+          <div className="facility-showcase-grid" style={{ marginTop: '2.5rem' }}>
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_frontyard2.jpeg" alt="Welcoming Front Entrance" loading="lazy" />
+                <span className="facility-card-tag">Residential Scale</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Authentic Neighborhood Home</h3>
+                <p className="facility-card-desc">No hospital smells or long institutional corridors. A genuine, comfortable family home in Cottage Grove.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_living_area.jpeg" alt="Spacious Sunlit Living Room" loading="lazy" />
+                <span className="facility-card-tag">Family Living</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Sunlit Gathering Spaces</h3>
+                <p className="facility-card-desc">Spacious living rooms filled with natural light, comfortable couches, and warm camaraderie.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_dining_area.jpeg" alt="Communal Dining Table" loading="lazy" />
+                <span className="facility-card-tag">Intimate Dining</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Home-Cooked Table Meals</h3>
+                <p className="facility-card-desc">Residents dine together like family, enjoying hot nutritious meals made fresh in our kitchen.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_backyard.jpeg" alt="Green Fenced Backyard" loading="lazy" />
+                <span className="facility-card-tag">Nature & Safety</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Private Outdoor Grounds</h3>
+                <p className="facility-card-desc">Secure fenced backyard and green lawn surrounded by mature trees for peaceful relaxation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <Link to="/gallery" className="btn btn-primary">
+              View Complete Facility Photo Gallery
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 6-STEP ADMISSIONS PROCESS ===== */}
+      <section className="section section-warm">
         <div className="container">
           <SectionHeader
             label="Admissions Pathway"
@@ -232,8 +295,8 @@ export default function WhyChooseUs() {
               <Link to="/contact" className="btn btn-warm btn-lg">
                 Schedule a Personal Tour
               </Link>
-              <Link to="/benefits" className="btn btn-outline-white btn-lg">
-                Explore Resident Benefits
+              <Link to="/gallery" className="btn btn-outline-white btn-lg">
+                View Facility Photos
               </Link>
             </div>
           </AnimateIn>

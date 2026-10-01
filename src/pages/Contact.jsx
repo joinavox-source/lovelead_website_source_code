@@ -129,8 +129,8 @@ export default function Contact() {
       {/* ===== HERO ===== */}
       <section className="page-hero">
         <img
-          src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=1920&q=60"
-          alt=""
+          src="/photos/lovelead_frontyard2.jpeg"
+          alt="LoveLead Facility Entrance in Cottage Grove"
           className="page-hero-bg-img"
           aria-hidden="true"
         />
@@ -527,6 +527,69 @@ export default function Contact() {
                 </div>
               </AnimateIn>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== PREVIEW YOUR VISIT FACILITY SHOWCASE ===== */}
+      <section className="section section-cream">
+        <div className="container">
+          <SectionHeader
+            label="Facility Preview"
+            title="Preview What You'll Experience on Your Tour"
+            subtitle="Walk through our real residential home. See the sunlit spaces, clean suites, and peaceful grounds firsthand."
+          />
+
+          <div className="facility-showcase-grid" style={{ marginTop: '2.5rem' }}>
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_frontyard.jpeg" alt="Front Arrival & Driveway" loading="lazy" />
+                <span className="facility-card-tag">Arrival</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Easy Arrival &amp; Parking</h3>
+                <p className="facility-card-desc">Private dedicated driveway parking in a safe, quiet residential cul-de-sac in Cottage Grove.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_living_area.jpeg" alt="Main Living Room" loading="lazy" />
+                <span className="facility-card-tag">Reception</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Warm Personal Greeting</h3>
+                <p className="facility-card-desc">Sit down with our care coordinators in our sunny living lounge to discuss your family&apos;s goals.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_bedroom.jpeg" alt="Private Bedroom Suite" loading="lazy" />
+                <span className="facility-card-tag">Suites</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Suite Tour &amp; Layout Options</h3>
+                <p className="facility-card-desc">Tour available private bedrooms and inspect accessible features and personal closet amenities.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_backyard.jpeg" alt="Fenced Backyard Grounds" loading="lazy" />
+                <span className="facility-card-tag">Grounds</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Lush Fenced Grounds</h3>
+                <p className="facility-card-desc">Stroll through our tree-lined yard, view our back deck, and see our outdoor leisure areas.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <Link to="/gallery" className="btn btn-primary">
+              View All 15 Facility Photos
+            </Link>
           </div>
         </div>
       </section>

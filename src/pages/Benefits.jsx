@@ -72,12 +72,12 @@ const DAILY_SCHEDULE = [
 
 export default function Benefits() {
   return (
-    <main id="main-content">
+    <main id="main-content" className="benefits-page">
       {/* ===== PAGE HERO ===== */}
       <section className="page-hero">
         <img
-          src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1920&q=60"
-          alt=""
+          src="/photos/lovelead_backyard2.jpeg"
+          alt="LoveLead Facility Backyard Grounds"
           className="page-hero-bg-img"
           aria-hidden="true"
         />
@@ -91,21 +91,21 @@ export default function Benefits() {
               Resident Benefits &amp; Life
             </h1>
             <p className="page-hero-desc">
-              Beyond exceptional personal assistance, LoveLead offers programs and community life designed to bring joy, purpose, and dignity to each day.
+              Beyond exceptional personal assistance, LoveLead offers programs and community life designed to bring joy, purpose, and dignity to each day in our Cottage Grove home.
             </p>
             <div className="btn-group" style={{ justifyContent: 'center' }}>
               <Link to="/contact" className="btn btn-primary btn-sm">
                 Schedule a Tour Today
               </Link>
-              <Link to="/why-choose-us" className="btn btn-outline-white btn-sm">
-                Explore Why Choose Us
+              <Link to="/gallery" className="btn btn-outline-white btn-sm">
+                View Facility Photos
               </Link>
             </div>
           </AnimateIn>
         </div>
       </section>
 
-      {/* ===== ASYMMETRICAL BENEFITS PRESENTATION ===== */}
+      {/* ===== BENEFITS CARDS CONTAINER PRESENTATION ===== */}
       <section className="section section-cream">
         <div className="container">
           <SectionHeader
@@ -114,58 +114,114 @@ export default function Benefits() {
             subtitle="We believe in resident-centered care that honors the whole person: mind, body, and spirit."
           />
 
-          <div style={{ marginTop: '3.5rem' }}>
-            {BENEFITS.map((b, idx) => {
-              const isFlipped = idx % 2 === 1;
-              return (
-                <div
-                  key={b.title}
-                  className={`benefit-row ${isFlipped ? 'benefit-row--flip' : ''}`}
-                >
-                  <AnimateIn direction={isFlipped ? 'right' : 'left'} className="benefit-media">
+          {/* Cards Container Grid (2 side-by-side on mobile via .benefits-page) */}
+          <div className="benefits-cards-grid" style={{ marginTop: '2.5rem' }}>
+            {BENEFITS.map((b, idx) => (
+              <AnimateIn key={b.title} delay={(idx % 3) * 0.08}>
+                <div className="benefit-card-container card-hover">
+                  <div className="benefit-card-media">
                     <img src={b.image} alt={b.title} loading="lazy" />
-                    <span className="benefit-badge">{b.tag}</span>
-                  </AnimateIn>
+                    <span className="benefit-card-tag">{b.tag}</span>
+                    <span className="benefit-card-num">{b.number}</span>
+                  </div>
 
-                  <AnimateIn direction={isFlipped ? 'left' : 'right'} className="benefit-info">
-                    <span className="benefit-number">{b.number}</span>
-                    <h2 className="benefit-title">
-                      {b.title}
-                    </h2>
-                    <p className="benefit-desc">
-                      {b.desc}
-                    </p>
+                  <div className="benefit-card-body">
+                    <h3 className="benefit-card-title">{b.title}</h3>
+                    <p className="benefit-card-desc">{b.desc}</p>
 
-                    <div className="benefit-points-grid">
+                    <div className="benefit-card-points">
                       {b.points.map((pt, pIdx) => (
-                        <div key={pIdx} className="benefit-point-item">
-                          <span className="bullet-dash">&bull;</span>
+                        <div key={pIdx} className="benefit-card-point">
+                          <span className="point-bullet">&bull;</span>
                           <span>{pt}</span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="btn-group">
+                    <div className="benefit-card-footer">
                       <Link
                         to={`/contact?benefit=${encodeURIComponent(b.title)}`}
                         className="btn btn-primary btn-sm"
                       >
-                        Ask About This
+                        Inquire
                       </Link>
                       <Link to="/services" className="btn btn-outline-dark btn-sm">
-                        View Care Services
+                        Services
                       </Link>
                     </div>
-                  </AnimateIn>
+                  </div>
                 </div>
-              );
-            })}
+              </AnimateIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FACILITY LIVING SPACES & AMENITIES PHOTO SHOWCASE ===== */}
+      <section className="section section-warm">
+        <div className="container">
+          <SectionHeader
+            label="Real Facility Spaces"
+            title="Where Our Residents Thrive Every Day"
+            subtitle="Take a look at the real home spaces where our wellness programs, meals, and social connections flourish."
+          />
+
+          <div className="facility-showcase-grid" style={{ marginTop: '2rem' }}>
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_backyard.jpeg" alt="Lush Fenced Backyard" loading="lazy" />
+                <span className="facility-card-tag">Outdoor Grounds</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Serene Private Backyard</h3>
+                <p className="facility-card-desc">Lush green yard for walking, pet therapy, birdwatching, and enjoying Minnesota fresh air.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_kitchen.jpeg" alt="Chef-Equipped Kitchen" loading="lazy" />
+                <span className="facility-card-tag">Kitchen & Dining</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Home-Cooked Fresh Meals</h3>
+                <p className="facility-card-desc">Chef-prepared culinary meals with specialized diabetic and culturally sensitive recipes.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_backyard_staircase.jpeg" alt="Back Deck & Scenic Grounds" loading="lazy" />
+                <span className="facility-card-tag">Deck & Patio</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Elevated Viewing Deck</h3>
+                <p className="facility-card-desc">A peaceful outdoor vantage point overlooking tree-lined grounds for gentle morning contemplation.</p>
+              </div>
+            </div>
+
+            <div className="facility-card">
+              <div className="facility-card-img-wrap">
+                <img src="/photos/lovelead_living_area2.jpeg" alt="Sunlit Living Lounge" loading="lazy" />
+                <span className="facility-card-tag">Living Lounge</span>
+              </div>
+              <div className="facility-card-body">
+                <h3 className="facility-card-title">Sunlit Community Gathering</h3>
+                <p className="facility-card-desc">Open-concept living room filled with natural daylight, comfortable seating, and camaraderie.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <Link to="/gallery" className="btn btn-primary">
+              View All 15 Residence Photos
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ===== A DAY IN THE LIFE SECTION ===== */}
-      <section className="section section-warm">
+      <section className="section section-cream">
         <div className="container">
           <SectionHeader
             label="Daily Rhythm"

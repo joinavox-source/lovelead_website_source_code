@@ -5,6 +5,7 @@ const QUICK_LINKS = [
   { to: '/services', label: 'Our Services' },
   { to: '/benefits', label: 'Resident Benefits' },
   { to: '/why-choose-us', label: 'Why Choose Us' },
+  { to: '/gallery', label: 'Facility Photo Tour' },
   { to: '/contact', label: 'Contact & Tours' },
 ];
 
