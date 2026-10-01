@@ -7,50 +7,51 @@
 
 /* ===== 1. DESIGN TOKENS ===== */
 :root {
-  /* Surfaces & Backgrounds — Crisp Off-Blue & Blue Themed Palette */
-  --bg-canvas: #EDF4F9;          /* Serene, crisp off-blue background */
-  --bg-surface: #E2ECF5;         /* Soft morning blue surface */
-  --bg-card: #F7FAFD;            /* Ice-tinted crisp off-blue card */
-  --bg-card-hover: #FFFFFF;      /* Bright focus hover */
-  --bg-muted: #D5E4F0;           /* Powder blue-grey wash */
-  --bg-blue-subtle: #E8F2FA;     /* Gentle sky tint */
-  --bg-blue-tint: #DCEAF5;       /* Medium sky wash */
-  --bg-dark: #0D1B2A;            /* Deep nautical midnight navy */
-  --bg-dark-card: #132438;       /* Midnight navy card surface */
-  --bg-dark-surface: #09131F;    /* Deepest navy tone */
+  /* Surfaces & Backgrounds — Unmistakable Blue Shades Palette */
+  --bg-canvas: #D8EAF7;          /* Visible, calming sky-blue canvas background */
+  --bg-surface: #C3DDF2;         /* Rich medium sky blue surface for section depth */
+  --bg-card: #EAF3FB;            /* Distinct soft sky-blue card background */
+  --bg-card-hover: #F2F8FD;      /* Luminous ice-blue card hover */
+  --bg-card-elevated: #DCECF8;   /* Inset/elevated blue card surface */
+  --bg-muted: #B3D6F0;           /* Medium powder blue wash */
+  --bg-blue-subtle: #DDF0FD;     /* Soft sky wash */
+  --bg-blue-tint: #CBE4F7;       /* Blue tone wash */
+  --bg-dark: #0A1C30;            /* Deep midnight nautical navy */
+  --bg-dark-card: #122842;       /* Midnight navy card surface */
+  --bg-dark-surface: #071526;    /* Deepest navy tone */
 
-  /* Brand Palette (Medical-grade, serene sky & warm accents) */
+  /* Brand Palette (Medical-grade, serene sky & royal accents) */
   --color-brand: #1A8DD8;         /* Lovelead Sky Brand */
-  --color-brand-deep: #126EA8;    /* Deep sky blue */
-  --color-brand-navy: #0D3B66;    /* Deep royal navy */
+  --color-brand-deep: #1068A0;    /* Deep sky blue */
+  --color-brand-navy: #0B2E52;    /* Deep royal navy */
   --color-brand-soft: #48B0F2;    /* Soft sky accent */
-  --color-brand-wash: #F0F6FA;    /* Ultra light sky wash */
-  --color-brand-pale: #E4F1FA;    /* Light sky pale */
+  --color-brand-wash: #E5F2FB;    /* Light sky wash */
+  --color-brand-pale: #D4E9F7;    /* Light sky pale */
 
   /* Secondary Accents */
-  --color-sage: #4E8278;          /* Botanical teal-sage */
-  --color-sage-soft: #6FA298;     /* Muted teal */
-  --color-sage-pale: #E7F3F1;     /* Sage pale wash */
+  --color-sage: #3C7A70;          /* Botanical teal-sage */
+  --color-sage-soft: #5E9B90;     /* Muted teal */
+  --color-sage-pale: #DDEEEB;     /* Sage pale wash */
 
   --color-terracotta: #B96645;    /* Warm hearth terracotta */
   --color-terracotta-soft: #D18364;
   --color-terracotta-pale: #FBF2EE;
 
   --color-amber: #C6923B;         /* Warm sunlight amber */
-  --color-amber-pale: #FAF5EB;
+  --color-amber-pale: #F5EEDD;
 
-  /* Typography Colors — High contrast on off-blue */
-  --text-main: #142230;           /* Deep midnight slate, rich legibility */
-  --text-muted: #475C6F;          /* Subdued slate blue text */
-  --text-light: #71879B;          /* Soft slate footnotes */
-  --text-inverse: #F0F6FA;        /* Ice-white text on dark */
-  --text-inverse-muted: #B8CEDF;  /* Muted sky text on dark */
+  /* Typography Colors — High contrast on light blue backgrounds */
+  --text-main: #0B1C30;           /* Deepest midnight navy, maximum legibility */
+  --text-muted: #244462;          /* Subdued rich slate-navy text */
+  --text-light: #4A6E90;          /* Soft slate-blue footnotes */
+  --text-inverse: #F0F7FC;        /* Ice-white text on dark */
+  --text-inverse-muted: #B2CEE4;  /* Muted sky text on dark */
 
-  /* Borders & Dividers (Crisp ice-blue & slate hair-lines) */
-  --border-subtle: #D2E2EE;
-  --border-mid: #B8D3E6;
-  --border-strong: #7EA6C5;
-  --border-dark: #1F364D;
+  /* Borders & Dividers (Distinct blue hair-lines) */
+  --border-subtle: #B4D3EC;       /* Crisp light-blue border */
+  --border-mid: #8FBAE0;          /* Mid sky-blue border */
+  --border-strong: #5998CF;       /* Strong cobalt border */
+  --border-dark: #193859;         /* Navy border for dark sections */
   --border-brand: #1A8DD8;
 
   /* Form & Status Colors */
@@ -524,9 +525,9 @@ ul, ol {
 }
 
 .site-header--scrolled {
-  background: rgba(237, 244, 249, 0.96) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(216, 234, 247, 0.96) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle) !important;
 }
 
@@ -1271,23 +1272,25 @@ ul, ol {
 
 /* ===== 7. CARDS & EDITORIAL CONTENT CONTAINERS ===== */
 .card {
+  background: linear-gradient(168deg, #EEF6FD 0%, #E3EFF9 100%);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 1.65rem;
-  transition: border-color var(--transition-normal), transform var(--transition-normal), background-color var(--transition-normal), box-shadow var(--transition-normal);
-  box-shadow: 0 2px 10px rgba(18, 55, 85, 0.04);
+  transition: border-color var(--transition-normal), transform var(--transition-normal), background var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: 0 3px 12px rgba(18, 55, 85, 0.06);
 }
 
 .card--surface {
+  background: linear-gradient(168deg, #E2EFF9 0%, #D4E5F4 100%);
   background-color: var(--bg-surface);
 }
 
 .card-hover:hover {
   transform: translateY(-3px);
   border-color: var(--color-brand);
-  background-color: var(--bg-card-hover);
-  box-shadow: 0 8px 24px rgba(26, 141, 216, 0.09);
+  background: linear-gradient(168deg, #F5FAFE 0%, #E9F4FC 100%);
+  box-shadow: 0 10px 28px rgba(26, 141, 216, 0.16);
 }
 
 .card-media-header {
@@ -1583,6 +1586,7 @@ ul, ol {
 }
 
 .benefit-card-container {
+  background: linear-gradient(168deg, #EEF6FD 0%, #E3EFF9 100%);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
@@ -1590,15 +1594,15 @@ ul, ol {
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-normal);
-  box-shadow: 0 2px 10px rgba(18, 55, 85, 0.04);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+  box-shadow: 0 3px 12px rgba(18, 55, 85, 0.06);
 }
 
 .benefit-card-container:hover {
   transform: translateY(-4px);
   border-color: var(--color-brand);
-  background-color: var(--bg-card-hover);
-  box-shadow: 0 10px 28px rgba(26, 141, 216, 0.1);
+  background: linear-gradient(168deg, #F5FAFE 0%, #E9F4FC 100%);
+  box-shadow: 0 10px 28px rgba(26, 141, 216, 0.16);
 }
 
 .benefit-card-media {
@@ -1722,20 +1726,22 @@ ul, ol {
 }
 
 .facility-card {
+  background: linear-gradient(168deg, #EEF6FD 0%, #E3EFF9 100%);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
-  box-shadow: 0 2px 10px rgba(18, 55, 85, 0.04);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
+  box-shadow: 0 3px 12px rgba(18, 55, 85, 0.06);
 }
 
 .facility-card:hover {
   transform: translateY(-4px);
   border-color: var(--color-brand);
-  box-shadow: 0 10px 28px rgba(26, 141, 216, 0.1);
+  background: linear-gradient(168deg, #F5FAFE 0%, #E9F4FC 100%);
+  box-shadow: 0 10px 28px rgba(26, 141, 216, 0.16);
 }
 
 .facility-card-img-wrap {
@@ -2002,9 +2008,11 @@ ul, ol {
   grid-template-columns: 3.25rem 1fr;
   gap: 1.25rem;
   padding: 1.5rem;
-  background-color: var(--bg-surface);
+  background: linear-gradient(168deg, #EEF6FD 0%, #E3EFF9 100%);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
+  box-shadow: 0 3px 12px rgba(18, 55, 85, 0.06);
 }
 
 .timeline-step-index {
@@ -2045,7 +2053,9 @@ ul, ol {
   overflow: hidden;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  background-color: var(--bg-surface);
+  background: linear-gradient(168deg, #EEF6FD 0%, #E3EFF9 100%);
+  background-color: var(--bg-card);
+  box-shadow: 0 3px 12px rgba(18, 55, 85, 0.06);
 }
 
 .gallery-card img {
@@ -2182,11 +2192,13 @@ ul, ol {
 }
 
 .contact-card {
-  background-color: var(--bg-canvas);
+  background: linear-gradient(168deg, #EEF6FD 0%, #E3EFF9 100%);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 1.5rem 1.25rem;
   text-align: center;
+  box-shadow: 0 3px 12px rgba(18, 55, 85, 0.06);
 }
 
 .contact-card-label {
@@ -2238,10 +2250,12 @@ ul, ol {
 }
 
 .accordion-item {
-  background-color: var(--bg-canvas);
+  background: linear-gradient(168deg, #EEF6FD 0%, #E3EFF9 100%);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   overflow: hidden;
+  box-shadow: 0 3px 10px rgba(18, 55, 85, 0.05);
 }
 
 .accordion-trigger {

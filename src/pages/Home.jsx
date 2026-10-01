@@ -10,7 +10,7 @@ const SERVICES_PREVIEW = [
     title: 'Assistance with ADLs & IADLs',
     desc: 'Support with bathing, dressing, grooming, eating, mobility, meal preparation, housekeeping, and transportation.',
     link: '/services#adl',
-    image: '/photos/lovelead_bedroom.jpeg',
+    image: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&q=80',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
