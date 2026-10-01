@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { animate, stagger } from 'motion';
 import AnimateIn from '../components/AnimateIn';
@@ -154,8 +155,91 @@ const CARE_PILLARS = [
   },
 ];
 
+const FACILITY_SHOWCASE_PHOTOS = [
+  {
+    id: 'frontyard',
+    src: '/photos/lovelead_frontyard.jpeg',
+    tag: 'Exterior',
+    title: 'Quiet Suburban Residence',
+    desc: 'Two-story residential home with a welcoming porch, private driveway, and peaceful Cottage Grove neighborhood surroundings.',
+  },
+  {
+    id: 'living',
+    src: '/photos/lovelead_living_area2.jpeg',
+    tag: 'Living Lounge',
+    title: 'Sunlit Living & Social Spaces',
+    desc: 'High ceilings and expansive windows where residents relax, converse with family, and participate in engaging group activities.',
+  },
+  {
+    id: 'kitchen',
+    src: '/photos/lovelead_kitchen.jpeg',
+    tag: 'Kitchen & Dining',
+    title: 'Chef-Equipped Kitchen',
+    desc: 'Wholesome home-cooked meals prepared fresh daily, tailored to individual diabetic, low-sodium, and physician meal plans.',
+  },
+  {
+    id: 'bedroom',
+    src: '/photos/lovelead_bedroom.jpeg',
+    tag: 'Private Suite',
+    title: 'Comfortable Private Bedrooms',
+    desc: 'Serene personal sanctuaries with generous natural sunlight, closet storage, and accessible walker-friendly clearances.',
+  },
+  {
+    id: 'backyard',
+    src: '/photos/lovelead_backyard_staircase.jpeg',
+    tag: 'Outdoor Grounds',
+    title: 'Private Fenced Backyard & Deck',
+    desc: 'Serene outdoor lawn and elevated deck surrounded by mature trees for peaceful fresh air, family visits, and relaxation.',
+  },
+  {
+    id: 'bathroom',
+    src: '/photos/lovelead_bathroom.jpeg',
+    tag: 'Accessible Bath',
+    title: 'Modern Accessible Bathrooms',
+    desc: 'Bright, dignified hygiene spaces with non-slip flooring, safety grab bars, and accessible vanities.',
+  },
+];
+
 export default function Home() {
   const heroRef = useRef(null);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  const currentIndex = selectedPhoto
+    ? FACILITY_SHOWCASE_PHOTOS.findIndex((p) => p.id === selectedPhoto.id)
+    : -1;
+
+  const handlePrev = useCallback((e) => {
+    if (e) e.stopPropagation();
+    const prevIdx = (currentIndex - 1 + FACILITY_SHOWCASE_PHOTOS.length) % FACILITY_SHOWCASE_PHOTOS.length;
+    setSelectedPhoto(FACILITY_SHOWCASE_PHOTOS[prevIdx]);
+  }, [currentIndex]);
+
+  const handleNext = useCallback((e) => {
+    if (e) e.stopPropagation();
+    const nextIdx = (currentIndex + 1) % FACILITY_SHOWCASE_PHOTOS.length;
+    setSelectedPhoto(FACILITY_SHOWCASE_PHOTOS[nextIdx]);
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (selectedPhoto) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    const handleKeyDown = (e) => {
+      if (!selectedPhoto) return;
+      if (e.key === 'Escape') setSelectedPhoto(null);
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedPhoto, handlePrev, handleNext]);
 
   useEffect(() => {
     if (heroRef.current) {
@@ -500,71 +584,34 @@ export default function Home() {
           />
 
           <div className="facility-showcase-grid">
-            <div className="facility-card">
-              <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_frontyard.jpeg" alt="Front Exterior & Lawn" loading="lazy" />
-                <span className="facility-card-tag">Exterior</span>
+            {FACILITY_SHOWCASE_PHOTOS.map((photo) => (
+              <div
+                key={photo.id}
+                className="facility-card facility-card--clickable"
+                onClick={() => setSelectedPhoto(photo)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedPhoto(photo); }}
+                aria-label={`View photo: ${photo.title}`}
+              >
+                <div className="facility-card-img-wrap">
+                  <img src={photo.src} alt={photo.title} loading="lazy" />
+                  <span className="facility-card-tag">{photo.tag}</span>
+                  <div className="facility-card-zoom-badge" aria-hidden="true">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                      <line x1="11" y1="8" x2="11" y2="14" />
+                      <line x1="8" y1="11" x2="14" y2="11" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="facility-card-body">
+                  <h3 className="facility-card-title">{photo.title}</h3>
+                  <p className="facility-card-desc">{photo.desc}</p>
+                </div>
               </div>
-              <div className="facility-card-body">
-                <h3 className="facility-card-title">Quiet Suburban Residence</h3>
-                <p className="facility-card-desc">Two-story residential home with a welcoming porch and peaceful neighborhood surroundings.</p>
-              </div>
-            </div>
-
-            <div className="facility-card">
-              <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_living_area2.jpeg" alt="Sunlit Main Living Room" loading="lazy" />
-                <span className="facility-card-tag">Living Lounge</span>
-              </div>
-              <div className="facility-card-body">
-                <h3 className="facility-card-title">Sunlit Living & Social Spaces</h3>
-                <p className="facility-card-desc">High ceilings and large picture windows where residents relax, converse, and connect.</p>
-              </div>
-            </div>
-
-            <div className="facility-card">
-              <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_kitchen.jpeg" alt="Modern Residential Kitchen" loading="lazy" />
-                <span className="facility-card-tag">Kitchen & Dining</span>
-              </div>
-              <div className="facility-card-body">
-                <h3 className="facility-card-title">Chef-Equipped Kitchen</h3>
-                <p className="facility-card-desc">Wholesome home-cooked meals prepared fresh daily, tailored to individual dietary guidelines.</p>
-              </div>
-            </div>
-
-            <div className="facility-card">
-              <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_bedroom.jpeg" alt="Private Bedroom Suite" loading="lazy" />
-                <span className="facility-card-tag">Private Suite</span>
-              </div>
-              <div className="facility-card-body">
-                <h3 className="facility-card-title">Comfortable Private Bedrooms</h3>
-                <p className="facility-card-desc">Serene personal sanctuaries with natural sunlight, closet space, and accessible clearances.</p>
-              </div>
-            </div>
-
-            <div className="facility-card">
-              <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_backyard_staircase.jpeg" alt="Back Deck & Wooded Grounds" loading="lazy" />
-                <span className="facility-card-tag">Outdoor Grounds</span>
-              </div>
-              <div className="facility-card-body">
-                <h3 className="facility-card-title">Private Fenced Backyard & Deck</h3>
-                <p className="facility-card-desc">Serene outdoor lawn and elevated deck surrounded by mature trees for peaceful fresh air.</p>
-              </div>
-            </div>
-
-            <div className="facility-card">
-              <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_bathroom.jpeg" alt="Accessible Modern Bathroom" loading="lazy" />
-                <span className="facility-card-tag">Accessible Bath</span>
-              </div>
-              <div className="facility-card-body">
-                <h3 className="facility-card-title">Modern Accessible Bathrooms</h3>
-                <p className="facility-card-desc">Bright, safe hygiene spaces with non-slip flooring and handicap-accessible considerations.</p>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '2.75rem' }}>
@@ -654,6 +701,106 @@ export default function Home() {
           </AnimateIn>
         </div>
       </section>
+
+      {/* ===== FACILITY PHOTO LIGHTBOX MODAL (PORTAL TO BODY) ===== */}
+      {selectedPhoto && typeof document !== 'undefined' && createPortal(
+        <div
+          className="gallery-modal-backdrop"
+          onClick={() => setSelectedPhoto(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedPhoto.title}
+        >
+          <div
+            className="gallery-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Top Bar */}
+            <div className="gallery-modal-top-bar">
+              <div className="gallery-modal-top-info">
+                <span className="gallery-modal-counter">
+                  Photo {currentIndex + 1} of {FACILITY_SHOWCASE_PHOTOS.length}
+                </span>
+                <span className="gallery-modal-top-tag">
+                  {selectedPhoto.tag}
+                </span>
+              </div>
+              <button
+                type="button"
+                className="gallery-modal-close"
+                onClick={() => setSelectedPhoto(null)}
+                aria-label="Close photo preview"
+                title="Close (Esc)"
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Image Stage with Navigation */}
+            <div className="gallery-modal-stage">
+              <button
+                type="button"
+                className="gallery-modal-arrow gallery-modal-arrow--prev"
+                onClick={handlePrev}
+                aria-label="Previous photo"
+                title="Previous photo (Left arrow)"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+
+              <div className="gallery-modal-img-container">
+                <img
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.title}
+                  className="gallery-modal-img"
+                />
+              </div>
+
+              <button
+                type="button"
+                className="gallery-modal-arrow gallery-modal-arrow--next"
+                onClick={handleNext}
+                aria-label="Next photo"
+                title="Next photo (Right arrow)"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Details / Meta Footer */}
+            <div className="gallery-modal-meta">
+              <div className="gallery-modal-text">
+                <h3 className="gallery-modal-title">{selectedPhoto.title}</h3>
+                <p className="gallery-modal-caption">{selectedPhoto.desc}</p>
+              </div>
+              <div className="gallery-modal-actions">
+                <Link
+                  to="/gallery"
+                  className="btn btn-outline-white btn-sm"
+                  onClick={() => setSelectedPhoto(null)}
+                >
+                  Full 15-Photo Tour
+                </Link>
+                <Link
+                  to="/contact"
+                  className="btn btn-primary btn-sm"
+                  onClick={() => setSelectedPhoto(null)}
+                >
+                  Book Tour
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </main>
   );
 }

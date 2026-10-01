@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import AnimateIn from '../components/AnimateIn';
 import SectionHeader from '../components/SectionHeader';
@@ -138,18 +139,49 @@ export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  // Close lightbox on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setSelectedPhoto(null);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   const filteredPhotos = activeCategory === 'all'
     ? PHOTOS
     : PHOTOS.filter((p) => p.category === activeCategory);
+
+  const currentIndex = selectedPhoto
+    ? filteredPhotos.findIndex((p) => p.id === selectedPhoto.id)
+    : -1;
+
+  const handlePrev = useCallback((e) => {
+    if (e) e.stopPropagation();
+    if (filteredPhotos.length === 0) return;
+    const prevIdx = (currentIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
+    setSelectedPhoto(filteredPhotos[prevIdx]);
+  }, [currentIndex, filteredPhotos]);
+
+  const handleNext = useCallback((e) => {
+    if (e) e.stopPropagation();
+    if (filteredPhotos.length === 0) return;
+    const nextIdx = (currentIndex + 1) % filteredPhotos.length;
+    setSelectedPhoto(filteredPhotos[nextIdx]);
+  }, [currentIndex, filteredPhotos]);
+
+  // Keyboard navigation & body scroll lock
+  useEffect(() => {
+    if (selectedPhoto) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    const handleKeyDown = (e) => {
+      if (!selectedPhoto) return;
+      if (e.key === 'Escape') setSelectedPhoto(null);
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedPhoto, handlePrev, handleNext]);
 
   return (
     <main id="main-content" className="gallery-page">
@@ -342,8 +374,8 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* ===== LIGHTBOX MODAL ===== */}
-      {selectedPhoto && (
+      {/* ===== LIGHTBOX MODAL (PORTAL TO BODY) ===== */}
+      {selectedPhoto && typeof document !== 'undefined' && createPortal(
         <div
           className="gallery-modal-backdrop"
           onClick={() => setSelectedPhoto(null)}
@@ -355,34 +387,84 @@ export default function Gallery() {
             className="gallery-modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={selectedPhoto.src}
-              alt={selectedPhoto.title}
-              className="gallery-modal-img"
-            />
-            <div className="gallery-modal-meta">
-              <div>
-                <span style={{ fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-brand-soft)', fontWeight: '700', display: 'block', marginBottom: '0.2rem' }}>
+            {/* Modal Top Bar */}
+            <div className="gallery-modal-top-bar">
+              <div className="gallery-modal-top-info">
+                <span className="gallery-modal-counter">
+                  Photo {currentIndex + 1} of {filteredPhotos.length}
+                </span>
+                <span className="gallery-modal-top-tag">
                   {selectedPhoto.subtitle}
                 </span>
-                <h3 className="gallery-modal-title">{selectedPhoto.title}</h3>
-                <p className="gallery-modal-caption">{selectedPhoto.desc}</p>
               </div>
               <button
                 type="button"
                 className="gallery-modal-close"
                 onClick={() => setSelectedPhoto(null)}
-                aria-label="Close photo view"
+                aria-label="Close photo preview"
                 title="Close (Esc)"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               </button>
             </div>
+
+            {/* Modal Image Stage with Arrows */}
+            <div className="gallery-modal-stage">
+              <button
+                type="button"
+                className="gallery-modal-arrow gallery-modal-arrow--prev"
+                onClick={handlePrev}
+                aria-label="Previous photo"
+                title="Previous photo (Left arrow)"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+
+              <div className="gallery-modal-img-container">
+                <img
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.title}
+                  className="gallery-modal-img"
+                />
+              </div>
+
+              <button
+                type="button"
+                className="gallery-modal-arrow gallery-modal-arrow--next"
+                onClick={handleNext}
+                aria-label="Next photo"
+                title="Next photo (Right arrow)"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Details / Meta Footer */}
+            <div className="gallery-modal-meta">
+              <div className="gallery-modal-text">
+                <h3 className="gallery-modal-title">{selectedPhoto.title}</h3>
+                <p className="gallery-modal-caption">{selectedPhoto.desc}</p>
+              </div>
+              <div className="gallery-modal-actions">
+                <Link
+                  to="/contact"
+                  className="btn btn-primary btn-sm"
+                  onClick={() => setSelectedPhoto(null)}
+                >
+                  Schedule Tour
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </main>
   );

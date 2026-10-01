@@ -274,10 +274,19 @@ export default function Header() {
             aria-hidden="true"
           />
           <nav className="mobile-drawer no-print" aria-label="Mobile navigation">
-            <div style={{ marginBottom: '1.5rem' }}>
-              <span style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--text-light)', fontWeight: '700' }}>
-                Navigation
-              </span>
+            <div className="mobile-drawer-header">
+              <span className="mobile-drawer-title">Navigation</span>
+              <button
+                type="button"
+                className="mobile-drawer-close-btn"
+                onClick={() => setMobileOpen(false)}
+                aria-label="Close navigation menu"
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
             </div>
 
             {NAV_LINKS.map((link) => {
@@ -286,6 +295,7 @@ export default function Header() {
                 <Link
                   key={link.to}
                   to={link.to}
+                  onClick={() => setMobileOpen(false)}
                   className={`mobile-nav-link ${isActive ? 'mobile-nav-link--active' : ''}`}
                 >
                   {link.label}
@@ -293,8 +303,8 @@ export default function Header() {
               );
             })}
 
-            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <Link to="/contact" className="btn btn-primary" style={{ width: '100%' }}>
+            <div style={{ marginTop: '1.75rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <Link to="/contact" onClick={() => setMobileOpen(false)} className="btn btn-primary" style={{ width: '100%' }}>
                 Schedule a Visit
               </Link>
               <a
@@ -306,7 +316,7 @@ export default function Header() {
               </a>
             </div>
 
-            <div style={{ marginTop: 'auto', paddingTop: '2rem', borderTop: '1px solid var(--border-subtle)' }}>
+            <div style={{ marginTop: 'auto', paddingTop: '1.75rem', borderTop: '1px solid var(--border-subtle)' }}>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                 Cottage Grove, Minnesota
               </p>
