@@ -236,10 +236,10 @@ export default function Benefits() {
                   <span style={{ fontSize: '0.72rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--color-brand)', fontWeight: '700', display: 'block', marginBottom: '0.4rem' }}>
                     {item.time}
                   </span>
-                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.6rem', color: 'var(--text-main)' }}>
+                  <h3 className="card-title" style={{ fontSize: '1.2rem', marginBottom: '0.6rem', color: 'var(--text-headings)' }}>
                     {item.title}
                   </h3>
-                  <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                  <p className="card-text" style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
                     {item.desc}
                   </p>
                 </div>

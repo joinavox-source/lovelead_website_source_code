@@ -1,91 +1,243 @@
 /* ==========================================================================
-   LOVELEAD ASSISTED LIVING — MASTER STYLESHEET (VANILLA NORMAL CSS)
-   Google-Style Typography (Outfit & Plus Jakarta Sans).
-   Adaptive Laptop / Mobile Typography & Scaled Responsive Design.
-   Strictly Zero Tailwind CSS Dependencies.
+   LOVELEAD ASSISTED LIVING — MASTER STYLESHEET
+   Google Blue Design System (Hex #174EA6, #4285F4, #D2E3FC)
+   Comprehensive Light & Dark Theme System with Smooth 0.4s Transitions
+   Crucial Typography: Minimum 18px (1.125rem) Base Font Size for Body Copy
    ========================================================================== */
 
-/* ===== 1. DESIGN TOKENS ===== */
+/* ===== 1. CORE DESIGN TOKENS ===== */
 :root {
-  /* Surfaces & Backgrounds — Rich, Unmistakable Blue Palette */
-  --bg-canvas: #BCD8F0;          /* Distinct, rich sky-blue canvas background */
-  --bg-surface: #A2C8E7;         /* Deeper rich blue tone for alternating sections */
-  --bg-card: #D4E7F7;            /* Clearly blue card background */
-  --bg-card-hover: #E5F2FB;      /* Luminous pale blue card hover */
-  --bg-card-elevated: #C5DFF2;   /* Inset/elevated blue card surface */
-  --bg-muted: #92BEE2;           /* Medium powder blue wash */
-  --bg-blue-subtle: #CDE3F5;     /* Soft sky wash */
-  --bg-blue-tint: #B2D3EE;       /* Blue tone wash */
-  --bg-dark: #071728;            /* Deep midnight nautical navy */
-  --bg-dark-card: #0E243D;       /* Midnight navy card surface */
-  --bg-dark-surface: #05101C;    /* Deepest navy tone */
+  /* Google Logo Blue Spectrum Palette */
+  --google-dark-blue: #174EA6;   /* Hex #174EA6 | RGB (23, 78, 166) */
+  --google-medium-blue: #4285F4; /* Hex #4285F4 | RGB (66, 103, 210) */
+  --google-light-blue: #D2E3FC;  /* Hex #D2E3FC | RGB (210, 227, 252) */
+  --google-navy-deep: #0B2553;   /* Deeper derivative for dark theme depth */
+  --google-dark-surface: #103672;/* Intermediate dark layer */
+  --google-ice-tint: #E8F0FE;    /* Soft luminous blue tint */
+  --google-pure-white: #FFFFFF;  /* Crisp white */
 
-  /* Brand Palette (Medical-grade, serene sky & royal accents) */
-  --color-brand: #1886CE;         /* Lovelead Sky Brand */
-  --color-brand-deep: #0D5C90;    /* Deep sky blue */
-  --color-brand-navy: #092644;    /* Deep royal navy */
-  --color-brand-soft: #42A8EA;    /* Soft sky accent */
-  --color-brand-wash: #DDF0FC;    /* Light sky wash */
-  --color-brand-pale: #CBE4F7;    /* Light sky pale */
+  /* Google-Style Clean Modern Sans-Serif Font Stack */
+  --font-display: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-hero: 'Fraunces', Georgia, serif;
 
-  /* Secondary Accents */
-  --color-sage: #336F66;          /* Botanical teal-sage */
-  --color-sage-soft: #549287;     /* Muted teal */
-  --color-sage-pale: #D4EAE7;     /* Sage pale wash */
+  /* Geometry Tokens */
+  --radius-xs: 3px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 9999px;
 
-  --color-terracotta: #B96645;    /* Warm hearth terracotta */
-  --color-terracotta-soft: #D18364;
-  --color-terracotta-pale: #FBF2EE;
-
-  --color-amber: #C6923B;         /* Warm sunlight amber */
-  --color-amber-pale: #F5EEDD;
-
-  /* Typography Colors — Maximum contrast on rich blue backgrounds */
-  --text-main: #061525;           /* Deepest midnight navy, maximum legibility */
-  --text-muted: #153450;          /* Subdued rich slate-navy text */
-  --text-light: #2A5377;          /* Soft slate-blue footnotes */
-  --text-inverse: #F0F7FC;        /* Ice-white text on dark */
-  --text-inverse-muted: #B2CEE4;  /* Muted sky text on dark */
-
-  /* Borders & Dividers (Distinct crisp blue hair-lines) */
-  --border-subtle: #7CAED4;       /* Crisp distinct light-blue border */
-  --border-mid: #5692C2;          /* Mid sky-blue border */
-  --border-strong: #2B78B2;       /* Strong cobalt border */
-  --border-dark: #193859;         /* Navy border for dark sections */
-  --border-brand: #1886CE;
-
-  /* Form & Status Colors */
-  --color-error: #B53A36;
-  --color-error-bg: #FCF1F0;
-  --color-error-border: #E8A6A4;
-  --color-success: #357B4D;
-  --color-success-bg: #EDF7F1;
-  --color-success-border: #97CEAA;
-
-  /* Geometry: Strict 3px-4px radius, strictly NO pill buttons or bubbly shapes */
-  --radius-xs: 2px;
-  --radius-sm: 3px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
-
-  /* Google-Style Typography Stack */
-  --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-body: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Playfair Display', 'DM Serif Display', Georgia, serif;
-  --font-hero: 'Fraunces', 'DM Serif Display', Georgia, serif;
-
-  /* Layout Widths: Generous expansive layouts eliminating side empty gaps */
+  /* Layout Widths */
   --max-width: 1360px;
   --max-width-narrow: 940px;
   --max-width-text: 780px;
 
-  /* Transitions */
+  /* Transition Speeds */
   --transition-fast: 0.18s ease;
   --transition-normal: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-theme: 0.4s ease;
 }
 
-/* ===== 2. BASE RESET & ACCESSIBILITY ===== */
+/* ==========================================================================
+   LIGHT THEME IMPLEMENTATION
+   - Backgrounds: Light Blue (#D2E3FC) and crisp whites (#FFFFFF)
+   - Primary text and headings: Dark Blue (#174EA6) for high readability
+   - Buttons, links, and interactive accents: Medium Blue (#4285F4)
+   ========================================================================== */
+:root,
+[data-theme="light"],
+.light {
+  --theme-mode: 'light';
+
+  /* Backgrounds: Crisp Whites & Light Blue (#D2E3FC) */
+  --bg-canvas: #D2E3FC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-alt: #E8F0FE;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFD;
+  --bg-card-elevated: #FFFFFF;
+  --bg-muted: #D2E3FC;
+  --bg-blue-subtle: #E8F0FE;
+  --bg-blue-tint: #D2E3FC;
+  --bg-dark: #0B2553;
+  --bg-dark-card: #103672;
+  --bg-header: rgba(255, 255, 255, 0.95);
+  --bg-header-scrolled: rgba(255, 255, 255, 0.98);
+
+  /* Primary text & headings: Dark Blue (#174EA6) for maximum readability */
+  --text-main: #174EA6;
+  --text-headings: #174EA6;
+  --text-muted: #1E3F7A;
+  --text-light: #2D5699;
+  --text-inverse: #FFFFFF;
+  --text-inverse-muted: #D2E3FC;
+
+  /* Buttons, links, interactive highlights: Medium Blue (#4285F4) */
+  --color-brand: #4285F4;
+  --color-brand-deep: #174EA6;
+  --color-brand-navy: #174EA6;
+  --color-brand-soft: #6BA5FF;
+  --color-brand-wash: #E8F0FE;
+  --color-brand-pale: #D2E3FC;
+
+  /* Supporting Accents */
+  --color-sage: #174EA6;
+  --color-sage-soft: #4285F4;
+  --color-sage-pale: #D2E3FC;
+  --color-terracotta: #EA4335;
+  --color-terracotta-soft: #F28B82;
+  --color-terracotta-pale: #FCE8E6;
+  --color-amber: #FBBC04;
+  --color-amber-pale: #FEF7E0;
+
+  /* Borders & Dividers */
+  --border-subtle: #AECBFA;
+  --border-mid: #8AB4F8;
+  --border-strong: #4285F4;
+  --border-dark: #174EA6;
+  --border-brand: #4285F4;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(23, 78, 166, 0.08);
+  --shadow-md: 0 8px 24px rgba(23, 78, 166, 0.12);
+  --shadow-lg: 0 16px 36px rgba(23, 78, 166, 0.16);
+
+  /* Toggle Switch */
+  --toggle-track-bg: #E8F0FE;
+  --toggle-track-border: #8AB4F8;
+  --toggle-thumb-bg: #4285F4;
+  --toggle-thumb-color: #FFFFFF;
+  --toggle-icon-sun: #FBBC04;
+  --toggle-icon-moon: #8AB4F8;
+}
+
+/* ==========================================================================
+   DARK THEME IMPLEMENTATION
+   - Primary background: Dark Blue (#174EA6) or deeper derivative (#0B2553)
+   - Primary body text: Light Blue (#D2E3FC)
+   - Headings: Crisp White (#FFFFFF) / Light Blue
+   - Buttons, links, and interactive highlights: Medium Blue (#4285F4)
+   ========================================================================== */
+[data-theme="dark"],
+.dark {
+  --theme-mode: 'dark';
+
+  /* Vibrant Google Dark Blue Palette — Noticeably rich royal blue, never murky or near-black */
+  --bg-canvas: #164696;          /* Rich vibrant royal blue background */
+  --bg-surface: #1B53AB;         /* Rich Google dark blue layer */
+  --bg-surface-alt: #2262C7;     /* Luminous alternate blue layer */
+  --bg-card: #205BB9;            /* Distinct vibrant card surface that stands out clearly */
+  --bg-card-hover: #2970E0;      /* Glowing blue card hover */
+  --bg-card-elevated: #2668D6;   /* Elevated blue card surface */
+  --bg-muted: #1B4E9F;           /* Muted blue container */
+  --bg-blue-subtle: #1D54A8;     /* Soft blue section wash */
+  --bg-blue-tint: #2465D3;       /* Blue tint */
+  --bg-dark: #14428D;            /* Deepest blue section, rich and clearly royal blue, never near-black */
+  --bg-dark-card: #1E56B6;       /* Google dark blue card */
+  --bg-header: rgba(22, 70, 150, 0.95);
+  --bg-header-scrolled: rgba(22, 70, 150, 0.98);
+
+  /* Primary body text: Crisp White (#FFFFFF) & Light Blue (#D2E3FC) */
+  --text-main: #FFFFFF;
+  --text-headings: #FFFFFF;
+  --text-muted: #D2E3FC;          /* High-contrast light blue */
+  --text-light: #AECBFA;
+  --text-inverse: #FFFFFF;        /* Crisp white on dark containers */
+  --text-inverse-muted: #D2E3FC;  /* Light blue on dark containers — never dark blue */
+
+  /* Buttons & Highlights: Medium Blue (#4285F4) */
+  --color-brand: #4285F4;
+  --color-brand-deep: #6BA5FF;
+  --color-brand-navy: #FFFFFF;
+  --color-brand-soft: #8AB4F8;
+  --color-brand-wash: #2160C4;
+  --color-brand-pale: #2668D6;
+
+  /* Supporting Accents */
+  --color-sage: #8AB4F8;
+  --color-sage-soft: #AECBFA;
+  --color-sage-pale: #2160C4;
+  --color-terracotta: #F28B82;
+  --color-terracotta-soft: #F6AEA9;
+  --color-terracotta-pale: #542220;
+  --color-amber: #FDD663;
+  --color-amber-pale: #4D3D14;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(210, 227, 252, 0.22);
+  --border-mid: rgba(210, 227, 252, 0.38);
+  --border-strong: #8AB4F8;
+  --border-dark: #AECBFA;
+  --border-brand: #4285F4;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(10, 32, 68, 0.3);
+  --shadow-md: 0 8px 24px rgba(10, 32, 68, 0.4);
+  --shadow-lg: 0 16px 40px rgba(10, 32, 68, 0.5);
+
+  /* Toggle Switch */
+  --toggle-track-bg: #2160C4;
+  --toggle-track-border: #4285F4;
+  --toggle-thumb-bg: #D2E3FC;
+  --toggle-thumb-color: #164696;
+  --toggle-icon-sun: #8AB4F8;
+  --toggle-icon-moon: #FFFFFF;
+}
+
+/* ==========================================================================
+   2. GLOBAL SMOOTH THEME TRANSITIONS
+   All state changes between light and dark modes feature a smooth,
+   visually appealing 0.4s transition.
+   ========================================================================== */
+html,
+body,
+header,
+nav,
+section,
+footer,
+div,
+article,
+aside,
+main,
+button,
+input,
+select,
+textarea,
+span,
+p,
+h1, h2, h3, h4, h5, h6,
+a,
+.card,
+.pillar-card,
+.value-card,
+.facility-card,
+.lovelead-card,
+.gallery-card,
+.editorial-frame,
+.btn,
+.nav-link,
+.search-input,
+.theme-toggle-btn,
+.theme-toggle-track,
+.theme-toggle-thumb {
+  transition: background-color 0.4s ease,
+              color 0.4s ease,
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+}
+
+/* Prevent transitions on media elements for optimal performance */
+img, video, canvas {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* ==========================================================================
+   3. BASE RESET & CRUCIAL TYPOGRAPHY RULE
+   Minimum font size of 18px or 1.125rem for all paragraph text and general
+   body content with an optimal line height of 1.6 to 1.75.
+   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -102,24 +254,10 @@ html {
   overflow-x: clip;
 }
 
-/* Laptop View (1024px to 1440px): Reduced Font Size for Compact Balanced Layout */
-@media (min-width: 1024px) and (max-width: 1440px) {
-  html {
-    font-size: 14.5px;
-  }
-}
-
-/* Extra Large Screens (1441px and above) */
-@media (min-width: 1441px) {
-  html {
-    font-size: 13.5px !important;
-  }
-}
-
 body {
   font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.62;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.72;   /* Optimal line-height 1.6 - 1.75 */
   background-color: var(--bg-canvas);
   color: var(--text-main);
   overflow-x: clip;
@@ -134,6 +272,27 @@ body {
   min-height: 100vh;
 }
 
+/* Crucial Typography Rule Enforced Across Paragraphs & General Body Text */
+p,
+.body-text,
+.card-text,
+.section-subtitle,
+.hero-lead,
+.facility-card-desc,
+.lovelead-card-desc,
+.editorial-frame p,
+.pillar-text,
+.value-text,
+.benefit-card-desc,
+.service-desc,
+.text-lg,
+.text-body,
+ul li,
+ol li {
+  font-size: 1.125rem !important; /* 18px base */
+  line-height: 1.72 !important;   /* optimal line-height */
+}
+
 /* Images & Media: Crisp, natural responsive sizing */
 img, video {
   display: block;
@@ -146,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.2;
-  color: inherit;
+  color: var(--text-headings);
   letter-spacing: -0.015em;
 }
 
@@ -520,15 +679,16 @@ ul, ol {
   right: 0;
   z-index: 50;
   transition: background var(--transition-normal), background-color var(--transition-normal), border-color var(--transition-normal);
-  background: linear-gradient(180deg, rgba(16, 15, 14, 0.72) 0%, rgba(16, 15, 14, 0.3) 65%, transparent 100%);
+  background: linear-gradient(180deg, rgba(23, 78, 166, 0.72) 0%, rgba(23, 78, 166, 0.25) 65%, transparent 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .site-header--scrolled {
-  background: rgba(216, 234, 247, 0.96) !important;
+  background: var(--bg-header-scrolled) !important;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle) !important;
+  box-shadow: var(--shadow-sm);
 }
 
 .header-container {
@@ -598,7 +758,8 @@ ul, ol {
 .desktop-nav {
   display: none;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.25rem;
+  flex-shrink: 1;
 }
 
 @media (min-width: 1024px) {
@@ -609,20 +770,41 @@ ul, ol {
 
 .nav-link {
   position: relative;
-  padding: 0.65rem 1.05rem;
-  font-size: 0.84rem;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-transform: none;
   transition: color var(--transition-fast);
+}
+
+@media (min-width: 1200px) {
+  .desktop-nav {
+    gap: 0.4rem;
+  }
+  .nav-link {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.86rem;
+  }
+}
+
+@media (min-width: 1360px) {
+  .desktop-nav {
+    gap: 0.65rem;
+  }
+  .nav-link {
+    padding: 0.55rem 1rem;
+    font-size: 0.92rem;
+  }
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
   bottom: 0.2rem;
-  left: 1rem;
-  right: 1rem;
+  left: 0.65rem;
+  right: 0.65rem;
   height: 2px;
   background-color: var(--color-brand);
   transform: scaleX(0);
@@ -658,21 +840,6 @@ ul, ol {
   .header-actions {
     display: flex;
   }
-}
-
-.search-toggle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: var(--radius-sm);
-  color: inherit;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
-}
-
-.search-toggle-btn:hover {
-  background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* Header CTA Button: Crisp White before transition, Brand Sky when scrolled */
@@ -1092,7 +1259,7 @@ ul, ol {
 /* Page Sub-Hero */
 .page-hero {
   position: relative;
-  background-color: var(--bg-dark);
+  background-color: #0b1329;
   color: #ffffff;
   padding-top: 5.75rem;
   padding-bottom: 2.75rem;
@@ -1120,13 +1287,27 @@ ul, ol {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.65;
+  opacity: 0.78;
 }
 
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(5, 17, 30, 0.38) 0%, rgba(5, 17, 30, 0.74) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.58) 0%,
+    rgba(15, 23, 42, 0.72) 48%,
+    rgba(15, 23, 42, 0.90) 100%
+  );
+}
+
+[data-theme="dark"] .page-hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(10, 18, 32, 0.62) 0%,
+    rgba(10, 18, 32, 0.76) 48%,
+    rgba(10, 18, 32, 0.92) 100%
+  );
 }
 
 .page-hero-content {
@@ -1203,11 +1384,20 @@ ul, ol {
 
 /* Value Card (Core Values) */
 .value-card {
-  border: 1px solid var(--border-dark);
-  background-color: var(--bg-dark-card);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-card);
   padding: 1.45rem;
   border-radius: var(--radius-md);
   height: 100%;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-brand);
+  background-color: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
 }
 
 .value-number {
@@ -1222,15 +1412,15 @@ ul, ol {
 .value-title {
   font-family: var(--font-display);
   font-size: 1.25rem;
-  color: #ffffff;
+  color: var(--text-headings);
   margin-top: 0.65rem;
   margin-bottom: 0.45rem;
 }
 
 .value-text {
-  font-size: 0.88rem;
-  color: var(--text-inverse-muted);
-  line-height: 1.55;
+  font-size: 1.125rem !important;
+  color: var(--text-muted);
+  line-height: 1.68 !important;
 }
 
 /* Reason Card & Reasons Grid (Why Choose Us) */
@@ -1269,7 +1459,7 @@ ul, ol {
 .reason-title {
   font-family: var(--font-display);
   font-size: 1.2rem;
-  color: var(--text-main);
+  color: var(--text-headings);
   margin-bottom: 0.35rem;
 }
 
@@ -1284,7 +1474,7 @@ ul, ol {
   font-family: var(--font-display);
   font-size: 1.85rem;
   margin-bottom: 0.75rem;
-  color: var(--text-main);
+  color: var(--text-headings);
 }
 
 .benefit-desc {
@@ -1310,25 +1500,23 @@ ul, ol {
 }
 
 .card {
-  background: linear-gradient(168deg, #DCEEFB 0%, #CDE3F5 100%);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 1.4rem;
-  transition: border-color var(--transition-normal), transform var(--transition-normal), background var(--transition-normal), box-shadow var(--transition-normal);
-  box-shadow: 0 4px 14px rgba(13, 56, 92, 0.08);
+  transition: border-color var(--transition-normal), transform var(--transition-normal), background-color 0.4s ease, box-shadow var(--transition-normal);
+  box-shadow: var(--shadow-sm);
 }
 
 .card--surface {
-  background: linear-gradient(168deg, #BEDDF5 0%, #AACDEB 100%);
   background-color: var(--bg-surface);
 }
 
 .card-hover:hover {
   transform: translateY(-3px);
   border-color: var(--color-brand);
-  background: linear-gradient(168deg, #E8F4FC 0%, #D8EDFA 100%);
-  box-shadow: 0 10px 28px rgba(24, 134, 206, 0.2);
+  background-color: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
 }
 
 .card-media-header {
@@ -1384,7 +1572,7 @@ ul, ol {
   font-size: 1.25rem;
   line-height: 1.28;
   margin-bottom: 0.6rem;
-  color: var(--text-main);
+  color: var(--text-headings);
 }
 
 @media (min-width: 1024px) {
@@ -1404,6 +1592,21 @@ ul, ol {
     font-size: 1rem;
     line-height: 1.65;
   }
+}
+
+.btn-link {
+  color: var(--color-brand);
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color var(--transition-fast), gap var(--transition-fast);
+}
+
+.btn-link:hover {
+  color: var(--color-brand-deep);
+  gap: 0.55rem;
 }
 
 /* Editorial Balanced Frames */
@@ -1498,15 +1701,16 @@ ul, ol {
 }
 
 .service-row-desc {
-  font-size: 0.98rem;
+  font-size: 1.15rem;
   color: var(--text-muted);
-  line-height: 1.65;
+  line-height: 1.72;
   margin-bottom: 1.25rem;
 }
 
 @media (min-width: 1024px) {
   .service-row-desc {
-    font-size: 1.08rem;
+    font-size: 1.24rem;
+    line-height: 1.75;
   }
 }
 
@@ -1527,9 +1731,9 @@ ul, ol {
   display: flex;
   align-items: flex-start;
   gap: 0.55rem;
-  font-size: 0.88rem;
+  font-size: 1.04rem;
   color: var(--text-main);
-  line-height: 1.45;
+  line-height: 1.55;
 }
 
 .bullet-dash {
@@ -1624,7 +1828,6 @@ ul, ol {
 }
 
 .benefit-card-container {
-  background: linear-gradient(168deg, #DCEEFB 0%, #CDE3F5 100%);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
@@ -1632,15 +1835,15 @@ ul, ol {
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
-  box-shadow: 0 4px 14px rgba(13, 56, 92, 0.08);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background-color 0.4s ease;
+  box-shadow: var(--shadow-sm);
 }
 
 .benefit-card-container:hover {
   transform: translateY(-4px);
   border-color: var(--color-brand);
-  background: linear-gradient(168deg, #E8F4FC 0%, #D8EDFA 100%);
-  box-shadow: 0 10px 28px rgba(24, 134, 206, 0.2);
+  background-color: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
 }
 
 .benefit-card-media {
@@ -1666,7 +1869,7 @@ ul, ol {
   position: absolute;
   top: 0.85rem;
   left: 0.85rem;
-  background-color: rgba(13, 27, 42, 0.82);
+  background-color: rgba(23, 78, 166, 0.9);
   backdrop-filter: blur(8px);
   color: #ffffff;
   font-size: 0.72rem;
@@ -1675,7 +1878,7 @@ ul, ol {
   text-transform: uppercase;
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-xs);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .benefit-card-num {
@@ -1702,7 +1905,7 @@ ul, ol {
   font-size: 1.22rem;
   font-weight: 700;
   line-height: 1.35;
-  color: var(--text-main);
+  color: var(--text-headings);
   margin-bottom: 0.65rem;
 }
 
@@ -1764,22 +1967,21 @@ ul, ol {
 }
 
 .facility-card {
-  background: linear-gradient(168deg, #DCEEFB 0%, #CDE3F5 100%);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background var(--transition-normal);
-  box-shadow: 0 4px 14px rgba(13, 56, 92, 0.08);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background-color 0.4s ease;
+  box-shadow: var(--shadow-sm);
 }
 
 .facility-card:hover {
   transform: translateY(-4px);
   border-color: var(--color-brand);
-  background: linear-gradient(168deg, #E8F4FC 0%, #D8EDFA 100%);
-  box-shadow: 0 10px 28px rgba(24, 134, 206, 0.2);
+  background-color: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
 }
 
 .facility-card-img-wrap {
@@ -1803,7 +2005,7 @@ ul, ol {
   position: absolute;
   bottom: 0.75rem;
   left: 0.75rem;
-  background-color: rgba(13, 27, 42, 0.85);
+  background-color: rgba(23, 78, 166, 0.9);
   backdrop-filter: blur(8px);
   color: #ffffff;
   font-size: 0.7rem;
@@ -1812,7 +2014,7 @@ ul, ol {
   text-transform: uppercase;
   padding: 0.25rem 0.6rem;
   border-radius: var(--radius-xs);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .facility-card-body {
@@ -1826,14 +2028,14 @@ ul, ol {
   font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--text-headings);
   margin-bottom: 0.4rem;
 }
 
 .facility-card-desc {
-  font-size: 0.86rem;
+  font-size: 0.98rem;
   color: var(--text-muted);
-  line-height: 1.55;
+  line-height: 1.62;
 }
 
 /* Photo Gallery Page Specific Styles */
@@ -1966,9 +2168,9 @@ ul, ol {
 .gallery-modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(5, 14, 25, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background-color: rgba(10, 25, 47, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 99999;
   display: flex;
   align-items: center;
@@ -1984,11 +2186,11 @@ ul, ol {
   max-height: 94vh;
   display: flex;
   flex-direction: column;
-  background-color: #0b1d31;
-  border: 1px solid #1f4770;
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-mid);
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 24px 60px rgba(10, 32, 68, 0.35);
 }
 
 .gallery-modal-top-bar {
@@ -1996,8 +2198,8 @@ ul, ol {
   align-items: center;
   justify-content: space-between;
   padding: 0.85rem 1.25rem;
-  background-color: #071524;
-  border-bottom: 1px solid #163657;
+  background-color: var(--bg-surface-alt);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .gallery-modal-top-info {
@@ -2009,23 +2211,24 @@ ul, ol {
 .gallery-modal-counter {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--color-brand-soft);
+  color: var(--color-brand);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .gallery-modal-top-tag {
   font-size: 0.72rem;
-  color: var(--text-inverse-muted);
-  padding: 0.15rem 0.5rem;
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-brand-deep);
+  padding: 0.18rem 0.55rem;
+  background: var(--color-brand-light);
   border-radius: var(--radius-xs);
+  font-weight: 600;
 }
 
 .gallery-modal-close {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: var(--bg-muted);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
   width: 2.35rem;
   height: 2.35rem;
   border-radius: var(--radius-xs);
@@ -2049,7 +2252,7 @@ ul, ol {
   justify-content: center;
   flex: 1;
   min-height: 260px;
-  background-color: #03080e;
+  background-color: #0b1329;
   overflow: hidden;
 }
 
@@ -2060,10 +2263,10 @@ ul, ol {
   width: 2.85rem;
   height: 2.85rem;
   border-radius: 50%;
-  background-color: rgba(9, 23, 40, 0.8);
+  background-color: rgba(23, 78, 166, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -2100,13 +2303,13 @@ ul, ol {
   width: 100%;
   max-height: 64vh;
   object-fit: contain;
-  background-color: #03080e;
+  background-color: #0b1329;
 }
 
 .gallery-modal-meta {
   padding: 1rem 1.35rem;
-  background-color: #071524;
-  border-top: 1px solid #163657;
+  background-color: var(--bg-surface-alt);
+  border-top: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2114,17 +2317,17 @@ ul, ol {
 }
 
 .gallery-modal-title {
-  color: #ffffff;
-  font-size: 1.05rem;
+  color: var(--text-headings);
+  font-size: 1.12rem;
   font-weight: 700;
   line-height: 1.25;
 }
 
 .gallery-modal-caption {
-  color: var(--text-inverse-muted);
-  font-size: 0.82rem;
-  line-height: 1.45;
-  margin-top: 0.2rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-top: 0.25rem;
 }
 
 .gallery-modal-actions {
@@ -2151,7 +2354,7 @@ ul, ol {
   width: 1.85rem;
   height: 1.85rem;
   border-radius: var(--radius-xs);
-  background: rgba(5, 17, 30, 0.75);
+  background: rgba(23, 78, 166, 0.85);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   color: #ffffff;
@@ -2180,11 +2383,11 @@ ul, ol {
   grid-template-columns: 3.25rem 1fr;
   gap: 1.25rem;
   padding: 1.5rem;
-  background: linear-gradient(168deg, #DCEEFB 0%, #CDE3F5 100%);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  box-shadow: 0 4px 14px rgba(13, 56, 92, 0.08);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .timeline-step-index {
@@ -2199,6 +2402,17 @@ ul, ol {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
+}
+
+.timeline-step h3 {
+  font-size: 1.25rem;
+  color: var(--text-headings);
+  margin-bottom: 0.35rem;
+}
+
+.timeline-step p {
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
 /* Community Life Gallery Grid */
@@ -2225,9 +2439,9 @@ ul, ol {
   overflow: hidden;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
-  background: linear-gradient(168deg, #DCEEFB 0%, #CDE3F5 100%);
   background-color: var(--bg-card);
-  box-shadow: 0 4px 14px rgba(13, 56, 92, 0.08);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background-color 0.4s ease;
 }
 
 .gallery-card img {
@@ -2280,6 +2494,36 @@ ul, ol {
 .form-textarea:focus {
   border-color: var(--color-brand);
   background-color: var(--bg-canvas);
+}
+
+/* Form Placeholders - Themed for Light and Dark Themes */
+::placeholder {
+  color: #5A6D82 !important;
+  opacity: 0.85 !important;
+  transition: color 0.3s ease;
+}
+
+.form-input::placeholder,
+.form-select::placeholder,
+.form-textarea::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: #5A6D82 !important;
+  opacity: 0.85 !important;
+}
+
+[data-theme="dark"] ::placeholder {
+  color: #AECBFA !important;
+  opacity: 0.9 !important;
+}
+
+[data-theme="dark"] .form-input::placeholder,
+[data-theme="dark"] .form-select::placeholder,
+[data-theme="dark"] .form-textarea::placeholder,
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #AECBFA !important;
+  opacity: 0.9 !important;
 }
 
 .form-input--error,
@@ -2364,13 +2608,20 @@ ul, ol {
 }
 
 .contact-card {
-  background: linear-gradient(168deg, #DCEEFB 0%, #CDE3F5 100%);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 1.5rem 1.25rem;
   text-align: center;
-  box-shadow: 0 4px 14px rgba(13, 56, 92, 0.08);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background-color 0.4s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-brand);
+  background-color: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
 }
 
 .contact-card-label {
@@ -2386,7 +2637,7 @@ ul, ol {
   font-family: var(--font-display);
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--text-headings);
   display: block;
 }
 
@@ -2410,8 +2661,8 @@ ul, ol {
 
 .copy-pill-btn:hover {
   border-color: var(--color-brand);
-  color: var(--color-brand);
-  background-color: var(--color-brand-wash);
+  color: #FFFFFF;
+  background-color: var(--color-brand);
 }
 
 /* ===== 9. FAQ ACCORDION ===== */
@@ -2422,12 +2673,12 @@ ul, ol {
 }
 
 .accordion-item {
-  background: linear-gradient(168deg, #DCEEFB 0%, #CDE3F5 100%);
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(13, 56, 92, 0.06);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .accordion-trigger {
@@ -3043,9 +3294,22 @@ ul, ol {
     font-size: 1.7rem !important;
   }
 
-  .service-row-desc,
-  .benefit-desc {
+  .service-row-desc {
+    font-size: 1.18rem !important;
+    line-height: 1.72 !important;
+  }
+
+  .service-detail-item {
+    font-size: 1.04rem !important;
+  }
+
+  .services-preview-grid .card-text {
     font-size: 1.02rem !important;
+    line-height: 1.62 !important;
+  }
+
+  .benefit-desc {
+    font-size: 1.08rem !important;
   }
 
   /* 7. Header on Laptop (Larger buttons and comfortable typography) */
@@ -3396,6 +3660,7 @@ ul, ol {
      - Our Core Values (values-grid)
      ======================================================================== */
   .home-page .services-preview-grid,
+  .home-page .lovelead-gallery-grid,
   .home-page .home-gallery-grid,
   .home-page .pillars-grid,
   .home-page .values-grid {
@@ -3436,17 +3701,17 @@ ul, ol {
   }
 
   .home-page .services-preview-grid .card-title {
-    font-size: 0.88rem !important;
+    font-size: 0.92rem !important;
     line-height: 1.25 !important;
     margin-bottom: 0.25rem !important;
   }
 
   .home-page .services-preview-grid .card-text {
-    font-size: 0.75rem !important;
-    line-height: 1.4 !important;
+    font-size: 0.88rem !important;
+    line-height: 1.48 !important;
     margin-bottom: 0.65rem !important;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -3665,8 +3930,8 @@ ul, ol {
   }
 
   .facility-card-desc {
-    font-size: 0.72rem !important;
-    line-height: 1.35 !important;
+    font-size: 0.84rem !important;
+    line-height: 1.42 !important;
   }
 
   /* Gallery grid on mobile (2 columns) */
@@ -3676,17 +3941,101 @@ ul, ol {
   }
 
   /* ========================================================================
-     GENERAL GRIDS & CARDS OUTSIDE SCOPED SECTIONS (1 Column Responsive)
+     MOBILE CARDS: UNIVERSAL TWO-CARD SIDE-BY-SIDE LAYOUT
+     - "in mobile wherever the cards sections are present make it display into 2 side by side layout"
+     - Covers:
+       * .services-preview-grid
+       * .lovelead-gallery-grid
+       * .pillars-grid
+       * .values-grid
+       * .facility-showcase-grid
+       * .benefits-cards-grid
+       * .gallery-grid
+       * .contact-card-grid
+       * .reasons-grid
+       * .benefits-page .grid-3 (Daily Schedule)
+       * .gallery-page .grid-4 (Residential Highlights)
+       * Any .grid-2, .grid-3, .grid-4 containing cards
      ======================================================================== */
-  .grid-2,
-  .grid-3,
-  .grid-4 {
+  .grid-2:has(.card),
+  .grid-3:has(.card),
+  .grid-4:has(.card),
+  .benefits-page .grid-3,
+  .gallery-page .grid-4,
+  .contact-card-grid,
+  .benefits-cards-grid,
+  .reasons-grid,
+  .lovelead-gallery-grid,
+  .facility-showcase-grid,
+  .services-preview-grid,
+  .pillars-grid,
+  .values-grid,
+  .gallery-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
+  }
+
+  /* General content 2-col grids without cards remain 1-col on mobile (e.g. text/image layouts, form/sidebar) */
+  .grid-2:not(:has(.card)) {
     display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 1.25rem !important;
   }
 
-  /* Service Rows on Mobile (Services Page) */
+  .grid-3:not(:has(.card)),
+  .grid-4:not(:has(.card)) {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Schedule Cards in Benefits Page */
+  .benefits-page .grid-3 .card {
+    padding: 0.75rem 0.65rem !important;
+    height: 100% !important;
+  }
+
+  .benefits-page .grid-3 .card-title {
+    font-size: 0.92rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  .benefits-page .grid-3 .card-text {
+    font-size: 0.76rem !important;
+    line-height: 1.38 !important;
+  }
+
+  /* Residential Highlights Cards in Gallery Page */
+  .gallery-page .grid-4 .card {
+    padding: 0.75rem 0.65rem !important;
+    height: 100% !important;
+  }
+
+  .gallery-page .grid-4 .card-icon-box {
+    width: 2rem !important;
+    height: 2rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .gallery-page .grid-4 .card-icon-box svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .gallery-page .grid-4 .card-title {
+    font-size: 0.88rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .gallery-page .grid-4 .card-text {
+    font-size: 0.75rem !important;
+    line-height: 1.38 !important;
+  }
+
+  /* Service Rows on Mobile (Services Page) - INCREASED PARAGRAPH FONT SIZES */
   .service-row {
     gap: 1.25rem !important;
     padding-bottom: 2.75rem !important;
@@ -3699,26 +4048,28 @@ ul, ol {
   }
 
   .service-row-number {
-    font-size: 0.72rem !important;
+    font-size: 0.76rem !important;
   }
 
   .service-row-title {
-    font-size: 1.35rem !important;
-    margin-bottom: 0.5rem !important;
+    font-size: 1.45rem !important;
+    margin-bottom: 0.6rem !important;
   }
 
   .service-row-desc {
-    font-size: 0.92rem !important;
-    line-height: 1.55 !important;
+    font-size: 1.06rem !important;
+    line-height: 1.65 !important;
+    color: var(--text-muted) !important;
   }
 
   .service-detail-list {
-    gap: 0.45rem !important;
-    margin-bottom: 1.15rem !important;
+    gap: 0.55rem !important;
+    margin-bottom: 1.25rem !important;
   }
 
   .service-detail-item {
-    font-size: 0.88rem !important;
+    font-size: 0.98rem !important;
+    line-height: 1.48 !important;
   }
 
   /* Benefit Rows on Mobile (Benefits Page) */
@@ -3749,8 +4100,8 @@ ul, ol {
   }
 
   .benefit-desc {
-    font-size: 0.92rem !important;
-    line-height: 1.55 !important;
+    font-size: 0.96rem !important;
+    line-height: 1.58 !important;
   }
 
   .benefit-points-grid {
@@ -3787,27 +4138,35 @@ ul, ol {
     font-size: 0.88rem !important;
   }
 
-  /* Contact Cards on Mobile */
+  /* Contact Cards on Mobile (2 side-by-side) */
   .contact-card-grid {
-    grid-template-columns: 1fr !important;
-    gap: 0.75rem !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
+  }
+
+  .contact-card-grid > *:last-child:nth-child(odd) {
+    grid-column: span 2 !important;
   }
 
   .contact-card {
-    padding: 1rem !important;
+    padding: 0.85rem 0.6rem !important;
   }
 
   .contact-card-label {
-    font-size: 0.72rem !important;
+    font-size: 0.68rem !important;
+    margin-bottom: 0.25rem !important;
   }
 
   .contact-card-value {
-    font-size: 1.05rem !important;
+    font-size: 0.92rem !important;
+    word-break: break-word !important;
   }
 
   .copy-pill-btn {
-    font-size: 0.74rem !important;
-    padding: 0.25rem 0.6rem !important;
+    font-size: 0.72rem !important;
+    padding: 0.22rem 0.5rem !important;
+    margin-top: 0.35rem !important;
   }
 
   /* Editorial Frames */
@@ -3970,3 +4329,433 @@ ul, ol {
 .page-enter {
   animation: fadeIn 0.3s ease-out;
 }
+
+/* ==========================================================================
+   18. THEME TOGGLE SWITCH COMPONENT
+   Accessible, modern pill switch with smooth sliding thumb and rotating icons
+   ========================================================================== */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  position: relative;
+  outline: none;
+  user-select: none;
+}
+
+.theme-toggle-btn:focus-visible .theme-toggle-track {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+.theme-toggle-track {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 58px;
+  height: 30px;
+  background-color: var(--toggle-track-bg);
+  border: 1.5px solid var(--toggle-track-border);
+  border-radius: var(--radius-pill);
+  padding: 0 5px;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.theme-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  z-index: 1;
+  color: var(--toggle-icon-sun);
+  transition: color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0.5;
+}
+
+.theme-toggle-icon.is-active {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.theme-toggle-icon--moon {
+  color: var(--toggle-icon-moon);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--toggle-thumb-bg);
+  color: var(--toggle-thumb-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.4s ease,
+              color 0.4s ease !important;
+  z-index: 2;
+}
+
+.theme-toggle--dark .theme-toggle-thumb {
+  transform: translateX(28px);
+}
+
+.theme-toggle-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Mobile Header Theme Toggle variation */
+.theme-toggle--mobile {
+  padding: 0.15rem;
+}
+.theme-toggle--mobile .theme-toggle-track {
+  width: 52px;
+  height: 28px;
+  padding: 0 4px;
+}
+.theme-toggle--mobile .theme-toggle-thumb {
+  width: 20px;
+  height: 20px;
+  top: 2.5px;
+  left: 2.5px;
+}
+.theme-toggle--mobile.theme-toggle--dark .theme-toggle-thumb {
+  transform: translateX(25px);
+}
+
+/* ==========================================================================
+   19. "LIFE AT LOVELEAD" SECTION & RESPONSIVE ASSET GALLERY
+   Dedicated, distinctively styled section pulling directly from local assets.
+   ========================================================================== */
+.section-lovelead {
+  background-color: var(--bg-surface);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-top: 5rem;
+  padding-bottom: 5.5rem;
+}
+
+@media (max-width: 640px) {
+  .section-lovelead {
+    padding-top: 3rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
+.lovelead-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-brand-wash);
+  color: var(--color-brand);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 1rem;
+}
+
+.lovelead-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.25rem;
+}
+
+@media (max-width: 1200px) {
+  .lovelead-gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.35rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .lovelead-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.15rem;
+  }
+}
+
+.lovelead-card {
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--transition-normal),
+              box-shadow var(--transition-normal),
+              border-color var(--transition-normal),
+              background-color 0.4s ease;
+}
+
+.lovelead-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-brand);
+  box-shadow: var(--shadow-md);
+}
+
+.lovelead-card-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background-color: var(--bg-muted);
+}
+
+.lovelead-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.lovelead-card:hover .lovelead-card-img-wrap img {
+  transform: scale(1.06);
+}
+
+.lovelead-card-tag {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  background-color: rgba(23, 78, 166, 0.9);
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-xs);
+  backdrop-filter: blur(6px);
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .lovelead-card-tag {
+  background-color: rgba(66, 133, 244, 0.92);
+  color: #FFFFFF;
+}
+
+.lovelead-card-zoom-badge {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 0.85rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--google-dark-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
+  z-index: 2;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.lovelead-card:hover .lovelead-card-zoom-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.lovelead-card-body {
+  padding: 1.35rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.lovelead-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-headings);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.lovelead-card-desc {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 1.15rem;
+  flex: 1;
+}
+
+.lovelead-card-action {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-brand);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.lovelead-card:hover .lovelead-card-action {
+  gap: 0.6rem;
+  color: var(--color-brand-deep);
+}
+
+/* ==========================================================================
+   LIFE AT LOVELEAD: MOBILE TWO-COLUMN LAYOUT & COMPACT TYPOGRAPHY
+   ========================================================================== */
+@media (max-width: 768px) {
+  .lovelead-gallery-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
+    margin-top: 1.35rem !important;
+  }
+
+  .lovelead-card {
+    border-radius: var(--radius-sm) !important;
+    height: 100% !important;
+  }
+
+  .lovelead-card-img-wrap {
+    height: 115px !important;
+  }
+
+  .lovelead-card-tag {
+    font-size: 0.58rem !important;
+    padding: 0.18rem 0.45rem !important;
+    top: 0.45rem !important;
+    left: 0.45rem !important;
+  }
+
+  .lovelead-card-zoom-badge {
+    width: 26px !important;
+    height: 26px !important;
+    bottom: 0.45rem !important;
+    right: 0.45rem !important;
+    opacity: 0.9 !important;
+    transform: scale(0.9) !important;
+  }
+
+  .lovelead-card-zoom-badge svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+  .lovelead-card-body {
+    padding: 0.65rem 0.6rem !important;
+  }
+
+  .lovelead-card-title {
+    font-size: 0.88rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.28rem !important;
+    font-weight: 700 !important;
+  }
+
+  .lovelead-card-desc {
+    font-size: 0.74rem !important;
+    line-height: 1.36 !important;
+    margin-bottom: 0.5rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    flex: 0 1 auto !important;
+  }
+
+  .lovelead-card-action {
+    font-size: 0.70rem !important;
+    font-weight: 600 !important;
+    gap: 0.25rem !important;
+  }
+
+  .lovelead-badge-pill {
+    font-size: 0.72rem !important;
+    padding: 0.25rem 0.65rem !important;
+  }
+}
+
+/* ==========================================================================
+   20. GALLERY MODAL THEME HARMONIZATION
+   ========================================================================== */
+[data-theme="dark"] .gallery-modal-backdrop {
+  background-color: rgba(4, 9, 20, 0.88);
+}
+
+[data-theme="dark"] .gallery-modal-content {
+  background-color: #164696;
+  border: 1.5px solid #286BD0;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="dark"] .gallery-modal-top-bar,
+[data-theme="dark"] .gallery-modal-meta {
+  background-color: #12387A;
+  border-color: #205BB9;
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .gallery-modal-counter {
+  color: #AECBFA !important;
+}
+
+[data-theme="dark"] .gallery-modal-top-tag {
+  color: #FFFFFF !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+[data-theme="dark"] .gallery-modal-close {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .gallery-modal-close:hover {
+  background-color: #4285F4 !important;
+  border-color: #4285F4 !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .gallery-modal-title {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .gallery-modal-caption {
+  color: #D2E3FC !important;
+}
+
+[data-theme="dark"] .gallery-modal-actions .btn-outline-dark {
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .gallery-modal-actions .btn-outline-dark:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+

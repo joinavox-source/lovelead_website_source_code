@@ -86,30 +86,70 @@ const SERVICES_PREVIEW = [
   },
 ];
 
-const COMMUNITY_GALLERY = [
+const LIFE_AT_LOVELEAD = [
   {
-    title: 'Comfortable Suites',
-    category: 'Private Living',
-    desc: 'Bright, accessible residential bedrooms designed for personal privacy and quiet relaxation.',
-    image: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600&q=80',
+    id: 'lovelead-1',
+    src: '/photos/lovelead_frontyard.jpeg',
+    alt: 'Life at LoveLead 1',
+    tag: 'Exterior & Grounds',
+    title: 'Peaceful Residence Grounds',
+    desc: 'Welcoming two-story suburban residence located in Cottage Grove with spacious parking and accessible entryways.',
   },
   {
-    title: 'Chef-Prepared Dining',
-    category: 'Nutritious Meals',
-    desc: 'Wholesome culinary dining accommodating dietary needs, cultural heritage, and social conversation.',
-    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80',
+    id: 'lovelead-2',
+    src: '/photos/lovelead_living_area.jpeg',
+    alt: 'Life at LoveLead 2',
+    tag: 'Living Lounge',
+    title: 'Sunlit Living & Social Spaces',
+    desc: 'Vaulted ceilings and broad picture windows illuminate our primary living room where residents gather for conversation and music.',
   },
   {
-    title: 'Scenic Garden Patio',
-    category: 'Outdoor Peace',
-    desc: 'Secure outdoor spaces with fresh air, garden seating, and gentle walking paths.',
-    image: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=600&q=80',
+    id: 'lovelead-3',
+    src: '/photos/lovelead_sofa_area.jpeg',
+    alt: 'Life at LoveLead 3',
+    tag: 'Family Lounge',
+    title: 'Cozy Fireside Conversation Lounge',
+    desc: 'Plush seating, warm lighting, and a tranquil atmosphere offering residents and visiting families an intimate space to chat.',
   },
   {
-    title: 'Community Lounge',
-    category: 'Daily Connection',
-    desc: 'Cozy common areas for social games, family visits, music therapy, and community events.',
-    image: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&q=80',
+    id: 'lovelead-4',
+    src: '/photos/lovelead_bedroom.jpeg',
+    alt: 'Life at LoveLead 4',
+    tag: 'Private Suite',
+    title: 'Private Resident Suites',
+    desc: 'Each bedroom is thoughtfully designed for privacy, restful sleep, and individual autonomy with wide clearances for mobility aids.',
+  },
+  {
+    id: 'lovelead-5',
+    src: '/photos/lovelead_kitchen.jpeg',
+    alt: 'Life at LoveLead 5',
+    tag: 'Kitchen & Dining',
+    title: 'Nutritious Kitchen & Dining',
+    desc: 'Wholesome home-style meals prepared daily in our spotless kitchen, tailored to physician-ordered diabetic and nutritional plans.',
+  },
+  {
+    id: 'lovelead-6',
+    src: '/photos/lovelead_bathroom.jpeg',
+    alt: 'Life at LoveLead 6',
+    tag: 'Accessible Bath',
+    title: 'Accessible Care & Bathrooms',
+    desc: 'Safety-first bathroom fixtures including reinforced grab bars, slip-resistant surfaces, and dignity-focused personal care.',
+  },
+  {
+    id: 'lovelead-7',
+    src: '/photos/lovelead_backyard_staircase.jpeg',
+    alt: 'Life at LoveLead 7',
+    tag: 'Outdoor Grounds',
+    title: 'Private Backyard & Walking Deck',
+    desc: 'Expansive private lawn and elevated wooden deck surrounded by mature trees for enjoying fresh air, gentle strolls, and birdsong.',
+  },
+  {
+    id: 'lovelead-8',
+    src: '/photos/lovelead_living_area2.jpeg',
+    alt: 'Life at LoveLead 8',
+    tag: 'Community Life',
+    title: 'Enriching Daily Engagement',
+    desc: 'From morning gentle exercises to evening board games and craft circles, residents remain actively engaged and connected.',
   },
 ];
 
@@ -204,21 +244,35 @@ export default function Home() {
   const heroRef = useRef(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
+  const activePhotoList = selectedPhoto && LIFE_AT_LOVELEAD.some((p) => p.id === selectedPhoto.id)
+    ? LIFE_AT_LOVELEAD
+    : FACILITY_SHOWCASE_PHOTOS;
+
   const currentIndex = selectedPhoto
-    ? FACILITY_SHOWCASE_PHOTOS.findIndex((p) => p.id === selectedPhoto.id)
+    ? activePhotoList.findIndex((p) => p.id === selectedPhoto.id)
     : -1;
 
   const handlePrev = useCallback((e) => {
     if (e) e.stopPropagation();
-    const prevIdx = (currentIndex - 1 + FACILITY_SHOWCASE_PHOTOS.length) % FACILITY_SHOWCASE_PHOTOS.length;
-    setSelectedPhoto(FACILITY_SHOWCASE_PHOTOS[prevIdx]);
-  }, [currentIndex]);
+    if (!selectedPhoto) return;
+    const list = LIFE_AT_LOVELEAD.some((p) => p.id === selectedPhoto.id)
+      ? LIFE_AT_LOVELEAD
+      : FACILITY_SHOWCASE_PHOTOS;
+    const idx = list.findIndex((p) => p.id === selectedPhoto.id);
+    const prevIdx = (idx - 1 + list.length) % list.length;
+    setSelectedPhoto(list[prevIdx]);
+  }, [selectedPhoto]);
 
   const handleNext = useCallback((e) => {
     if (e) e.stopPropagation();
-    const nextIdx = (currentIndex + 1) % FACILITY_SHOWCASE_PHOTOS.length;
-    setSelectedPhoto(FACILITY_SHOWCASE_PHOTOS[nextIdx]);
-  }, [currentIndex]);
+    if (!selectedPhoto) return;
+    const list = LIFE_AT_LOVELEAD.some((p) => p.id === selectedPhoto.id)
+      ? LIFE_AT_LOVELEAD
+      : FACILITY_SHOWCASE_PHOTOS;
+    const idx = list.findIndex((p) => p.id === selectedPhoto.id);
+    const nextIdx = (idx + 1) % list.length;
+    setSelectedPhoto(list[nextIdx]);
+  }, [selectedPhoto]);
 
   useEffect(() => {
     if (selectedPhoto) {
@@ -480,40 +534,72 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== NEW ENGAGING SECTION: RESIDENTIAL ENVIRONMENT & COMMUNITY LIFE PHOTO SHOWCASE ===== */}
-      <section className="section section-cream">
+      {/* ===== "LIFE AT LOVELEAD" DEDICATED SECTION & ASSET GALLERY ===== */}
+      <section className="section section-lovelead" id="life-at-lovelead">
         <div className="container">
-          <SectionHeader
-            label="Life at LoveLead"
-            title="A Look Inside Our Community"
-            subtitle="Designed for comfort, tranquility, and safety. Explore the inviting living spaces our residents call home in Cottage Grove."
-          />
+          <div className="section-header section-header--center">
+            <span className="lovelead-badge-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+              <span>Our Community &amp; Daily Life</span>
+            </span>
+            <h2 className="section-title">Life at LoveLead</h2>
+            <p className="section-subtitle" style={{ maxWidth: '720px', margin: '0 auto' }}>
+              Welcome to our loving residential community in Cottage Grove. Explore daily life, inviting living lounges, private suites, chef-prepared dining, and peaceful outdoor gardens.
+            </p>
+          </div>
 
-          <div className="home-gallery-grid">
-            {COMMUNITY_GALLERY.map((item, gIdx) => (
-              <AnimateIn key={item.title} delay={gIdx * 0.06}>
-                <div className="gallery-card card-hover">
-                  <img src={item.image} alt={item.title} loading="lazy" />
-                  <div className="gallery-card-body">
-                    <span style={{ fontSize: '0.68rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-brand)', fontWeight: '700', display: 'block', marginBottom: '0.25rem' }}>
-                      {item.category}
+          <div className="lovelead-gallery-grid">
+            {LIFE_AT_LOVELEAD.map((item, idx) => (
+              <AnimateIn key={item.id} delay={idx * 0.05}>
+                <div
+                  className="lovelead-card"
+                  onClick={() => setSelectedPhoto(item)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedPhoto(item); }}
+                  aria-label={`View photo: ${item.title}`}
+                >
+                  <div className="lovelead-card-img-wrap">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      loading="lazy"
+                    />
+                    <span className="lovelead-card-tag">{item.tag}</span>
+                    <div className="lovelead-card-zoom-badge" aria-hidden="true">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                        <line x1="11" y1="8" x2="11" y2="14" />
+                        <line x1="8" y1="11" x2="14" y2="11" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="lovelead-card-body">
+                    <h3 className="lovelead-card-title">{item.title}</h3>
+                    <p className="lovelead-card-desc">{item.desc}</p>
+                    <span className="lovelead-card-action">
+                      <span>View Photo Details</span>
+                      <span aria-hidden="true">&rarr;</span>
                     </span>
-                    <h4 style={{ fontSize: '1.05rem', color: 'var(--text-main)', marginBottom: '0.35rem' }}>
-                      {item.title}
-                    </h4>
-                    <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: '1.45' }}>
-                      {item.desc}
-                    </p>
                   </div>
                 </div>
               </AnimateIn>
             ))}
           </div>
 
-          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-            <Link to="/benefits" className="btn btn-outline-dark btn-sm">
-              Discover All Resident Life Programs
-            </Link>
+          <div style={{ textAlign: 'center', marginTop: '2.75rem' }}>
+            <div className="btn-group" style={{ justifyContent: 'center' }}>
+              <Link to="/gallery" className="btn btn-primary btn-lg">
+                View Full 15-Photo Facility Tour
+              </Link>
+              <Link to="/contact" className="btn btn-outline-dark btn-lg">
+                Schedule a Visit in Person
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -719,7 +805,7 @@ export default function Home() {
             <div className="gallery-modal-top-bar">
               <div className="gallery-modal-top-info">
                 <span className="gallery-modal-counter">
-                  Photo {currentIndex + 1} of {FACILITY_SHOWCASE_PHOTOS.length}
+                  Photo {currentIndex + 1} of {activePhotoList.length}
                 </span>
                 <span className="gallery-modal-top-tag">
                   {selectedPhoto.tag}
@@ -756,7 +842,12 @@ export default function Home() {
               <div className="gallery-modal-img-container">
                 <img
                   src={selectedPhoto.src}
-                  alt={selectedPhoto.title}
+                  alt={selectedPhoto.alt || selectedPhoto.title}
+                  onError={(e) => {
+                    if (selectedPhoto.fallbackSrc && e.currentTarget.src !== selectedPhoto.fallbackSrc) {
+                      e.currentTarget.src = selectedPhoto.fallbackSrc;
+                    }
+                  }}
                   className="gallery-modal-img"
                 />
               </div>
@@ -783,7 +874,7 @@ export default function Home() {
               <div className="gallery-modal-actions">
                 <Link
                   to="/gallery"
-                  className="btn btn-outline-white btn-sm"
+                  className="btn btn-outline-dark btn-sm"
                   onClick={() => setSelectedPhoto(null)}
                 >
                   Full 15-Photo Tour

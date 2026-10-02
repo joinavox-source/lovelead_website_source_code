@@ -125,7 +125,7 @@ export default function Contact() {
   };
 
   return (
-    <main id="main-content">
+    <main id="main-content" className="contact-page">
       {/* ===== HERO ===== */}
       <section className="page-hero">
         <img
@@ -425,21 +425,21 @@ export default function Contact() {
             <div>
               <AnimateIn direction="right">
                 <div className="card card--surface" style={{ marginBottom: '1.5rem' }}>
-                  <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-main)' }}>
+                  <h3 className="card-title" style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-headings)' }}>
                     Visiting &amp; Facility Hours
                   </h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.4rem' }}>
                       <span>Monday - Friday</span>
-                      <strong style={{ color: 'var(--text-main)' }}>9:00 AM - 7:00 PM</strong>
+                      <strong style={{ color: 'var(--text-headings)' }}>9:00 AM - 7:00 PM</strong>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.4rem' }}>
                       <span>Saturday</span>
-                      <strong style={{ color: 'var(--text-main)' }}>10:00 AM - 5:00 PM</strong>
+                      <strong style={{ color: 'var(--text-headings)' }}>10:00 AM - 5:00 PM</strong>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.4rem' }}>
                       <span>Sunday</span>
-                      <strong style={{ color: 'var(--text-main)' }}>12:00 PM - 4:00 PM</strong>
+                      <strong style={{ color: 'var(--text-headings)' }}>12:00 PM - 4:00 PM</strong>
                     </div>
                   </div>
                   <div style={{ marginTop: '1rem', padding: '0.75rem', backgroundColor: 'var(--color-brand-wash)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-brand-pale)' }}>
@@ -452,7 +452,7 @@ export default function Contact() {
 
               <AnimateIn direction="right" delay={0.1}>
                 <div className="card" style={{ backgroundColor: 'var(--color-brand)', color: '#ffffff', marginBottom: '1.5rem' }}>
-                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.6rem', color: '#ffffff' }}>
+                  <h3 className="card-title" style={{ fontSize: '1.2rem', marginBottom: '0.6rem', color: '#ffffff' }}>
                     Quick Redirects
                   </h3>
                   <p style={{ fontSize: '0.88rem', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '1rem' }}>
@@ -516,7 +516,7 @@ export default function Contact() {
 
               <AnimateIn direction="right" delay={0.18}>
                 <div className="card card--surface">
-                  <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-main)' }}>
+                  <h3 className="card-title" style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: 'var(--text-headings)' }}>
                     Community Location
                   </h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>

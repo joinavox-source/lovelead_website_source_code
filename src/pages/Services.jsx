@@ -119,7 +119,7 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <main id="main-content">
+    <main id="main-content" className="services-page">
       {/* ===== PAGE HERO ===== */}
       <section className="page-hero">
         <img

@@ -291,10 +291,10 @@ export default function Gallery() {
                   <polyline points="9 22 9 12 15 12 15 22" />
                 </svg>
               </div>
-              <h3 style={{ fontSize: '1.12rem', marginBottom: '0.45rem', color: 'var(--text-main)' }}>
+              <h3 className="card-title" style={{ fontSize: '1.12rem', marginBottom: '0.45rem', color: 'var(--text-headings)' }}>
                 True Residential Home
               </h3>
-              <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: '1.55' }}>
+              <p className="card-text" style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: '1.55' }}>
                 A cozy, dignified house in a quiet suburban neighborhood that feels like family, not an institution.
               </p>
             </div>
@@ -305,10 +305,10 @@ export default function Gallery() {
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
               </div>
-              <h3 style={{ fontSize: '1.12rem', marginBottom: '0.45rem', color: 'var(--text-main)' }}>
+              <h3 className="card-title" style={{ fontSize: '1.12rem', marginBottom: '0.45rem', color: 'var(--text-headings)' }}>
                 24/7 On-Site Supervision
               </h3>
-              <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: '1.55' }}>
+              <p className="card-text" style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: '1.55' }}>
                 Professional caregivers and RN oversight on-site around the clock for safety, vitals monitoring, and emergencies.
               </p>
             </div>
@@ -323,10 +323,10 @@ export default function Gallery() {
                   <line x1="14" y1="1" x2="14" y2="4" />
                 </svg>
               </div>
-              <h3 style={{ fontSize: '1.12rem', marginBottom: '0.45rem', color: 'var(--text-main)' }}>
+              <h3 className="card-title" style={{ fontSize: '1.12rem', marginBottom: '0.45rem', color: 'var(--text-headings)' }}>
                 Home-Cooked Nutrition
               </h3>
-              <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: '1.55' }}>
+              <p className="card-text" style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: '1.55' }}>
                 Wholesome meals prepared fresh in our kitchen, customized to individual diabetic, renal, and dietary preferences.
               </p>
             </div>
@@ -338,10 +338,10 @@ export default function Gallery() {
                   <path d="M12 6v6l4 2" />
                 </svg>
               </div>
-              <h3 style={{ fontSize: '1.12rem', marginBottom: '0.45rem', color: 'var(--text-main)' }}>
+              <h3 className="card-title" style={{ fontSize: '1.12rem', marginBottom: '0.45rem', color: 'var(--text-headings)' }}>
                 Serene Fenced Yard
               </h3>
-              <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: '1.55' }}>
+              <p className="card-text" style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: '1.55' }}>
                 Secure, tree-lined green backyard for walking, safe outdoor activities, birdwatching, and sunny relaxation.
               </p>
             </div>
