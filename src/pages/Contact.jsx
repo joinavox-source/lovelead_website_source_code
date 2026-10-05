@@ -51,14 +51,13 @@ export default function Contact() {
     relationship: '',
     message: inquiryParam ? `Hello, I would like more information regarding ${inquiryParam}.` : '',
     preferredContact: 'phone',
-    portalPassword: '',
   });
 
   const [formErrors, setFormErrors] = useState({});
   const [formStatus, setFormStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
+  const [submittedData, setSubmittedData] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
-  const [showPassword, setShowPassword] = useState(false);
   const [copiedItem, setCopiedItem] = useState('');
   const formRef = useRef(null);
 
@@ -88,25 +87,116 @@ export default function Contact() {
     setShowConfirm(true);
   };
 
-  const handleConfirmedSubmit = () => {
-    setShowConfirm(false);
+  const handleConfirmedSubmit = async () => {
     setFormStatus('submitting');
 
     const utmData = getStoredUTMParams();
-    // Simulate real network submission with stored UTMs
-    setTimeout(() => {
-      console.log('Form submitted with UTM parameters:', { ...formData, ...utmData });
-      setFormStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        relationship: '',
-        message: '',
-        preferredContact: 'phone',
-        portalPassword: '',
+    const refId = 'LL-' + Math.floor(100000 + Math.random() * 900000);
+    const submissionTime = new Date().toLocaleString('en-US', {
+      dateStyle: 'full',
+      timeStyle: 'short',
+      timeZone: 'America/Chicago',
+    }) + ' (Central Time)';
+
+    const structuredMessage = `
+=====================================================
+  LOVELEAD ASSISTED LIVING — CARE INTAKE DOSSIER
+=====================================================
+[REFERENCE ID]       #${refId}
+[SUBMISSION TIME]    ${submissionTime}
+[ASSIGNED DIRECTOR]  nnadesh@loveleadal.com
+
+FAMILY / PROSPECTIVE RESIDENT DETAILS:
+- Full Name:         ${formData.name}
+- Email Address:     ${formData.email}
+- Phone Number:      ${formData.phone}
+- Relationship:      ${formData.relationship || 'Prospective Resident / Family'}
+- Preferred Contact: ${formData.preferredContact === 'phone' ? 'Phone Call' : 'Email Follow-up'}
+
+CARE NEEDS & INQUIRY MESSAGE:
+"${formData.message}"
+
+FACILITY LOCATION & CONTACT:
+- Community:         LoveLead Assisted Living
+- Address:           7935 83rd St S, Cottage Grove, MN 55016
+- Phone:             (612) 260-3900
+- Website:           https://loveleadal.com
+=====================================================
+    `.trim();
+
+    const payload = {
+      access_key: 'ebb62219-2611-4cf5-af71-84f895929b3d',
+      subject: `[NEW INQUIRY #${refId}] ${formData.name} - LoveLead Assisted Living`,
+      from_name: 'LoveLead Care Portal',
+      replyto: formData.email,
+      botcheck: '',
+
+      // Clean structured fields for Web3Forms email notification (zero emojis)
+      'Inquiry Reference': `#${refId}`,
+      'Applicant / Family Name': formData.name,
+      'Email Address': formData.email,
+      'Phone Number': formData.phone,
+      'Relationship to Resident': formData.relationship || 'Not specified',
+      'Preferred Contact Method': formData.preferredContact === 'phone' ? 'Phone Call' : 'Email Follow-up',
+      'Assigned Coordinator': 'nnadesh@loveleadal.com',
+      'Facility Address': '7935 83rd St S, Cottage Grove, MN 55016',
+      'Submission Timestamp': submissionTime,
+
+      // Structured dossier message
+      message: structuredMessage,
+      ...utmData,
+    };
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
-    }, 1200);
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmittedData({
+          refId,
+          timestamp: submissionTime,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          relationship: formData.relationship || 'Prospective Resident / Family',
+          preferredContact: formData.preferredContact,
+          message: formData.message,
+        });
+        setFormStatus('success');
+        setShowConfirm(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          relationship: '',
+          message: '',
+          preferredContact: 'phone',
+        });
+      } else {
+        setShowConfirm(false);
+        setFormStatus('error');
+        setFormErrors({ submit: data.message || 'There was an issue sending your message. Please call us directly at (612) 260-3900.' });
+      }
+    } catch (err) {
+      console.error('Submission error:', err);
+      setShowConfirm(false);
+      setFormStatus('error');
+      setFormErrors({ submit: 'Network connection issue. Please check your internet connection or call us at (612) 260-3900.' });
+    }
+  };
+
+  const handleResetForm = () => {
+    setFormStatus('idle');
+    setSubmittedData(null);
+    setFormErrors({});
   };
 
   const copyToClipboard = (text, label) => {
@@ -157,6 +247,11 @@ export default function Contact() {
             {/* Phone */}
             <AnimateIn>
               <div className="contact-card">
+                <div className="contact-card-icon-badge" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </div>
                 <p className="contact-card-label">Direct Office Phone</p>
                 <a href="tel:+16122603900" className="contact-card-value">
                   (612) 260-3900
@@ -179,6 +274,13 @@ export default function Contact() {
             {/* Fax */}
             <AnimateIn delay={0.06}>
               <div className="contact-card">
+                <div className="contact-card-icon-badge" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 6 2 18 2 18 9" />
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                    <rect x="6" y="14" width="12" height="8" />
+                  </svg>
+                </div>
                 <p className="contact-card-label">Medical Records Fax</p>
                 <a href="tel:+16514019411" className="contact-card-value">
                   (651) 401-9411
@@ -201,6 +303,12 @@ export default function Contact() {
             {/* Email */}
             <AnimateIn delay={0.12}>
               <div className="contact-card">
+                <div className="contact-card-icon-badge" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                </div>
                 <p className="contact-card-label">Administrative Email</p>
                 <a href="mailto:info@loveleadal.com" className="contact-card-value" style={{ fontSize: '0.98rem' }}>
                   info@loveleadal.com
@@ -237,188 +345,288 @@ export default function Contact() {
                 </p>
               </AnimateIn>
 
-              {/* Success Notification Banner */}
-              {formStatus === 'success' && (
-                <div className="form-banner-success" role="alert">
-                  <strong>Message Sent Successfully.</strong> Thank you for contacting LoveLead Assisted Living. Our care coordinator will reach out to you within 24 hours via your preferred contact method.
-                </div>
-              )}
-
               {/* Error Notification Banner */}
-              {formStatus === 'error' && Object.keys(formErrors).length > 0 && (
+              {formStatus === 'error' && (
                 <div className="form-banner-error" role="alert">
-                  <strong>Please correct the highlighted fields:</strong>
-                  <ul style={{ marginTop: '0.35rem', paddingLeft: '1.25rem', listStyle: 'disc' }}>
-                    {Object.values(formErrors).filter(Boolean).map((err, i) => (
-                      <li key={i}>{err}</li>
-                    ))}
-                  </ul>
+                  <strong>Please note:</strong>
+                  {formErrors.submit ? (
+                    <p style={{ marginTop: '0.35rem' }}>{formErrors.submit}</p>
+                  ) : (
+                    <ul style={{ marginTop: '0.35rem', paddingLeft: '1.25rem', listStyle: 'disc' }}>
+                      {Object.values(formErrors).filter(Boolean).map((err, i) => (
+                        <li key={i}>{err}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               )}
 
-              <form ref={formRef} onSubmit={handleInitialSubmit} noValidate>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
-                  <div className="form-group">
-                    <label htmlFor="contact-name" className="form-label">Full Name *</label>
-                    <input
-                      id="contact-name"
-                      name="name"
-                      type="text"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="e.g. Eleanor Vance"
-                      className={`form-input ${formErrors.name ? 'form-input--error' : ''}`}
-                    />
-                    {formErrors.name && <span className="form-error-msg">{formErrors.name}</span>}
-                  </div>
+              {/* SUCCESS STATE: Submission Starter Card */}
+              {formStatus === 'success' && submittedData ? (
+                <AnimateIn>
+                  <div className="submission-starter-card">
+                    {/* Top Decorative Gradient Line */}
+                    <div className="modal-accent-bar" aria-hidden="true" />
 
-                  <div className="form-group">
-                    <label htmlFor="contact-email" className="form-label">Email Address *</label>
-                    <input
-                      id="contact-email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="e.g. name@example.com"
-                      className={`form-input ${formErrors.email ? 'form-input--error' : ''}`}
-                    />
-                    {formErrors.email && <span className="form-error-msg">{formErrors.email}</span>}
-                  </div>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
-                  <div className="form-group">
-                    <label htmlFor="contact-phone" className="form-label">Phone Number *</label>
-                    <input
-                      id="contact-phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="(612) 000-0000"
-                      className={`form-input ${formErrors.phone ? 'form-input--error' : ''}`}
-                    />
-                    {formErrors.phone && <span className="form-error-msg">{formErrors.phone}</span>}
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="contact-rel" className="form-label">Relationship to Resident</label>
-                    <select
-                      id="contact-rel"
-                      name="relationship"
-                      value={formData.relationship}
-                      onChange={handleChange}
-                      className="form-select"
-                    >
-                      <option value="">Please select...</option>
-                      <option value="Self">Self</option>
-                      <option value="Daughter/Son">Daughter or Son</option>
-                      <option value="Spouse">Spouse or Partner</option>
-                      <option value="Sibling">Sibling</option>
-                      <option value="Healthcare Provider">Healthcare Provider</option>
-                      <option value="Friend/Guardian">Friend or Guardian</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <span className="form-label">Preferred Response Method</span>
-                  <div className="form-radio-group">
-                    <label className="form-radio-label">
-                      <input
-                        type="radio"
-                        name="preferredContact"
-                        value="phone"
-                        checked={formData.preferredContact === 'phone'}
-                        onChange={handleChange}
-                        style={{ accentColor: 'var(--color-brand)' }}
-                      />
-                      <span>Phone Call</span>
-                    </label>
-                    <label className="form-radio-label">
-                      <input
-                        type="radio"
-                        name="preferredContact"
-                        value="email"
-                        checked={formData.preferredContact === 'email'}
-                        onChange={handleChange}
-                        style={{ accentColor: 'var(--color-brand)' }}
-                      />
-                      <span>Email Message</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="contact-msg" className="form-label">How May We Assist You? *</label>
-                  <textarea
-                    id="contact-msg"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your loved one's needs, ideal move-in timeline, or any specific health care questions..."
-                    className={`form-textarea ${formErrors.message ? 'form-textarea--error' : ''}`}
-                  />
-                  {formErrors.message && <span className="form-error-msg">{formErrors.message}</span>}
-                </div>
-
-                {/* Password field with toggle for Family Portal or account inquiry */}
-                <div className="form-group">
-                  <label htmlFor="contact-portal-pw" className="form-label">
-                    Family Portal Pin / Passcode (Optional for registered family members)
-                  </label>
-                  <div className="password-toggle-wrapper">
-                    <input
-                      id="contact-portal-pw"
-                      name="portalPassword"
-                      type={showPassword ? 'text' : 'password'}
-                      value={formData.portalPassword}
-                      onChange={handleChange}
-                      placeholder="Existing family account passcode"
-                      className="form-input"
-                      style={{ paddingRight: '2.5rem' }}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="password-toggle-btn"
-                      aria-label={showPassword ? 'Hide passcode' : 'Show passcode'}
-                    >
-                      {showPassword ? (
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
-                          <line x1="1" y1="1" x2="23" y2="23" />
+                    <div className="submission-starter-hero">
+                      <div className="submission-starter-badge-pill">
+                        <svg className="starter-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <polyline points="20 6 9 17 4 12" />
                         </svg>
-                      ) : (
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                          <circle cx="12" cy="12" r="3" />
-                        </svg>
+                        <span>Care Inquiry Delivered Securely</span>
+                      </div>
+                      <h3 className="submission-starter-title">
+                        Thank You, {submittedData.name.split(' ')[0]}!
+                      </h3>
+                      <p className="submission-starter-subtitle">
+                        Your inquiry has been received by LoveLead Assisted Living. Our community director (<strong>nnadesh@loveleadal.com</strong>) has been notified and will reach out to you within 24 hours via {submittedData.preferredContact === 'phone' ? 'phone' : 'email'}.
+                      </p>
+                    </div>
+
+                    {/* Submission Dossier Ticket */}
+                    <div className="submission-dossier-box">
+                      <div className="submission-dossier-header">
+                        <div>
+                          <span className="dossier-tag">INTAKE DOSSIER</span>
+                          <span className="dossier-id">Ref #{submittedData.refId}</span>
+                        </div>
+                        <span className="dossier-timestamp">{submittedData.timestamp}</span>
+                      </div>
+
+                      <div className="submission-dossier-grid">
+                        <div className="dossier-item">
+                          <span className="dossier-label">Contact Person</span>
+                          <strong className="dossier-value">{submittedData.name}</strong>
+                        </div>
+                        <div className="dossier-item">
+                          <span className="dossier-label">Phone &amp; Email</span>
+                          <strong className="dossier-value">{submittedData.phone} &bull; {submittedData.email}</strong>
+                        </div>
+                        <div className="dossier-item">
+                          <span className="dossier-label">Relationship to Resident</span>
+                          <strong className="dossier-value">{submittedData.relationship}</strong>
+                        </div>
+                        <div className="dossier-item">
+                          <span className="dossier-label">Preferred Response</span>
+                          <strong className="dossier-value" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: 'var(--google-medium-blue, #4285F4)' }}>
+                            {submittedData.preferredContact === 'phone' ? (
+                              <>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                                <span>Direct Phone Call</span>
+                              </>
+                            ) : (
+                              <>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                </svg>
+                                <span>Email Follow-up</span>
+                              </>
+                            )}
+                          </strong>
+                        </div>
+                      </div>
+
+                      {submittedData.message && (
+                        <div className="dossier-message-box">
+                          <span className="dossier-label">Your Inquiry Notes:</span>
+                          <p className="dossier-message-text">"{submittedData.message}"</p>
+                        </div>
                       )}
-                    </button>
+                    </div>
+
+                    {/* Starter Next Steps Cards (SVG Icons Only) */}
+                    <div className="submission-next-steps">
+                      <h4 className="next-steps-title">Recommended Next Steps While You Wait:</h4>
+                      <div className="next-steps-grid">
+                        <a href="tel:+16122603900" className="next-step-card">
+                          <div className="next-step-icon" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                            </svg>
+                          </div>
+                          <div className="next-step-content">
+                            <h5>Speak With Us Right Now</h5>
+                            <p>For urgent placement questions or immediate tour booking, call <strong>(612) 260-3900</strong>.</p>
+                          </div>
+                        </a>
+
+                        <Link to="/gallery" className="next-step-card">
+                          <div className="next-step-icon" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                              <polyline points="9 22 9 12 15 12 15 22" />
+                            </svg>
+                          </div>
+                          <div className="next-step-content">
+                            <h5>Explore Cottage Grove Home</h5>
+                            <p>Browse resident suites, spacious kitchen, cozy living room, and peaceful patio.</p>
+                          </div>
+                        </Link>
+
+                        <Link to="/why-choose-us" className="next-step-card">
+                          <div className="next-step-icon" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                              <path d="m9 14 2 2 4-4" />
+                            </svg>
+                          </div>
+                          <div className="next-step-content">
+                            <h5>Review Our 1:3 Care Model</h5>
+                            <p>See why families choose LoveLead for compassionate, personalized assisted living.</p>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Footer Actions */}
+                    <div className="submission-starter-actions">
+                      <button
+                        type="button"
+                        onClick={handleResetForm}
+                        className="btn btn-outline-dark btn-sm"
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                          <path d="M3 3v5h5" />
+                        </svg>
+                        <span>Submit Another Inquiry</span>
+                      </button>
+                    </div>
                   </div>
-                </div>
+                </AnimateIn>
+              ) : (
+                <form ref={formRef} onSubmit={handleInitialSubmit} noValidate>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+                    <div className="form-group">
+                      <label htmlFor="contact-name" className="form-label">Full Name *</label>
+                      <input
+                        id="contact-name"
+                        name="name"
+                        type="text"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="e.g. Eleanor Vance"
+                        className={`form-input ${formErrors.name ? 'form-input--error' : ''}`}
+                      />
+                      {formErrors.name && <span className="form-error-msg">{formErrors.name}</span>}
+                    </div>
 
-                <div className="btn-group" style={{ marginTop: '1.5rem' }}>
-                  <button
-                    type="submit"
-                    disabled={formStatus === 'submitting'}
-                    className="btn btn-primary"
-                  >
-                    {formStatus === 'submitting' ? 'Submitting Inquiry...' : 'Submit Care Inquiry'}
-                  </button>
-                  <a href="tel:+16122603900" className="btn btn-outline-dark">
-                    Or Call Us Directly
-                  </a>
-                </div>
+                    <div className="form-group">
+                      <label htmlFor="contact-email" className="form-label">Email Address *</label>
+                      <input
+                        id="contact-email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="e.g. name@example.com"
+                        className={`form-input ${formErrors.email ? 'form-input--error' : ''}`}
+                      />
+                      {formErrors.email && <span className="form-error-msg">{formErrors.email}</span>}
+                    </div>
+                  </div>
 
-                <p style={{ fontSize: '0.76rem', color: 'var(--text-light)', marginTop: '1.25rem' }}>
-                  Last updated: {lastUpdated} &bull; Privacy protected under HIPAA guidelines.
-                </p>
-              </form>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+                    <div className="form-group">
+                      <label htmlFor="contact-phone" className="form-label">Phone Number *</label>
+                      <input
+                        id="contact-phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="(612) 000-0000"
+                        className={`form-input ${formErrors.phone ? 'form-input--error' : ''}`}
+                      />
+                      {formErrors.phone && <span className="form-error-msg">{formErrors.phone}</span>}
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="contact-rel" className="form-label">Relationship to Resident</label>
+                      <select
+                        id="contact-rel"
+                        name="relationship"
+                        value={formData.relationship}
+                        onChange={handleChange}
+                        className="form-select"
+                      >
+                        <option value="">Please select...</option>
+                        <option value="Self">Self</option>
+                        <option value="Daughter/Son">Daughter or Son</option>
+                        <option value="Spouse">Spouse or Partner</option>
+                        <option value="Sibling">Sibling</option>
+                        <option value="Healthcare Provider">Healthcare Provider</option>
+                        <option value="Friend/Guardian">Friend or Guardian</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <span className="form-label">Preferred Response Method</span>
+                    <div className="form-radio-group">
+                      <label className="form-radio-label">
+                        <input
+                          type="radio"
+                          name="preferredContact"
+                          value="phone"
+                          checked={formData.preferredContact === 'phone'}
+                          onChange={handleChange}
+                          style={{ accentColor: 'var(--color-brand)' }}
+                        />
+                        <span>Phone Call</span>
+                      </label>
+                      <label className="form-radio-label">
+                        <input
+                          type="radio"
+                          name="preferredContact"
+                          value="email"
+                          checked={formData.preferredContact === 'email'}
+                          onChange={handleChange}
+                          style={{ accentColor: 'var(--color-brand)' }}
+                        />
+                        <span>Email Message</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="contact-msg" className="form-label">How May We Assist You? *</label>
+                    <textarea
+                      id="contact-msg"
+                      name="message"
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Tell us about your loved one's needs, ideal move-in timeline, or any specific health care questions..."
+                      className={`form-textarea ${formErrors.message ? 'form-textarea--error' : ''}`}
+                    />
+                    {formErrors.message && <span className="form-error-msg">{formErrors.message}</span>}
+                  </div>
+
+                  <div className="btn-group" style={{ marginTop: '1.5rem' }}>
+                    <button
+                      type="submit"
+                      disabled={formStatus === 'submitting'}
+                      className="btn btn-primary"
+                    >
+                      {formStatus === 'submitting' ? 'Submitting Inquiry...' : 'Submit Care Inquiry'}
+                    </button>
+                    <a href="tel:+16122603900" className="btn btn-outline-dark">
+                      Or Call Us Directly
+                    </a>
+                  </div>
+
+                  <p style={{ fontSize: '0.76rem', color: 'var(--text-light)', marginTop: '1.25rem' }}>
+                    Last updated: {lastUpdated} &bull; Privacy protected under HIPAA guidelines.
+                  </p>
+                </form>
+              )}
             </div>
 
             {/* Sidebar Column */}
@@ -659,15 +867,17 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Confirmation Modal */}
+      {/* Confirmation Modal (Striking Blue Theme) */}
       <ConfirmModal
         open={showConfirm}
         onClose={() => setShowConfirm(false)}
         onConfirm={handleConfirmedSubmit}
-        title="Confirm Care Inquiry Submission"
-        message={`You are submitting an inquiry to LoveLead Assisted Living for ${formData.name}. Our staff will follow up via ${formData.preferredContact === 'phone' ? 'phone' : 'email'} within 24 hours.`}
-        confirmLabel="Confirm &amp; Send"
-        cancelLabel="Review Information"
+        title="Review & Confirm Care Inquiry"
+        message="Please verify your details below. When confirmed, your message will be dispatched directly to LoveLead administration."
+        confirmLabel="Confirm &amp; Send Inquiry"
+        cancelLabel="Review &amp; Edit"
+        summary={formData}
+        isSubmitting={formStatus === 'submitting'}
       />
     </main>
   );

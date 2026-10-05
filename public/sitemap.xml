@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.loveleadal.com/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_frontyard2.jpeg</image:loc>
+      <image:title>LoveLead Assisted Living Facility Entrance in Cottage Grove</image:title>
+      <image:caption>Welcoming residential assisted living home in Cottage Grove, Minnesota</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/logo.png</image:loc>
+      <image:title>LoveLead Assisted Living Brand Logo</image:title>
+    </image:image>
+  </url>
+
+  <!-- Care Services -->
+  <url>
+    <loc>https://www.loveleadal.com/services</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_living_area.jpeg</image:loc>
+      <image:title>LoveLead Resident Living and Care Community Space</image:title>
+    </image:image>
+  </url>
+
+  <!-- Why Choose Us / Admissions & 1:3 Care Model -->
+  <url>
+    <loc>https://www.loveleadal.com/why-choose-us</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_dining_area.jpeg</image:loc>
+      <image:title>LoveLead Family Dining and Community Gathering Space</image:title>
+    </image:image>
+  </url>
+
+  <!-- Facility Tour & Photo Gallery -->
+  <url>
+    <loc>https://www.loveleadal.com/gallery</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_frontyard.jpeg</image:loc>
+      <image:title>LoveLead Assisted Living Front View and Grounds</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_bedroom.jpeg</image:loc>
+      <image:title>Private Resident Bedroom Suite at LoveLead</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_kitchen.jpeg</image:loc>
+      <image:title>Spacious Gourmet Kitchen at LoveLead</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_backyard.jpeg</image:loc>
+      <image:title>Peaceful Backyard and Patio at LoveLead</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_bathroom.jpeg</image:loc>
+      <image:title>Accessible Private Bathroom at LoveLead</image:title>
+    </image:image>
+  </url>
+
+  <!-- Resident Benefits -->
+  <url>
+    <loc>https://www.loveleadal.com/benefits</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_sofa_area.jpeg</image:loc>
+      <image:title>Comfortable Living Room and Resident Wellness Area</image:title>
+    </image:image>
+  </url>
+
+  <!-- Contact & Direct Admissions -->
+  <url>
+    <loc>https://www.loveleadal.com/contact</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_frontyard2.jpeg</image:loc>
+      <image:title>Contact LoveLead Assisted Living in Cottage Grove MN</image:title>
+    </image:image>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://www.loveleadal.com/privacy-policy</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://www.loveleadal.com/terms</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

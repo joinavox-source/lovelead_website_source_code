@@ -1,0 +1,27 @@
+# robots.txt for https://www.loveleadal.com/
+# LoveLead Assisted Living — Cottage Grove, MN
+
+User-agent: *
+Allow: /
+Disallow: /about
+Disallow: /api/
+
+# Major Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /photos/
+Allow: /logo.png
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Sitemap Index Reference
+Sitemap: https://www.loveleadal.com/sitemap.xml
