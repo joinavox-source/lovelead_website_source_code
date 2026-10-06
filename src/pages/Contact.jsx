@@ -332,11 +332,11 @@ FACILITY LOCATION & CONTACT:
       </section>
 
       {/* ===== FORM & SIDEBAR SECTION ===== */}
-      <section className="section section-cream">
+      <section className="section section-cream contact-form-section">
         <div className="container">
-          <div className="grid-2" style={{ alignItems: 'flex-start' }}>
+          <div className="contact-main-layout">
             {/* Form Column */}
-            <div>
+            <div className="contact-form-column">
               <AnimateIn>
                 <span className="section-tag">Direct Inquiry</span>
                 <h2 className="section-title">Send Our Care Team a Message</h2>
@@ -501,7 +501,7 @@ FACILITY LOCATION & CONTACT:
                 </AnimateIn>
               ) : (
                 <form ref={formRef} onSubmit={handleInitialSubmit} noValidate>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+                  <div className="contact-form-row">
                     <div className="form-group">
                       <label htmlFor="contact-name" className="form-label">Full Name *</label>
                       <input
@@ -531,7 +531,7 @@ FACILITY LOCATION & CONTACT:
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+                  <div className="contact-form-row">
                     <div className="form-group">
                       <label htmlFor="contact-phone" className="form-label">Phone Number *</label>
                       <input
@@ -609,7 +609,7 @@ FACILITY LOCATION & CONTACT:
                     {formErrors.message && <span className="form-error-msg">{formErrors.message}</span>}
                   </div>
 
-                  <div className="btn-group" style={{ marginTop: '1.5rem' }}>
+                  <div className="btn-group contact-form-actions" style={{ marginTop: '1.5rem' }}>
                     <button
                       type="submit"
                       disabled={formStatus === 'submitting'}
@@ -630,7 +630,7 @@ FACILITY LOCATION & CONTACT:
             </div>
 
             {/* Sidebar Column */}
-            <div>
+            <div className="contact-sidebar-column">
               <AnimateIn direction="right">
                 <div className="card card--surface" style={{ marginBottom: '1.5rem' }}>
                   <h3 className="card-title" style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-headings)' }}>
@@ -855,7 +855,7 @@ FACILITY LOCATION & CONTACT:
             <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
               Have another question not answered above?
             </p>
-            <div className="btn-group" style={{ justifyContent: 'center' }}>
+            <div className="btn-group contact-faq-actions" style={{ justifyContent: 'center' }}>
               <a href="tel:+16122603900" className="btn btn-primary btn-sm">
                 Call (612) 260-3900
               </a>

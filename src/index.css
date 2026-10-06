@@ -1256,28 +1256,28 @@ ul, ol {
   border-bottom-color: var(--color-brand-soft);
 }
 
-/* Page Sub-Hero */
+/* Page Sub-Hero (All Sub-Pages except Home) */
 .page-hero {
   position: relative;
   background-color: #0b1329;
   color: #ffffff;
-  padding-top: 5.75rem;
-  padding-bottom: 2.75rem;
+  padding-top: 8.5rem;
+  padding-bottom: 3.25rem;
   overflow: hidden;
   text-align: center;
 }
 
 @media (min-width: 1024px) {
   .page-hero {
-    padding-top: 6.75rem;
-    padding-bottom: 3.25rem;
+    padding-top: 9.75rem;
+    padding-bottom: 3.75rem;
   }
 }
 
 @media (max-width: 640px) {
   .page-hero {
-    padding-top: 4.25rem;
-    padding-bottom: 1.5rem;
+    padding-top: 7.25rem;
+    padding-bottom: 2.25rem;
   }
 }
 
@@ -2677,6 +2677,49 @@ textarea::placeholder {
   background-color: var(--color-brand);
 }
 
+/* Contact Page Main Layout */
+.contact-main-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.contact-form-column {
+  min-width: 0;
+}
+
+.contact-sidebar-column {
+  min-width: 0;
+}
+
+.contact-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+}
+
+.contact-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.contact-faq-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+@media (max-width: 1023px) {
+  .contact-main-layout {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+}
+
 /* ===== 9. FAQ ACCORDION ===== */
 .accordion-wrapper {
   display: flex;
@@ -3632,8 +3675,8 @@ textarea::placeholder {
 
   /* 4. Page Sub-Heroes on Laptop */
   .page-hero {
-    padding-top: 7rem !important;
-    padding-bottom: 4rem !important;
+    padding-top: 9.5rem !important;
+    padding-bottom: 3.75rem !important;
   }
 
   .page-hero-tag {
@@ -3933,44 +3976,47 @@ textarea::placeholder {
     gap: 0.45rem !important;
   }
 
-  /* Page Sub-Hero on Mobile — Compact text so house photos are clearly visible */
+  /* Page Sub-Hero on Mobile — Elevated top breathing room below sticky header */
   .page-hero {
-    padding-top: 4.25rem !important;
-    padding-bottom: 1.25rem !important;
+    padding-top: 7.25rem !important;
+    padding-bottom: 2.25rem !important;
   }
 
   .page-hero-tag {
-    font-size: 0.62rem !important;
+    font-size: 0.72rem !important;
     letter-spacing: 0.14em !important;
-    margin-bottom: 0.35rem !important;
-    padding: 0.2rem 0.55rem !important;
-    background: rgba(6, 18, 32, 0.65) !important;
+    margin-bottom: 0.6rem !important;
+    padding: 0.25rem 0.75rem !important;
+    background: rgba(6, 18, 32, 0.78) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
     border-radius: var(--radius-xs) !important;
     display: inline-block !important;
   }
 
   .page-hero-title {
-    font-size: 1.25rem !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.45rem !important;
+    font-size: 1.65rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.65rem !important;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
   }
 
   .page-hero-desc {
-    font-size: 0.78rem !important;
-    line-height: 1.38 !important;
-    margin-bottom: 0.85rem !important;
-    max-width: 90% !important;
+    font-size: 0.92rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+    max-width: 92% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.75) !important;
   }
 
   .page-hero .btn {
-    padding: 0.45rem 0.85rem !important;
-    font-size: 0.78rem !important;
+    padding: 0.6rem 1.15rem !important;
+    font-size: 0.88rem !important;
   }
 
   .page-hero .btn-group {
-    gap: 0.45rem !important;
+    gap: 0.65rem !important;
   }
 
   /* Facility Tour Gallery on Mobile: Small title and unobtrusive overlay so house photos are 100% visible */
@@ -4600,7 +4646,7 @@ textarea::placeholder {
     font-size: 0.88rem !important;
   }
 
-  /* Contact Cards on Mobile (2 side-by-side) */
+  /* Contact Cards on Mobile (2 side-by-side, Email spanning full width) */
   .contact-card-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -4612,7 +4658,12 @@ textarea::placeholder {
   }
 
   .contact-card {
-    padding: 0.85rem 0.6rem !important;
+    padding: 1rem 0.65rem !important;
+    min-height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
   }
 
   .contact-card-label {
@@ -4625,10 +4676,73 @@ textarea::placeholder {
     word-break: break-word !important;
   }
 
+  .contact-card-value--email {
+    font-size: 0.95rem !important;
+  }
+
   .copy-pill-btn {
     font-size: 0.72rem !important;
-    padding: 0.22rem 0.5rem !important;
-    margin-top: 0.35rem !important;
+    padding: 0.32rem 0.6rem !important;
+    margin-top: 0.45rem !important;
+    min-height: 34px !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* Contact Page Main Layout on Mobile: Form 100% width, followed by Sidebar */
+  .contact-page .contact-main-layout,
+  .contact-page .grid-2 {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 2rem !important;
+  }
+
+  .contact-form-column,
+  .contact-sidebar-column {
+    width: 100% !important;
+  }
+
+  .contact-form-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+  }
+
+  .contact-form-actions,
+  .contact-page form .btn-group {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+  }
+
+  .contact-form-actions .btn,
+  .contact-page form .btn-group .btn {
+    width: 100% !important;
+    min-height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+  }
+
+  .contact-faq-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+
+  .contact-faq-actions .btn {
+    width: 100% !important;
+    min-height: 46px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   /* Editorial Frames */
@@ -4646,20 +4760,52 @@ textarea::placeholder {
     line-height: 1.55 !important;
   }
 
-  /* Forms on Mobile */
+  /* Forms on Mobile (16px to prevent iOS Safari auto-zoom jump, 48px touch height) */
   .form-label {
-    font-size: 0.82rem !important;
+    font-size: 0.84rem !important;
   }
 
   .form-input,
   .form-select,
   .form-textarea {
-    font-size: 0.92rem !important;
-    padding: 0.7rem 0.85rem !important;
+    font-size: 16px !important;
+    min-height: 48px !important;
+    padding: 0.75rem 0.95rem !important;
+    border-radius: var(--radius-sm) !important;
+  }
+
+  .form-textarea {
+    min-height: 120px !important;
+  }
+
+  /* Radio Selection as Touch-Friendly Segmented Cards on Mobile */
+  .form-radio-group {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.65rem !important;
+    width: 100% !important;
   }
 
   .form-radio-label {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 0.5rem !important;
+    background: var(--bg-surface-alt, rgba(66, 133, 244, 0.05)) !important;
+    border: 1.5px solid var(--border-subtle) !important;
+    border-radius: var(--radius-sm) !important;
     font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    min-height: 48px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .form-radio-label:has(input:checked) {
+    border-color: var(--color-brand) !important;
+    background: rgba(66, 133, 244, 0.12) !important;
+    color: var(--color-brand-deep) !important;
   }
 
   .form-error-msg {
