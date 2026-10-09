@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import AnimateIn from '../components/AnimateIn';
 import SectionHeader from '../components/SectionHeader';
 import ConfirmModal from '../components/ConfirmModal';
+import SEO from '../components/SEO';
 import { getStoredUTMParams } from '../utils/utm';
 
 const FAQ_DATA = [
@@ -214,15 +215,55 @@ FACILITY LOCATION & CONTACT:
     }
   };
 
+const CONTACT_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.loveleadal.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Contact & Admissions',
+          item: 'https://www.loveleadal.com/contact',
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: FAQ_DATA.map((faq) => ({
+        '@type': 'Question',
+        name: faq.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.a,
+        },
+      })),
+    },
+  ],
+};
+
   return (
     <main id="main-content" className="contact-page">
+      <SEO
+        title="Contact Us & Schedule a Tour"
+        description="Schedule an in-person tour of LoveLead Assisted Living in Cottage Grove, MN. Contact our admissions team at (612) 260-3900 or submit an online care inquiry."
+        keywords="contact assisted living Cottage Grove, schedule tour senior living Minnesota, elder care phone Cottage Grove MN, admissions assisted living Twin Cities"
+        path="/contact"
+        schema={CONTACT_SCHEMA}
+      />
       {/* ===== HERO ===== */}
       <section className="page-hero">
         <img
           src="/photos/lovelead_frontyard2.jpeg"
-          alt="LoveLead Facility Entrance in Cottage Grove"
+          alt="Front entrance and walkway of LoveLead Assisted Living home in Cottage Grove, MN - Schedule a Tour"
           className="page-hero-bg-img"
-          aria-hidden="true"
         />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
@@ -751,7 +792,11 @@ FACILITY LOCATION & CONTACT:
           <div className="facility-showcase-grid" style={{ marginTop: '2.5rem' }}>
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_frontyard.jpeg" alt="Front Arrival & Driveway" loading="lazy" />
+                <img
+                  src="/photos/lovelead_frontyard.jpeg"
+                  alt="Dedicated private driveway and easy arrival parking at LoveLead Assisted Living in Cottage Grove, MN"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">Arrival</span>
               </div>
               <div className="facility-card-body">
@@ -762,7 +807,11 @@ FACILITY LOCATION & CONTACT:
 
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_living_area.jpeg" alt="Main Living Room" loading="lazy" />
+                <img
+                  src="/photos/lovelead_living_area.jpeg"
+                  alt="Warm, sunlit reception living lounge for tour greetings and care consultations at LoveLead"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">Reception</span>
               </div>
               <div className="facility-card-body">
@@ -773,7 +822,11 @@ FACILITY LOCATION & CONTACT:
 
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_bedroom.jpeg" alt="Private Bedroom Suite" loading="lazy" />
+                <img
+                  src="/photos/lovelead_bedroom.jpeg"
+                  alt="Private resident bedroom suite walkthrough showing spacious layout and accessibility features at LoveLead"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">Suites</span>
               </div>
               <div className="facility-card-body">
@@ -784,7 +837,11 @@ FACILITY LOCATION & CONTACT:
 
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_backyard.jpeg" alt="Fenced Backyard Grounds" loading="lazy" />
+                <img
+                  src="/photos/lovelead_backyard.jpeg"
+                  alt="Tranquil fenced backyard grounds and outdoor deck tour at LoveLead Assisted Living in Cottage Grove"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">Grounds</span>
               </div>
               <div className="facility-card-body">

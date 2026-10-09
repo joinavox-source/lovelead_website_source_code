@@ -1,11 +1,37 @@
 import { Link } from 'react-router-dom';
 import AnimateIn from '../components/AnimateIn';
+import SEO from '../components/SEO';
+
+const TERMS_BREADCRUMB_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.loveleadal.com/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Terms and Conditions',
+      item: 'https://www.loveleadal.com/terms',
+    },
+  ],
+};
 
 export default function Terms() {
   const lastUpdated = 'September 24, 2026';
 
   return (
     <main id="main-content">
+      <SEO
+        title="Terms and Conditions"
+        description="Terms and conditions for utilizing LoveLead Assisted Living's website and senior care community resources."
+        path="/terms"
+        schema={TERMS_BREADCRUMB_SCHEMA}
+      />
       <section className="page-hero">
         <div className="container page-hero-content">
           <AnimateIn>

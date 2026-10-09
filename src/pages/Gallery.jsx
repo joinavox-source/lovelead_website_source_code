@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import AnimateIn from '../components/AnimateIn';
 import SectionHeader from '../components/SectionHeader';
+import SEO from '../components/SEO';
 
 const PHOTOS = [
   {
@@ -12,6 +13,7 @@ const PHOTOS = [
     title: 'Front Exterior & Pristine Grounds',
     subtitle: 'Exterior & Grounds',
     desc: 'Spacious two-story residential home in a quiet, peaceful Cottage Grove neighborhood with private driveway and manicured lawn.',
+    alt: 'Front exterior view of LoveLead Assisted Living two-story residential home with driveway in Cottage Grove, MN',
   },
   {
     id: 'frontyard-2',
@@ -20,6 +22,7 @@ const PHOTOS = [
     title: 'Welcoming Front Entrance & Porch',
     subtitle: 'Exterior & Grounds',
     desc: 'Accessible front entrance and covered porch warmly welcoming families, visitors, and loved ones into our home.',
+    alt: 'Welcoming front entrance and covered porch at LoveLead Assisted Living home in Cottage Grove',
   },
   {
     id: 'living-1',
@@ -28,6 +31,7 @@ const PHOTOS = [
     title: 'Main Sunlit Living Room',
     subtitle: 'Living & Lounges',
     desc: 'Expansive central living room with soaring ceilings, large picture windows, and warm natural sunlight throughout the day.',
+    alt: 'Spacious central living room with soaring ceilings, large picture windows, and natural daylight at LoveLead',
   },
   {
     id: 'living-2',
@@ -36,6 +40,7 @@ const PHOTOS = [
     title: 'Open-Concept Common Spaces',
     subtitle: 'Living & Lounges',
     desc: 'Flowing open layout connecting living, dining, and social areas so residents never feel isolated or confined.',
+    alt: 'Open-concept living and social common area connecting to dining and kitchen spaces at LoveLead',
   },
   {
     id: 'living-sofa',
@@ -44,6 +49,7 @@ const PHOTOS = [
     title: 'Comfortable Fireside Sofa Lounge',
     subtitle: 'Living & Lounges',
     desc: 'Plush couches and warm gathering space designed for family visits, reading, board games, and group conversations.',
+    alt: 'Cozy fireside sofa lounge with comfortable seating for family visits and conversations at LoveLead',
   },
   {
     id: 'living-upper',
@@ -52,6 +58,7 @@ const PHOTOS = [
     title: 'Upper-Level Quiet Retreat',
     subtitle: 'Living & Lounges',
     desc: 'A tranquil second-floor living lounge offering a peaceful setting for personal reflection, reading, or private family moments.',
+    alt: 'Tranquil upper-level retreat lounge for reading, reflection, and quiet family moments at LoveLead',
   },
   {
     id: 'dining-1',
@@ -60,6 +67,7 @@ const PHOTOS = [
     title: 'Family-Style Dining Room',
     subtitle: 'Kitchen & Dining',
     desc: 'Spacious dining table where residents gather daily for nutritious, home-cooked meals and uplifting camaraderie.',
+    alt: 'Family-style dining room table where residents enjoy home-cooked meals together at LoveLead',
   },
   {
     id: 'kitchen-1',
@@ -68,6 +76,7 @@ const PHOTOS = [
     title: 'Modern Chef-Equipped Kitchen',
     subtitle: 'Kitchen & Dining',
     desc: 'Fully equipped residential kitchen where freshly prepared, wholesome meals and personalized dietary menus are crafted.',
+    alt: 'Modern residential kitchen equipped for fresh daily meal and dietary preparation at LoveLead',
   },
   {
     id: 'kitchen-2',
@@ -76,6 +85,7 @@ const PHOTOS = [
     title: 'Kitchen Cooking & Preparation Station',
     subtitle: 'Kitchen & Dining',
     desc: 'Sparkling clean prep areas allowing our culinary team to accommodate specialized diabetic, low-sodium, and soft diets.',
+    alt: 'Spotless kitchen preparation counter tailored for diabetic, low-sodium, and special senior diets',
   },
   {
     id: 'kitchen-3',
@@ -84,6 +94,7 @@ const PHOTOS = [
     title: 'Breakfast Bar & Social Island',
     subtitle: 'Kitchen & Dining',
     desc: 'Open-concept breakfast island where residents can chat with caregivers and enjoy morning coffee or fresh afternoon snacks.',
+    alt: 'Open breakfast island bar where residents socialize with caregivers over coffee and snacks at LoveLead',
   },
   {
     id: 'bedroom-1',
@@ -92,6 +103,7 @@ const PHOTOS = [
     title: 'Private Resident Bedroom Suite',
     subtitle: 'Suites & Bathrooms',
     desc: 'Comfortable private bedroom featuring generous natural daylight, closet storage, and accessible walker-friendly spacing.',
+    alt: 'Comfortable private resident bedroom suite with natural lighting and walker-accessible space at LoveLead',
   },
   {
     id: 'bathroom-1',
@@ -100,6 +112,7 @@ const PHOTOS = [
     title: 'Bright Accessible Bathroom',
     subtitle: 'Suites & Bathrooms',
     desc: 'Modern bathroom equipped with safety fixtures, wide vanity, slip-resistant flooring, and dignified personal hygiene space.',
+    alt: 'Bright, modern senior-accessible bathroom with safety grab bars and slip-resistant floor at LoveLead',
   },
   {
     id: 'backyard-1',
@@ -108,6 +121,7 @@ const PHOTOS = [
     title: 'Expansive Private Fenced Backyard',
     subtitle: 'Exterior & Grounds',
     desc: 'Lush outdoor green space surrounded by mature trees, offering a private, peaceful retreat for fresh air and sunshine.',
+    alt: 'Expansive private fenced backyard lawn surrounded by mature trees at LoveLead Assisted Living',
   },
   {
     id: 'backyard-2',
@@ -116,6 +130,7 @@ const PHOTOS = [
     title: 'Backyard Lawn & Walking Grounds',
     subtitle: 'Exterior & Grounds',
     desc: 'Secure grounds perfect for gentle outdoor walks, pet therapy visits, bird watching, and peaceful summertime gatherings.',
+    alt: 'Secure green backyard walking grounds ideal for fresh air, gardening, and peaceful outdoor leisure',
   },
   {
     id: 'backyard-deck',
@@ -124,6 +139,7 @@ const PHOTOS = [
     title: 'Elevated Deck & Scenic Yard View',
     subtitle: 'Exterior & Grounds',
     desc: 'Sturdy back deck and stairway overlooking the tree-lined backyard grounds, providing beautiful views through all seasons.',
+    alt: 'Elevated wooden deck and staircase overlooking peaceful tree-lined grounds at LoveLead Assisted Living',
   },
 ];
 
@@ -183,15 +199,40 @@ export default function Gallery() {
     };
   }, [selectedPhoto, handlePrev, handleNext]);
 
+const GALLERY_BREADCRUMB_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.loveleadal.com/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Facility Tour & Gallery',
+      item: 'https://www.loveleadal.com/gallery',
+    },
+  ],
+};
+
   return (
     <main id="main-content" className="gallery-page">
+      <SEO
+        title="Residence Photo Tour & Private Suites"
+        description="Explore 15 high-definition photos of LoveLead Assisted Living in Cottage Grove, MN: private resident suites, sunlit living lounges, chef-equipped kitchen, and fenced backyard grounds."
+        keywords="assisted living photo tour Cottage Grove, senior housing photos Minnesota, private assisted living bedrooms Cottage Grove MN, senior living community tour"
+        path="/gallery"
+        schema={GALLERY_BREADCRUMB_SCHEMA}
+      />
       {/* ===== HERO SECTION ===== */}
       <section className="page-hero">
         <img
           src="/photos/lovelead_frontyard.jpeg"
-          alt="LoveLead Facility Front View"
+          alt="Exterior view of LoveLead Assisted Living residential home in Cottage Grove, Minnesota"
           className="page-hero-bg-img"
-          aria-hidden="true"
         />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
@@ -254,7 +295,7 @@ export default function Gallery() {
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedPhoto(photo); }}
                   aria-label={`View photo: ${photo.title}`}
                 >
-                  <img src={photo.src} alt={photo.title} loading="lazy" />
+                  <img src={photo.src} alt={photo.alt || photo.title} loading="lazy" />
                   <div className="gallery-item-overlay">
                     <span className="gallery-item-category">{photo.subtitle}</span>
                     <h3 className="gallery-item-title">{photo.title}</h3>
@@ -428,7 +469,7 @@ export default function Gallery() {
               <div className="gallery-modal-img-container">
                 <img
                   src={selectedPhoto.src}
-                  alt={selectedPhoto.title}
+                  alt={selectedPhoto.alt || selectedPhoto.title}
                   className="gallery-modal-img"
                 />
               </div>

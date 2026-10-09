@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { animate, stagger } from 'motion';
 import AnimateIn from '../components/AnimateIn';
 import SectionHeader from '../components/SectionHeader';
+import SEO from '../components/SEO';
 import heroAssetVideo from '../assets/7522219-uhd_3840_2160_25fps (1).mp4';
 
 const SERVICES_PREVIEW = [
@@ -12,6 +13,7 @@ const SERVICES_PREVIEW = [
     desc: 'Support with bathing, dressing, grooming, eating, mobility, meal preparation, housekeeping, and transportation.',
     link: '/services#adl',
     image: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&q=80',
+    alt: 'Compassionate caregiver assisting an elderly resident with daily living activities at LoveLead Assisted Living',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -25,6 +27,7 @@ const SERVICES_PREVIEW = [
     desc: 'Reminders, administration support, side-effect observation, and coordination with prescribing physicians.',
     link: '/services#medication',
     image: 'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=600&q=80',
+    alt: 'Caregiver safely dispensing and organizing prescription medications for senior resident care',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
@@ -38,6 +41,7 @@ const SERVICES_PREVIEW = [
     desc: 'Around-the-clock trained care team awake and attentive to resident needs every hour of the day and night.',
     link: '/services#supervision',
     image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=600&q=80',
+    alt: 'Dedicated healthcare staff providing 24/7 awake supervision and emergency response support',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
@@ -51,6 +55,7 @@ const SERVICES_PREVIEW = [
     desc: 'Blood glucose monitoring, insulin assistance as prescribed, and diabetic-friendly nutrition guidance.',
     link: '/services#diabetic',
     image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80',
+    alt: 'Caregiver conducting blood glucose monitoring and specialized diabetic nutritional care',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
@@ -63,6 +68,7 @@ const SERVICES_PREVIEW = [
     desc: 'Observation, dressing changes, infection prevention, and ongoing liaison with medical specialists.',
     link: '/services#wound',
     image: 'https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?w=600&q=80',
+    alt: 'Professional clinical wound care oversight and sterile dressing support for seniors',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
@@ -76,6 +82,7 @@ const SERVICES_PREVIEW = [
     desc: 'Oxygen therapy oversight, CPAP setup, nebulizer treatment assistance, and breathing health tracking.',
     link: '/services#respiratory',
     image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80',
+    alt: 'Caregiver assisting senior with oxygen therapy and respiratory healthcare equipment',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
@@ -90,7 +97,7 @@ const LIFE_AT_LOVELEAD = [
   {
     id: 'lovelead-1',
     src: '/photos/lovelead_frontyard.jpeg',
-    alt: 'Life at LoveLead 1',
+    alt: 'Exterior front view and landscaped grounds of LoveLead Assisted Living residential home in Cottage Grove, MN',
     tag: 'Exterior & Grounds',
     title: 'Peaceful Residence Grounds',
     desc: 'Welcoming two-story suburban residence located in Cottage Grove with spacious parking and accessible entryways.',
@@ -98,7 +105,7 @@ const LIFE_AT_LOVELEAD = [
   {
     id: 'lovelead-2',
     src: '/photos/lovelead_living_area.jpeg',
-    alt: 'Life at LoveLead 2',
+    alt: 'Sunlit primary living room with vaulted ceilings, large windows, and social seating area at LoveLead Assisted Living',
     tag: 'Living Lounge',
     title: 'Sunlit Living & Social Spaces',
     desc: 'Vaulted ceilings and broad picture windows illuminate our primary living room where residents gather for conversation and music.',
@@ -106,7 +113,7 @@ const LIFE_AT_LOVELEAD = [
   {
     id: 'lovelead-3',
     src: '/photos/lovelead_sofa_area.jpeg',
-    alt: 'Life at LoveLead 3',
+    alt: 'Comfortable family conversation lounge with plush sofas and warm lighting at LoveLead Assisted Living',
     tag: 'Family Lounge',
     title: 'Cozy Fireside Conversation Lounge',
     desc: 'Plush seating, warm lighting, and a tranquil atmosphere offering residents and visiting families an intimate space to chat.',
@@ -114,7 +121,7 @@ const LIFE_AT_LOVELEAD = [
   {
     id: 'lovelead-4',
     src: '/photos/lovelead_bedroom.jpeg',
-    alt: 'Life at LoveLead 4',
+    alt: 'Private resident bedroom suite designed for senior safety, comfort, and mobility at LoveLead Assisted Living',
     tag: 'Private Suite',
     title: 'Private Resident Suites',
     desc: 'Each bedroom is thoughtfully designed for privacy, restful sleep, and individual autonomy with wide clearances for mobility aids.',
@@ -122,7 +129,7 @@ const LIFE_AT_LOVELEAD = [
   {
     id: 'lovelead-5',
     src: '/photos/lovelead_kitchen.jpeg',
-    alt: 'Life at LoveLead 5',
+    alt: 'Modern residential kitchen where wholesome, chef-cooked meals and diabetic diets are prepared daily',
     tag: 'Kitchen & Dining',
     title: 'Nutritious Kitchen & Dining',
     desc: 'Wholesome home-style meals prepared daily in our spotless kitchen, tailored to physician-ordered diabetic and nutritional plans.',
@@ -130,7 +137,7 @@ const LIFE_AT_LOVELEAD = [
   {
     id: 'lovelead-6',
     src: '/photos/lovelead_bathroom.jpeg',
-    alt: 'Life at LoveLead 6',
+    alt: 'Senior-accessible bathroom featuring safety grab bars, slip-resistant flooring, and dignity-focused personal care',
     tag: 'Accessible Bath',
     title: 'Accessible Care & Bathrooms',
     desc: 'Safety-first bathroom fixtures including reinforced grab bars, slip-resistant surfaces, and dignity-focused personal care.',
@@ -138,7 +145,7 @@ const LIFE_AT_LOVELEAD = [
   {
     id: 'lovelead-7',
     src: '/photos/lovelead_backyard_staircase.jpeg',
-    alt: 'Life at LoveLead 7',
+    alt: 'Elevated outdoor back deck overlooking serene private tree-lined backyard grounds at LoveLead Assisted Living',
     tag: 'Outdoor Grounds',
     title: 'Private Backyard & Walking Deck',
     desc: 'Expansive private lawn and elevated wooden deck surrounded by mature trees for enjoying fresh air, gentle strolls, and birdsong.',
@@ -146,7 +153,7 @@ const LIFE_AT_LOVELEAD = [
   {
     id: 'lovelead-8',
     src: '/photos/lovelead_living_area2.jpeg',
-    alt: 'Life at LoveLead 8',
+    alt: 'Warm open-concept living area where residents engage in daily recreational activities and companionship',
     tag: 'Community Life',
     title: 'Enriching Daily Engagement',
     desc: 'From morning gentle exercises to evening board games and craft circles, residents remain actively engaged and connected.',
@@ -199,6 +206,7 @@ const FACILITY_SHOWCASE_PHOTOS = [
   {
     id: 'frontyard',
     src: '/photos/lovelead_frontyard.jpeg',
+    alt: 'Welcoming front entrance and driveway of LoveLead Assisted Living residential home in Cottage Grove, MN',
     tag: 'Exterior',
     title: 'Quiet Suburban Residence',
     desc: 'Two-story residential home with a welcoming porch, private driveway, and peaceful Cottage Grove neighborhood surroundings.',
@@ -206,6 +214,7 @@ const FACILITY_SHOWCASE_PHOTOS = [
   {
     id: 'living',
     src: '/photos/lovelead_living_area2.jpeg',
+    alt: 'Sunlit living and social area with high ceilings and comfortable chairs for resident activities at LoveLead',
     tag: 'Living Lounge',
     title: 'Sunlit Living & Social Spaces',
     desc: 'High ceilings and expansive windows where residents relax, converse with family, and participate in engaging group activities.',
@@ -213,6 +222,7 @@ const FACILITY_SHOWCASE_PHOTOS = [
   {
     id: 'kitchen',
     src: '/photos/lovelead_kitchen.jpeg',
+    alt: 'Modern residential kitchen where fresh home-cooked meals and specialized diets are prepared daily',
     tag: 'Kitchen & Dining',
     title: 'Chef-Equipped Kitchen',
     desc: 'Wholesome home-cooked meals prepared fresh daily, tailored to individual diabetic, low-sodium, and physician meal plans.',
@@ -220,6 +230,7 @@ const FACILITY_SHOWCASE_PHOTOS = [
   {
     id: 'bedroom',
     src: '/photos/lovelead_bedroom.jpeg',
+    alt: 'Serene private resident bedroom suite with natural sunlight and walker-accessible clearances at LoveLead',
     tag: 'Private Suite',
     title: 'Comfortable Private Bedrooms',
     desc: 'Serene personal sanctuaries with generous natural sunlight, closet storage, and accessible walker-friendly clearances.',
@@ -227,6 +238,7 @@ const FACILITY_SHOWCASE_PHOTOS = [
   {
     id: 'backyard',
     src: '/photos/lovelead_backyard_staircase.jpeg',
+    alt: 'Elevated wooden deck overlooking lush fenced backyard grounds at LoveLead Assisted Living',
     tag: 'Outdoor Grounds',
     title: 'Private Fenced Backyard & Deck',
     desc: 'Serene outdoor lawn and elevated deck surrounded by mature trees for peaceful fresh air, family visits, and relaxation.',
@@ -234,6 +246,7 @@ const FACILITY_SHOWCASE_PHOTOS = [
   {
     id: 'bathroom',
     src: '/photos/lovelead_bathroom.jpeg',
+    alt: 'Accessible modern bathroom equipped with secure grab bars, walk-in shower access, and non-slip surfaces',
     tag: 'Accessible Bath',
     title: 'Modern Accessible Bathrooms',
     desc: 'Bright, dignified hygiene spaces with non-slip flooring, safety grab bars, and accessible vanities.',
@@ -308,6 +321,12 @@ export default function Home() {
 
   return (
     <main id="main-content" className="home-page">
+      <SEO
+        title="LoveLead Assisted Living"
+        description="Compassionate residential assisted living in Cottage Grove, MN. 24/7 care, 1:3 staff-to-resident ratio, medication management, and personalized senior wellness."
+        keywords="assisted living Cottage Grove MN, senior care Cottage Grove, residential elder care Minnesota, 24/7 assisted living, medication management, memory care Twin Cities"
+        path="/"
+      />
       {/* ===== HERO SECTION (USING ASSETS VIDEO) ===== */}
       <section className="hero-section">
         <video
@@ -381,7 +400,7 @@ export default function Home() {
                 {/* Main Caregiver Photo */}
                 <img
                   src="/photos/lovelead_living_area.jpeg"
-                  alt="Spacious sunlit living room at LoveLead"
+                  alt="Spacious sunlit communal living room with vaulted ceilings and comfortable armchairs at LoveLead Assisted Living in Cottage Grove, MN"
                   style={{
                     width: '100%',
                     height: '380px',
@@ -407,7 +426,7 @@ export default function Home() {
                 >
                   <img
                     src="/photos/lovelead_bedroom.jpeg"
-                    alt="Comfortable residential room suite"
+                    alt="Private, furnished resident bedroom suite with natural lighting and accessible layout at LoveLead"
                     style={{ width: '100%', height: '140px', objectFit: 'cover' }}
                     loading="lazy"
                   />
@@ -492,7 +511,7 @@ export default function Home() {
                 <div className="card card-hover" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                   {/* Photo Header */}
                   <div className="card-media-header">
-                    <img src={service.image} alt={service.title} loading="lazy" />
+                    <img src={service.image} alt={service.alt || service.title} loading="lazy" />
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.5rem' }}>
@@ -681,7 +700,7 @@ export default function Home() {
                 aria-label={`View photo: ${photo.title}`}
               >
                 <div className="facility-card-img-wrap">
-                  <img src={photo.src} alt={photo.title} loading="lazy" />
+                  <img src={photo.src} alt={photo.alt || photo.title} loading="lazy" />
                   <span className="facility-card-tag">{photo.tag}</span>
                   <div className="facility-card-zoom-badge" aria-hidden="true">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -757,7 +776,7 @@ export default function Home() {
               <div>
                 <img
                   src="/photos/lovelead_sofa_area.jpeg"
-                  alt="Cozy, spacious family lounge inside our Cottage Grove residence"
+                  alt="Welcoming family gathering lounge with plush seating inside LoveLead Assisted Living in Cottage Grove, MN"
                   style={{ width: '100%', height: '420px', objectFit: 'cover', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}
                   loading="lazy"
                 />

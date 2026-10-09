@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import AnimateIn from '../components/AnimateIn';
 import SectionHeader from '../components/SectionHeader';
+import SEO from '../components/SEO';
 
 const REASONS = [
   {
@@ -73,16 +74,41 @@ const ADMISSION_STEPS = [
   },
 ];
 
+const WHY_CHOOSE_BREADCRUMB_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.loveleadal.com/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Why Choose Us',
+      item: 'https://www.loveleadal.com/why-choose-us',
+    },
+  ],
+};
+
 export default function WhyChooseUs() {
   return (
     <main id="main-content" className="why-choose-page">
+      <SEO
+        title="Why Choose LoveLead? | Licensed 1:3 Senior Care in Cottage Grove"
+        description="Discover why families trust LoveLead: 1:3 caregiver-to-resident ratio, 24/7 awake care, authentic residential home setting, transparent fees, and personalized senior care in Cottage Grove, MN."
+        keywords="why choose assisted living Cottage Grove, best assisted living Minnesota, 1:3 staff ratio senior home, residential care Cottage Grove MN, transparent senior care"
+        path="/why-choose-us"
+        schema={WHY_CHOOSE_BREADCRUMB_SCHEMA}
+      />
       {/* ===== PAGE HERO ===== */}
       <section className="page-hero">
         <img
           src="/photos/lovelead_frontyard.jpeg"
-          alt="LoveLead Residential Home Exterior"
+          alt="LoveLead Assisted Living residential home in Cottage Grove, Minnesota - Authentic neighborhood care"
           className="page-hero-bg-img"
-          aria-hidden="true"
         />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
@@ -146,7 +172,7 @@ export default function WhyChooseUs() {
             <AnimateIn direction="left">
               <img
                 src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=900&q=80"
-                alt="Loving support between resident and caregiver"
+                alt="Warm, compassionate interaction between dedicated caregiver and senior resident upholding dignity at LoveLead"
                 style={{ width: '100%', height: '420px', objectFit: 'cover', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)' }}
                 loading="lazy"
               />
@@ -193,7 +219,11 @@ export default function WhyChooseUs() {
           <div className="facility-showcase-grid" style={{ marginTop: '2.5rem' }}>
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_frontyard2.jpeg" alt="Welcoming Front Entrance" loading="lazy" />
+                <img
+                  src="/photos/lovelead_frontyard2.jpeg"
+                  alt="Authentic residential home front entrance in a quiet Cottage Grove neighborhood - LoveLead Assisted Living"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">Residential Scale</span>
               </div>
               <div className="facility-card-body">
@@ -204,7 +234,11 @@ export default function WhyChooseUs() {
 
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_living_area.jpeg" alt="Spacious Sunlit Living Room" loading="lazy" />
+                <img
+                  src="/photos/lovelead_living_area.jpeg"
+                  alt="Bright, welcoming communal living room filled with natural sunlight and comfortable seating at LoveLead"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">Family Living</span>
               </div>
               <div className="facility-card-body">
@@ -215,7 +249,11 @@ export default function WhyChooseUs() {
 
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_dining_area.jpeg" alt="Communal Dining Table" loading="lazy" />
+                <img
+                  src="/photos/lovelead_dining_area.jpeg"
+                  alt="Family-style dining table where residents gather for nutritious, home-cooked daily meals at LoveLead"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">Intimate Dining</span>
               </div>
               <div className="facility-card-body">
@@ -226,7 +264,11 @@ export default function WhyChooseUs() {
 
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_backyard.jpeg" alt="Green Fenced Backyard" loading="lazy" />
+                <img
+                  src="/photos/lovelead_backyard.jpeg"
+                  alt="Spacious, secure fenced backyard and green lawn surrounded by mature trees at LoveLead Assisted Living"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">Nature & Safety</span>
               </div>
               <div className="facility-card-body">

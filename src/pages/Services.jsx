@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import AnimateIn from '../components/AnimateIn';
 import SectionHeader from '../components/SectionHeader';
+import SEO from '../components/SEO';
 
 const SERVICES = [
   {
@@ -16,6 +17,7 @@ const SERVICES = [
       'Errands and local medical transportation coordination',
     ],
     image: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&q=80',
+    alt: 'Compassionate caregiver assisting a senior resident with daily living activities, mobility, and personal care',
     number: '01',
     tag: 'Daily Living Support',
   },
@@ -32,6 +34,7 @@ const SERVICES = [
       'Preventive skincare and pressure relief repositioning',
     ],
     image: 'https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?w=800&q=80',
+    alt: 'Professional clinical wound care oversight, skin inspection, and sterile dressing management for seniors',
     number: '02',
     tag: 'Clinical Care',
   },
@@ -48,6 +51,7 @@ const SERVICES = [
       'Rapid emergency escalation and medical transport protocols',
     ],
     image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80',
+    alt: 'Healthcare provider discussing customized chronic disease management plan with senior patient',
     number: '03',
     tag: 'Chronic Care',
   },
@@ -64,6 +68,7 @@ const SERVICES = [
       'Support with oral medications, eye drops, and topical treatments',
     ],
     image: 'https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&q=80',
+    alt: 'Caregiver safely dispensing and organizing prescription medications following physician orders',
     number: '04',
     tag: 'Pharmacy & Prescriptions',
   },
@@ -80,6 +85,7 @@ const SERVICES = [
       'Consistent coordination with endocrinologists and dietitians',
     ],
     image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
+    alt: 'Trained caregiver performing blood glucose monitoring and specialized diabetic care support',
     number: '05',
     tag: 'Endocrine Health',
   },
@@ -96,6 +102,7 @@ const SERVICES = [
       'Constant oversight that gives families complete peace of mind',
     ],
     image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&q=80',
+    alt: 'Awake 24/7 clinical caregivers providing round-the-clock senior supervision and rapid response',
     number: '06',
     tag: 'Round-The-Clock Presence',
   },
@@ -112,21 +119,47 @@ const SERVICES = [
       'Provider communication for dosage and equipment adjustments',
     ],
     image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80',
+    alt: 'Caregiver assisting resident with oxygen concentrator and specialized respiratory care equipment',
     number: '07',
     tag: 'Pulmonary Support',
   },
 ];
 
+const SERVICES_BREADCRUMB_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.loveleadal.com/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Services',
+      item: 'https://www.loveleadal.com/services',
+    },
+  ],
+};
+
 export default function Services() {
   return (
     <main id="main-content" className="services-page">
+      <SEO
+        title="Specialized Assisted Living Care Services"
+        description="Comprehensive senior care services at LoveLead in Cottage Grove, MN: ADLs assistance, 24/7 awake supervision, medication management, diabetic care, and wound care support."
+        keywords="assisted living services Cottage Grove MN, senior medication management, diabetic care senior living, 24/7 supervision Cottage Grove, ADL care Minnesota"
+        path="/services"
+        schema={SERVICES_BREADCRUMB_SCHEMA}
+      />
       {/* ===== PAGE HERO ===== */}
       <section className="page-hero">
         <img
           src="/photos/lovelead_frontyard.jpeg"
-          alt="LoveLead Facility Front View"
+          alt="LoveLead Assisted Living facility front view and landscaped entrance in Cottage Grove, MN"
           className="page-hero-bg-img"
-          aria-hidden="true"
         />
         <div className="page-hero-overlay" />
         <div className="container page-hero-content">
@@ -173,7 +206,7 @@ export default function Services() {
                   <AnimateIn direction={isEven ? 'right' : 'left'} className="service-row-media">
                     <img
                       src={service.image}
-                      alt={service.title}
+                      alt={service.alt || service.title}
                       loading="lazy"
                     />
                     <span className="service-row-tag">{service.tag}</span>
@@ -228,7 +261,11 @@ export default function Services() {
           <div className="facility-showcase-grid" style={{ marginTop: '2rem' }}>
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_bedroom.jpeg" alt="Private Bedroom Suite" loading="lazy" />
+                <img
+                  src="/photos/lovelead_bedroom.jpeg"
+                  alt="Private resident bedroom suite designed for senior safety, dignity, and comfortable rest at LoveLead"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">ADL & Rest</span>
               </div>
               <div className="facility-card-body">
@@ -239,7 +276,11 @@ export default function Services() {
 
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_bathroom.jpeg" alt="Accessible Bathroom" loading="lazy" />
+                <img
+                  src="/photos/lovelead_bathroom.jpeg"
+                  alt="Senior-accessible bathroom with reinforced grab bars and non-slip surfaces for safe personal hygiene"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">Hygiene Care</span>
               </div>
               <div className="facility-card-body">
@@ -250,7 +291,11 @@ export default function Services() {
 
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_kitchen.jpeg" alt="Kitchen Prep" loading="lazy" />
+                <img
+                  src="/photos/lovelead_kitchen.jpeg"
+                  alt="Spotless residential kitchen where specialized diabetic and nutritionist-approved meals are prepared daily"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">Dietary Care</span>
               </div>
               <div className="facility-card-body">
@@ -261,7 +306,11 @@ export default function Services() {
 
             <div className="facility-card">
               <div className="facility-card-img-wrap">
-                <img src="/photos/lovelead_living_area2.jpeg" alt="Living Room Supervision" loading="lazy" />
+                <img
+                  src="/photos/lovelead_living_area2.jpeg"
+                  alt="Sunlit open living area with 24/7 caregiver observation and warm companionship at LoveLead"
+                  loading="lazy"
+                />
                 <span className="facility-card-tag">24/7 Presence</span>
               </div>
               <div className="facility-card-body">

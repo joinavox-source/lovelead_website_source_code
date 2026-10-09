@@ -1,11 +1,37 @@
 import { Link } from 'react-router-dom';
 import AnimateIn from '../components/AnimateIn';
+import SEO from '../components/SEO';
+
+const PRIVACY_BREADCRUMB_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.loveleadal.com/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Privacy Policy',
+      item: 'https://www.loveleadal.com/privacy-policy',
+    },
+  ],
+};
 
 export default function PrivacyPolicy() {
   const lastUpdated = 'September 24, 2026';
 
   return (
     <main id="main-content">
+      <SEO
+        title="Privacy Policy"
+        description="Review LoveLead Assisted Living's privacy policy and HIPAA-aligned commitment to protecting resident and family inquiries."
+        path="/privacy-policy"
+        schema={PRIVACY_BREADCRUMB_SCHEMA}
+      />
       <section className="page-hero">
         <div className="container page-hero-content">
           <AnimateIn>

@@ -61,8 +61,10 @@ export default function Header() {
             <Link to="/" className="brand-link" aria-label="LoveLead Assisted Living Home">
               <img
                 src="/logo.png"
-                alt="LoveLead Assisted Living"
+                alt="LoveLead Assisted Living - Licensed Residential Senior Care Home in Cottage Grove, MN"
                 className="brand-logo-img"
+                width="48"
+                height="48"
               />
               <div className="brand-text-group">
                 <span

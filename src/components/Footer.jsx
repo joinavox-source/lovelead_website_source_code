@@ -53,7 +53,13 @@ export default function Footer() {
           {/* Brand Col */}
           <div>
             <Link to="/" className="brand-link" style={{ marginBottom: '1.25rem' }}>
-              <img src="/logo.png" alt="LoveLead" style={{ height: '2.5rem', width: 'auto' }} />
+              <img
+                src="/logo.png"
+                alt="LoveLead Assisted Living Logo - Compassionate Senior Care Community in Cottage Grove, MN"
+                style={{ height: '2.5rem', width: 'auto' }}
+                width="40"
+                height="40"
+              />
               <div className="brand-text-group">
                 <span className="brand-title" style={{ color: '#ffffff' }}>LoveLead</span>
                 <span className="brand-subtitle" style={{ color: 'var(--text-inverse-muted)' }}>Assisted Living</span>
