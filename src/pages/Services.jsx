@@ -325,9 +325,9 @@ export default function Services() {
               <Link to="/gallery" className="btn btn-primary">
                 Explore Full Facility Photo Tour
               </Link>
-              <Link to="/contact" className="btn btn-outline-dark">
-                Schedule a Visit
-              </Link>
+              <a href="https://maps.app.goo.gl/UV4FXMzEXSJtGuBF8" target="_blank" rel="noopener noreferrer" className="btn btn-outline-dark">
+                Visit Us
+              </a>
             </div>
           </div>
         </div>

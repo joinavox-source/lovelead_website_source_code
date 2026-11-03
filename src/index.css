@@ -2720,6 +2720,95 @@ textarea::placeholder {
   }
 }
 
+/* Dedicated Contact Page Map Section */
+.contact-location-section {
+  position: relative;
+}
+
+.contact-map-card {
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--bg-surface);
+}
+
+.contact-map-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 960px) {
+  .contact-map-layout {
+    grid-template-columns: 1.35fr 1fr;
+  }
+}
+
+.contact-map-embed-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 440px;
+  background-color: var(--bg-subtle, #f0ede6);
+}
+
+.contact-map-info-panel {
+  padding: 2.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justifyContent: center;
+  background-color: var(--bg-surface);
+}
+
+.contact-map-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-map-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contact-map-detail-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-brand-wash);
+  color: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--color-brand-pale);
+}
+
+.contact-map-detail-item strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-headings);
+  margin-bottom: 0.25rem;
+}
+
+.contact-map-detail-item p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Careers Page Layout Wrappers */
+.careers-job-card-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.careers-cta-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
 /* ===== 9. FAQ ACCORDION ===== */
 .accordion-wrapper {
   display: flex;
@@ -3817,11 +3906,134 @@ textarea::placeholder {
     font-size: 1.08rem !important;
   }
 
-  /* 7. Header on Laptop (Larger buttons and comfortable typography) */
+  /* 7. Header on Laptop (Responsive tiered spacing from 1024px to 1440px) */
   .header-container {
     height: 4.8rem !important;
   }
 
+  .brand-link {
+    flex-shrink: 0 !important;
+  }
+
+  .header-actions {
+    flex-shrink: 0 !important;
+  }
+}
+
+/* 7A. Precision-engineered compact navbar at 1024px - 1220px to prevent overflow */
+@media (min-width: 1024px) and (max-width: 1220px) {
+  .site-header .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 100% !important;
+  }
+
+  .header-container {
+    height: 4.5rem !important;
+  }
+
+  .brand-link {
+    gap: 0.45rem !important;
+  }
+
+  .brand-logo-img {
+    height: 2.15rem !important;
+  }
+
+  .brand-title {
+    font-size: 1.05rem !important;
+  }
+
+  .brand-subtitle {
+    font-size: 0.54rem !important;
+    letter-spacing: 0.16em !important;
+  }
+
+  .desktop-nav {
+    gap: 0.15rem !important;
+  }
+
+  .nav-link {
+    font-size: 0.76rem !important;
+    padding: 0.35rem 0.42rem !important;
+    letter-spacing: 0.005em !important;
+  }
+
+  .header-actions {
+    gap: 0.45rem !important;
+  }
+
+  .header-phone-quick {
+    font-size: 0.76rem !important;
+    padding: 0.38rem 0.6rem !important;
+    gap: 0.35rem !important;
+  }
+
+  .header-phone-quick svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  .header-cta-btn {
+    font-size: 0.78rem !important;
+    padding: 0.38rem 0.75rem !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* 7B. Moderate navbar expansion at 1221px - 1360px */
+@media (min-width: 1221px) and (max-width: 1360px) {
+  .site-header .container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+
+  .header-container {
+    height: 4.65rem !important;
+  }
+
+  .brand-link {
+    gap: 0.6rem !important;
+  }
+
+  .brand-logo-img {
+    height: 2.4rem !important;
+  }
+
+  .brand-title {
+    font-size: 1.12rem !important;
+  }
+
+  .brand-subtitle {
+    font-size: 0.58rem !important;
+  }
+
+  .desktop-nav {
+    gap: 0.35rem !important;
+  }
+
+  .nav-link {
+    font-size: 0.82rem !important;
+    padding: 0.45rem 0.65rem !important;
+  }
+
+  .header-actions {
+    gap: 0.6rem !important;
+  }
+
+  .header-phone-quick {
+    font-size: 0.82rem !important;
+    padding: 0.48rem 0.85rem !important;
+  }
+
+  .header-cta-btn {
+    font-size: 0.86rem !important;
+    padding: 0.5rem 1.05rem !important;
+  }
+}
+
+/* 7C. Full generous laptop header at 1361px - 1440px */
+@media (min-width: 1361px) and (max-width: 1440px) {
   .brand-logo-img {
     height: 2.6rem !important;
   }
@@ -3834,9 +4046,13 @@ textarea::placeholder {
     font-size: 0.62rem !important;
   }
 
+  .desktop-nav {
+    gap: 0.55rem !important;
+  }
+
   .nav-link {
     font-size: 0.86rem !important;
-    padding: 0.55rem 0.9rem !important;
+    padding: 0.55rem 0.85rem !important;
   }
 
   .header-phone-quick {
@@ -3848,6 +4064,632 @@ textarea::placeholder {
     font-size: 0.92rem !important;
     padding: 0.72rem 1.45rem !important;
     font-weight: 700 !important;
+  }
+}
+
+/* ==========================================================================
+   14C. LARGE DESKTOP & ULTRA-WIDE / 4K SYSTEMATIC ADJUSTMENTS (min-width: 1441px)
+   - Eliminates excessive empty margins on wide screens (1920px - 2560px)
+   - Stretches layout proportionally to match Laptop L (1440px) balance and ratio
+   ========================================================================== */
+@media (min-width: 1441px) and (max-width: 1919px) {
+  html {
+    font-size: 16.5px !important;
+  }
+
+  .container {
+    max-width: 1520px !important;
+    width: 100% !important;
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+  }
+
+  .container-narrow {
+    max-width: 1060px !important;
+  }
+
+  .container-text {
+    max-width: 860px !important;
+  }
+
+  .card-media-header {
+    height: 190px !important;
+  }
+
+  .gallery-card img {
+    height: 210px !important;
+  }
+
+  .service-row-media img,
+  .benefit-media img {
+    height: 330px !important;
+  }
+
+  .desktop-nav {
+    gap: 0.65rem !important;
+  }
+
+  .nav-link {
+    font-size: 0.88rem !important;
+    padding: 0.55rem 0.95rem !important;
+  }
+
+  .header-phone-quick {
+    font-size: 0.9rem !important;
+    padding: 0.65rem 1.2rem !important;
+  }
+
+  .header-cta-btn {
+    font-size: 0.92rem !important;
+    padding: 0.72rem 1.45rem !important;
+  }
+}
+
+@media (min-width: 1920px) and (max-width: 2559px) {
+  html {
+    font-size: 18px !important;
+  }
+
+  .container {
+    max-width: 1840px !important;
+    width: 100% !important;
+    padding-left: 3.5rem !important;
+    padding-right: 3.5rem !important;
+  }
+
+  .container-narrow {
+    max-width: 1280px !important;
+  }
+
+  .container-text {
+    max-width: 1020px !important;
+  }
+
+  .section {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
+
+  .hero-section {
+    padding: 6.5rem 3.5rem 3.5rem 3.5rem !important;
+  }
+
+  .page-hero {
+    padding-top: 11rem !important;
+    padding-bottom: 4.5rem !important;
+  }
+
+  .grid-2 {
+    gap: 3.5rem !important;
+  }
+
+  .grid-3 {
+    gap: 2.25rem !important;
+  }
+
+  .grid-4 {
+    gap: 1.75rem !important;
+  }
+
+  .card {
+    padding: 1.85rem 1.65rem !important;
+  }
+
+  .card-media-header {
+    height: 225px !important;
+  }
+
+  .gallery-card img {
+    height: 250px !important;
+  }
+
+  .facility-card-img-wrap {
+    height: 230px !important;
+  }
+
+  .service-row-media img,
+  .benefit-media img {
+    height: 380px !important;
+  }
+
+  /* Header Proportional Scaling at 1920px */
+  .header-container {
+    height: 5.5rem !important;
+  }
+
+  .brand-logo-img {
+    height: 3.1rem !important;
+  }
+
+  .brand-title {
+    font-size: 1.35rem !important;
+  }
+
+  .brand-subtitle {
+    font-size: 0.7rem !important;
+  }
+
+  .desktop-nav {
+    gap: 0.85rem !important;
+  }
+
+  .nav-link {
+    font-size: 0.95rem !important;
+    padding: 0.6rem 1.1rem !important;
+  }
+
+  .header-actions {
+    gap: 1rem !important;
+  }
+
+  .header-phone-quick {
+    font-size: 0.95rem !important;
+    padding: 0.7rem 1.35rem !important;
+  }
+
+  .header-cta-btn {
+    font-size: 0.98rem !important;
+    padding: 0.75rem 1.65rem !important;
+  }
+}
+
+@media (min-width: 2560px) {
+  /* 4K Ultra-Wide Proportional Scaling (24px base font increases text size by 50% over standard) */
+  html {
+    font-size: 24px !important;
+  }
+
+  body, #root, p {
+    font-size: 1.08rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .container {
+    max-width: 2400px !important;
+    width: 100% !important;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+
+  .container-narrow {
+    max-width: 1650px !important;
+  }
+
+  .container-text {
+    max-width: 1350px !important;
+  }
+
+  .section {
+    padding-top: 6.5rem !important;
+    padding-bottom: 6.5rem !important;
+  }
+
+  /* Hero Section Typography & Spacing on 4K */
+  .hero-section {
+    padding: 7.5rem 3rem 4rem 3rem !important;
+  }
+
+  .hero-content {
+    max-width: 1450px !important;
+  }
+
+  .hero-badge {
+    font-size: 0.8rem !important;
+    letter-spacing: 0.22em !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .hero-title {
+    font-size: 4.6rem !important;
+    line-height: 1.12 !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    max-width: 1450px !important;
+  }
+
+  .hero-lead {
+    font-size: 1.3rem !important;
+    line-height: 1.75 !important;
+    max-width: 1300px !important;
+    margin-bottom: 2.75rem !important;
+  }
+
+  .hero-actions .btn {
+    padding: 1.15rem 2.6rem !important;
+    font-size: 1.08rem !important;
+    font-weight: 700 !important;
+  }
+
+  .hero-phone-strip {
+    font-size: 1.05rem !important;
+    margin-top: 1.85rem !important;
+  }
+
+  /* Page Sub-Heroes Typography on 4K */
+  .page-hero {
+    padding-top: 11rem !important;
+    padding-bottom: 5.5rem !important;
+  }
+
+  .page-hero-content {
+    max-width: 1450px !important;
+  }
+
+  .page-hero-tag {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .page-hero-title {
+    font-size: 3.6rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .page-hero-desc {
+    font-size: 1.3rem !important;
+    line-height: 1.75 !important;
+    max-width: 1300px !important;
+  }
+
+  /* Section Headers & Title Text Boxes on 4K (Expanding previously constricted boxes) */
+  .section-header--center {
+    max-width: 1450px !important;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem !important;
+  }
+
+  .section-tag {
+    font-size: 0.82rem !important;
+    letter-spacing: 0.2em !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .section-title {
+    font-size: 3.1rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.95rem !important;
+    max-width: 1450px !important;
+  }
+
+  .section-subtitle {
+    font-size: 1.25rem !important;
+    line-height: 1.75 !important;
+    max-width: 1350px !important;
+  }
+
+  /* Target all page subtitle text boxes on 4K */
+  .home-page .section-subtitle,
+  .gallery-page .section-subtitle,
+  .services-page .section-subtitle,
+  .why-choose-page .section-subtitle,
+  .benefits-page .section-subtitle,
+  .careers-page .section-subtitle,
+  .contact-page .section-subtitle {
+    max-width: 1350px !important;
+  }
+
+  .timeline-list {
+    max-width: 1400px !important;
+  }
+
+  /* Buttons on 4K */
+  .btn {
+    font-size: 1.05rem !important;
+    padding: 1rem 2.25rem !important;
+    font-weight: 700 !important;
+    border-radius: var(--radius-sm) !important;
+  }
+
+  .btn-sm {
+    font-size: 0.92rem !important;
+    padding: 0.7rem 1.5rem !important;
+    font-weight: 700 !important;
+  }
+
+  .btn-lg {
+    font-size: 1.15rem !important;
+    padding: 1.2rem 2.65rem !important;
+    font-weight: 700 !important;
+  }
+
+  /* Grids & Cards on 4K */
+  .grid-2 {
+    gap: 3.5rem !important;
+  }
+
+  .grid-3 {
+    gap: 2.5rem !important;
+  }
+
+  .grid-4 {
+    gap: 1.85rem !important;
+  }
+
+  .card {
+    padding: 2rem 1.85rem !important;
+  }
+
+  .card-title {
+    font-size: 1.3rem !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .card-text {
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .card-media-header {
+    height: 250px !important;
+  }
+
+  .gallery-card img {
+    height: 270px !important;
+  }
+
+  .gallery-card-body h3,
+  .gallery-item-title {
+    font-size: 1.28rem !important;
+  }
+
+  .gallery-card-body p,
+  .gallery-item-desc {
+    font-size: 1.02rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .gallery-card-tag,
+  .gallery-item-category {
+    font-size: 0.8rem !important;
+  }
+
+  .facility-card-img-wrap {
+    height: 250px !important;
+  }
+
+  .facility-card-title {
+    font-size: 1.28rem !important;
+  }
+
+  .facility-card-desc {
+    font-size: 1.02rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .facility-card-tag {
+    font-size: 0.8rem !important;
+    padding: 0.35rem 0.85rem !important;
+  }
+
+  .pillar-card,
+  .value-card {
+    padding: 2rem 1.85rem !important;
+  }
+
+  .pillar-title,
+  .value-title,
+  .reason-title {
+    font-size: 1.3rem !important;
+  }
+
+  .pillar-text,
+  .value-text,
+  .reason-desc {
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .value-number {
+    font-size: 2.4rem !important;
+  }
+
+  .service-row-media img,
+  .benefit-media img {
+    height: 420px !important;
+  }
+
+  .service-row-title,
+  .benefit-title {
+    font-size: 2rem !important;
+  }
+
+  .service-row-desc,
+  .benefit-desc {
+    font-size: 1.22rem !important;
+    line-height: 1.75 !important;
+  }
+
+  .service-detail-item {
+    font-size: 1.12rem !important;
+  }
+
+  /* Header Clean Proportional Alignment at 2560px */
+  .site-header .container {
+    max-width: 2400px !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  .header-container {
+    height: 5rem !important;
+  }
+
+  .brand-link {
+    gap: 0.75rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .brand-logo-img {
+    height: 2.65rem !important;
+  }
+
+  .brand-title {
+    font-size: 1.25rem !important;
+  }
+
+  .brand-subtitle {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.2em !important;
+  }
+
+  .desktop-nav {
+    gap: 0.5rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .nav-link {
+    font-size: 0.88rem !important;
+    padding: 0.45rem 0.8rem !important;
+  }
+
+  .header-actions {
+    gap: 0.75rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .header-phone-quick {
+    font-size: 0.86rem !important;
+    padding: 0.48rem 0.95rem !important;
+  }
+
+  .header-phone-quick svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  .header-cta-btn {
+    font-size: 0.88rem !important;
+    padding: 0.5rem 1.15rem !important;
+    white-space: nowrap !important;
+  }
+
+  /* Careers Page on 4K */
+  .careers-job-card-wrapper {
+    max-width: 1500px !important;
+  }
+
+  .careers-job-card-wrapper .card {
+    padding: 3rem 3rem !important;
+  }
+
+  .careers-job-card-wrapper h2 {
+    font-size: 2.15rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .careers-cta-wrapper {
+    max-width: 1200px !important;
+  }
+
+  .careers-cta-wrapper .section-title {
+    font-size: 2.85rem !important;
+  }
+
+  /* Dedicated Contact Page Map on 4K */
+  .contact-map-card {
+    max-width: 2400px !important;
+  }
+
+  .contact-map-layout {
+    grid-template-columns: 1.4fr 1fr !important;
+  }
+
+  .contact-map-embed-wrapper iframe {
+    min-height: 520px !important;
+  }
+
+  .contact-map-info-panel {
+    padding: 3.5rem 3rem !important;
+  }
+
+  .contact-map-info-panel h3 {
+    font-size: 1.8rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .contact-map-detail-item strong {
+    font-size: 1.08rem !important;
+  }
+
+  .contact-map-detail-item p {
+    font-size: 1rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .contact-map-detail-icon {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .contact-map-detail-icon svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  /* Footer Typography on 4K */
+  .footer-cta-container h3 {
+    font-size: 2rem !important;
+  }
+
+  .footer-cta-container p {
+    font-size: 1.15rem !important;
+  }
+
+  .footer-heading {
+    font-size: 1.25rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .footer-links-list a {
+    font-size: 1.05rem !important;
+  }
+
+  .footer-contact-row {
+    font-size: 1.05rem !important;
+  }
+
+  .footer-bottom-bar {
+    font-size: 0.95rem !important;
+  }
+
+  /* FAQ Accordion Typography on 4K */
+  .accordion-trigger {
+    font-size: 1.25rem !important;
+    padding: 1.4rem 1.65rem !important;
+  }
+
+  .accordion-body p {
+    font-size: 1.08rem !important;
+    line-height: 1.75 !important;
+  }
+
+  /* Contact Page Elements on 4K */
+  .contact-card-label {
+    font-size: 0.92rem !important;
+  }
+
+  .contact-card-value {
+    font-size: 1.3rem !important;
+  }
+
+  .copy-pill-btn {
+    font-size: 0.88rem !important;
+    padding: 0.45rem 0.9rem !important;
+  }
+
+  .form-label {
+    font-size: 1.05rem !important;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 1.05rem !important;
+    padding: 0.95rem 1.15rem !important;
   }
 }
 

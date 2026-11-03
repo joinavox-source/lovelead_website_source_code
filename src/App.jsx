@@ -13,6 +13,7 @@ import Benefits from './pages/Benefits';
 import WhyChooseUs from './pages/WhyChooseUs';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
+import Careers from './pages/Careers';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 import { storeUTMParams } from './utils/utm';
@@ -44,6 +45,7 @@ function AppContent() {
             <Route path="/benefits" element={<Benefits />} />
             <Route path="/why-choose-us" element={<WhyChooseUs />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/careers" element={<Careers />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />

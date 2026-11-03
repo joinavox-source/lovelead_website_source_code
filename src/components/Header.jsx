@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { to: '/benefits', label: 'Benefits' },
   { to: '/why-choose-us', label: 'Why Choose Us' },
   { to: '/gallery', label: 'Facility Tour' },
+  { to: '/careers', label: 'Careers' },
   { to: '/contact', label: 'Contact' },
 ];
 
@@ -133,9 +134,9 @@ export default function Header() {
 
               <ThemeToggle />
 
-              <Link to="/contact" className="btn header-cta-btn btn-sm">
-                Schedule a Visit
-              </Link>
+              <a href="https://maps.app.goo.gl/UV4FXMzEXSJtGuBF8" target="_blank" rel="noopener noreferrer" className="btn header-cta-btn btn-sm">
+                Visit Us
+              </a>
             </div>
 
             {/* Mobile Header Controls */}
@@ -208,9 +209,9 @@ export default function Header() {
             })}
 
             <div style={{ marginTop: '1.75rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <Link to="/contact" onClick={() => setMobileOpen(false)} className="btn btn-primary" style={{ width: '100%' }}>
-                Schedule a Visit
-              </Link>
+              <a href="https://maps.app.goo.gl/UV4FXMzEXSJtGuBF8" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="btn btn-primary" style={{ width: '100%' }}>
+                Visit Us
+              </a>
               <a
                 href="tel:+16122603900"
                 className="btn btn-outline-dark"

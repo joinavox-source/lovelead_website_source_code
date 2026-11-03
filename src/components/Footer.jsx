@@ -6,6 +6,7 @@ const QUICK_LINKS = [
   { to: '/benefits', label: 'Resident Benefits' },
   { to: '/why-choose-us', label: 'Why Choose Us' },
   { to: '/gallery', label: 'Facility Photo Tour' },
+  { to: '/careers', label: 'Careers' },
   { to: '/contact', label: 'Contact & Tours' },
 ];
 
@@ -36,9 +37,9 @@ export default function Footer() {
               </p>
             </div>
             <div className="btn-group">
-              <Link to="/contact" className="btn btn-warm btn-sm">
-                Schedule a Visit
-              </Link>
+              <a href="https://maps.app.goo.gl/UV4FXMzEXSJtGuBF8" target="_blank" rel="noopener noreferrer" className="btn btn-warm btn-sm">
+                Visit Us
+              </a>
               <a href="tel:+16122603900" className="btn btn-outline-white btn-sm">
                 Call (612) 260-3900
               </a>

@@ -615,9 +615,9 @@ export default function Home() {
               <Link to="/gallery" className="btn btn-primary btn-lg">
                 View Full 15-Photo Facility Tour
               </Link>
-              <Link to="/contact" className="btn btn-outline-dark btn-lg">
-                Schedule a Visit in Person
-              </Link>
+              <a href="https://maps.app.goo.gl/UV4FXMzEXSJtGuBF8" target="_blank" rel="noopener noreferrer" className="btn btn-outline-dark btn-lg">
+                Visit Us
+              </a>
             </div>
           </div>
         </div>
@@ -724,9 +724,9 @@ export default function Home() {
               <Link to="/gallery" className="btn btn-primary">
                 View Full 15-Photo Facility Tour
               </Link>
-              <Link to="/contact" className="btn btn-outline-dark">
-                Schedule a Visit in Person
-              </Link>
+              <a href="https://maps.app.goo.gl/UV4FXMzEXSJtGuBF8" target="_blank" rel="noopener noreferrer" className="btn btn-outline-dark">
+                Visit Us
+              </a>
             </div>
           </div>
         </div>

@@ -315,9 +315,14 @@ export default function Benefits() {
               We invite you to tour our home, meet our caregiving staff, and experience the warmth and respect that our residents cherish every single day.
             </p>
             <div className="btn-group" style={{ justifyContent: 'center' }}>
-              <Link to="/contact" className="btn btn-warm btn-lg">
-                Schedule a Visit
-              </Link>
+              <a
+                href="https://maps.app.goo.gl/UV4FXMzEXSJtGuBF8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-warm btn-lg"
+              >
+                Visit Us
+              </a>
               <a href="tel:+16122603900" className="btn btn-outline-white btn-lg">
                 Call (612) 260-3900
               </a>

@@ -254,7 +254,21 @@
     </image:image>
   </url>
 
-  <!-- 7. Privacy Policy -->
+  <!-- 7. Careers -->
+  <url>
+    <loc>https://www.loveleadal.com/careers</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_frontyard.jpeg</image:loc>
+      <image:title>LoveLead AL LLC Direct Support Professional Career Opportunities</image:title>
+      <image:caption>Join the compassionate caregiving team at LoveLead AL LLC in Cottage Grove, MN</image:caption>
+      <image:geo_location>Cottage Grove, Minnesota</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- 8. Privacy Policy -->
   <url>
     <loc>https://www.loveleadal.com/privacy-policy</loc>
     <lastmod>2026-10-09</lastmod>
@@ -262,7 +276,7 @@
     <priority>0.5</priority>
   </url>
 
-  <!-- 8. Terms & Conditions -->
+  <!-- 9. Terms & Conditions -->
   <url>
     <loc>https://www.loveleadal.com/terms</loc>
     <lastmod>2026-10-09</lastmod>
