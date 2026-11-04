@@ -82,7 +82,11 @@ const CAREERS_SCHEMA = {
       hiringOrganization: {
         '@type': 'Organization',
         name: 'LoveLead AL LLC',
-        sameAs: 'https://www.loveleadal.com',
+        sameAs: [
+          'https://www.loveleadal.com',
+          'https://www.facebook.com/profile.php?id=61595785694675',
+          'https://www.instagram.com/loveleadal_official/',
+        ],
       },
       jobLocation: {
         '@type': 'Place',
@@ -131,218 +135,77 @@ export default function Careers() {
       </section>
 
       {/* ===== FEATURED JOB LISTING CARD ===== */}
-      <section className="section section-warm">
+      <section className="section section-cream">
         <div className="container">
           <div className="careers-job-card-wrapper">
             <AnimateIn>
-              <div
-                className="card card--surface"
-                style={{
-                  padding: 0,
-                  overflow: 'hidden',
-                  boxShadow: 'var(--shadow-md)',
-                  border: '1px solid var(--border-subtle)',
-                }}
-              >
+              <div className="card career-job-card">
                 {/* Decorative Accent Bar */}
                 <div className="modal-accent-bar" style={{ height: '5px' }} />
 
-                <div style={{ padding: '2.5rem 2.25rem' }}>
+                <div className="career-job-card-inner">
                   {/* Company Header */}
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexWrap: 'wrap',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      gap: '0.75rem',
-                      marginBottom: '1rem',
-                      paddingBottom: '0.85rem',
-                      borderBottom: '1px solid var(--border-subtle)',
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: '0.82rem',
-                        fontWeight: 700,
-                        letterSpacing: '0.08em',
-                        textTransform: 'uppercase',
-                        color: 'var(--color-brand)',
-                      }}
-                    >
+                  <div className="career-job-header">
+                    <span className="career-category-tag">
                       LoveLead AL LLC &bull; Direct Support Professional (DSP) Application
                     </span>
-                    <span
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.35rem',
-                        backgroundColor: 'var(--color-brand-wash)',
-                        color: 'var(--color-brand-deep)',
-                        padding: '0.25rem 0.75rem',
-                        borderRadius: 'var(--radius-pill)',
-                        fontSize: '0.78rem',
-                        fontWeight: 700,
-                        border: '1px solid var(--color-brand-pale)',
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: '7px',
-                          height: '7px',
-                          borderRadius: '50%',
-                          backgroundColor: '#10b981',
-                        }}
-                      />
+                    <span className="career-hiring-badge">
+                      <span className="career-pulse-dot" />
                       Now Actively Hiring
                     </span>
                   </div>
 
-                  <h2
-                    style={{
-                      fontSize: '1.75rem',
-                      fontWeight: 800,
-                      color: 'var(--text-headings)',
-                      marginBottom: '0.65rem',
-                      letterSpacing: '-0.015em',
-                    }}
-                  >
+                  <h2 className="career-job-title">
                     WELCOME TO LOVELEAD AL LLC
                   </h2>
 
-                  <p
-                    style={{
-                      fontSize: '1.05rem',
-                      fontWeight: 600,
-                      color: 'var(--text-main)',
-                      marginBottom: '0.5rem',
-                    }}
-                  >
+                  <p className="career-job-tagline">
                     Thank you for your interest in joining our team!
                   </p>
 
-                  <p
-                    style={{
-                      fontSize: '0.98rem',
-                      color: 'var(--text-muted)',
-                      lineHeight: '1.65',
-                      marginBottom: '1.75rem',
-                    }}
-                  >
+                  <p className="career-job-desc">
                     We are currently recruiting two (2) qualified Direct Support Professionals (DSPs) for our assisted living facility.
                   </p>
 
                   {/* Structured Position Meta Block */}
-                  <div
-                    style={{
-                      backgroundColor: 'var(--bg-warm, #f8f6f0)',
-                      border: '1px solid var(--border-subtle)',
-                      borderRadius: 'var(--radius-md)',
-                      padding: '1.35rem 1.5rem',
-                      marginBottom: '1.75rem',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.85rem',
-                    }}
-                  >
-                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '0.5rem' }}>
-                      <span
-                        style={{
-                          fontSize: '0.82rem',
-                          fontWeight: 700,
-                          letterSpacing: '0.04em',
-                          textTransform: 'uppercase',
-                          color: 'var(--text-headings)',
-                          minWidth: '150px',
-                        }}
-                      >
+                  <div className="career-meta-box">
+                    <div className="career-meta-item">
+                      <span className="career-meta-label">
                         POSITION:
                       </span>
-                      <strong style={{ fontSize: '1rem', color: 'var(--text-headings)' }}>
+                      <strong className="career-meta-value-title">
                         Direct Support Professional (DSP)
                       </strong>
                     </div>
 
-                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '0.5rem' }}>
-                      <span
-                        style={{
-                          fontSize: '0.82rem',
-                          fontWeight: 700,
-                          letterSpacing: '0.04em',
-                          textTransform: 'uppercase',
-                          color: 'var(--text-headings)',
-                          minWidth: '150px',
-                        }}
-                      >
+                    <div className="career-meta-item">
+                      <span className="career-meta-label">
                         LOCATION:
                       </span>
-                      <span style={{ fontSize: '0.96rem', color: 'var(--text-main)' }}>
+                      <span className="career-meta-value">
                         7357 Jensen Ave S, Cottage Grove, MN 55016, United States
                       </span>
                     </div>
 
-                    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '0.5rem' }}>
-                      <span
-                        style={{
-                          fontSize: '0.82rem',
-                          fontWeight: 700,
-                          letterSpacing: '0.04em',
-                          textTransform: 'uppercase',
-                          color: 'var(--text-headings)',
-                          minWidth: '150px',
-                        }}
-                      >
+                    <div className="career-meta-item">
+                      <span className="career-meta-label">
                         OPEN POSITIONS:
                       </span>
-                      <span
-                        style={{
-                          display: 'inline-block',
-                          backgroundColor: 'var(--color-brand)',
-                          color: '#ffffff',
-                          fontWeight: 700,
-                          fontSize: '0.85rem',
-                          padding: '0.15rem 0.65rem',
-                          borderRadius: 'var(--radius-pill)',
-                        }}
-                      >
+                      <span className="career-positions-pill">
                         2 Open Positions
                       </span>
                     </div>
                   </div>
 
                   {/* Job Scope & Care Responsibilities */}
-                  <div style={{ marginBottom: '1.75rem' }}>
-                    <h3
-                      style={{
-                        fontSize: '1.15rem',
-                        fontWeight: 700,
-                        color: 'var(--text-headings)',
-                        marginBottom: '0.55rem',
-                      }}
-                    >
+                  <div className="career-responsibilities-box">
+                    <h3 className="career-responsibilities-title">
                       Role Summary &amp; Responsibilities
                     </h3>
-                    <p
-                      style={{
-                        fontSize: '0.98rem',
-                        color: 'var(--text-main)',
-                        lineHeight: '1.7',
-                        marginBottom: '1rem',
-                      }}
-                    >
+                    <p className="career-responsibilities-summary">
                       DSPs provide compassionate, person-centered care and assistance to residents in a safe, supportive, and respectful environment.
                     </p>
-                    <ul
-                      style={{
-                        paddingLeft: '1.25rem',
-                        lineHeight: '1.75',
-                        fontSize: '0.93rem',
-                        color: 'var(--text-muted)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.35rem',
-                      }}
-                    >
+                    <ul className="career-responsibilities-list">
                       <li>Assisting residents with Activities of Daily Living (ADLs) such as dressing, bathing, and mobility</li>
                       <li>Medication reminders and administration support following approved care plans</li>
                       <li>Preparing nutritious, home-cooked meals following personalized dietary requirements</li>
@@ -353,36 +216,14 @@ export default function Careers() {
                   </div>
 
                   {/* Application Note */}
-                  <div
-                    style={{
-                      padding: '1rem 1.25rem',
-                      backgroundColor: 'var(--color-brand-wash)',
-                      borderRadius: 'var(--radius-sm)',
-                      border: '1px solid var(--color-brand-pale)',
-                      marginBottom: '2rem',
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: '0.9rem',
-                        color: 'var(--color-brand-deep)',
-                        lineHeight: '1.6',
-                        margin: 0,
-                      }}
-                    >
+                  <div className="career-notice-banner">
+                    <p>
                       <strong>Important:</strong> Please complete this application accurately. Our recruitment team will review your qualifications and contact suitable candidates for an initial interview.
                     </p>
                   </div>
 
                   {/* Prominent CTA Actions */}
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexWrap: 'wrap',
-                      gap: '1rem',
-                      alignItems: 'center',
-                    }}
-                  >
+                  <div className="career-actions-row">
                     <a
                       href={APPLICATION_FORM_URL}
                       target="_blank"
@@ -425,7 +266,7 @@ export default function Careers() {
       </section>
 
       {/* ===== WHY WORK WITH US SECTION ===== */}
-      <section className="section section-cream">
+      <section className="section section-warm">
         <div className="container">
           <SectionHeader
             label="Why LoveLead"
@@ -436,42 +277,14 @@ export default function Careers() {
           <div className="grid-2" style={{ marginTop: '2.5rem' }}>
             {BENEFITS.map((benefit, idx) => (
               <AnimateIn key={benefit.title} delay={idx * 0.08}>
-                <div
-                  className="card card--surface card-hover"
-                  style={{
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    padding: '1.75rem',
-                  }}
-                >
-                  <div
-                    style={{
-                      width: '46px',
-                      height: '46px',
-                      borderRadius: 'var(--radius-sm)',
-                      backgroundColor: 'var(--color-brand-wash)',
-                      color: 'var(--color-brand)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '1rem',
-                      border: '1px solid var(--color-brand-pale)',
-                    }}
-                    aria-hidden="true"
-                  >
+                <div className="card career-benefit-card card-hover">
+                  <div className="career-benefit-icon" aria-hidden="true">
                     {benefit.icon}
                   </div>
-                  <h3
-                    className="card-title"
-                    style={{ fontSize: '1.25rem', marginBottom: '0.6rem' }}
-                  >
+                  <h3 className="card-title" style={{ fontSize: '1.25rem', marginBottom: '0.6rem' }}>
                     {benefit.title}
                   </h3>
-                  <p
-                    className="card-text"
-                    style={{ fontSize: '0.94rem', lineHeight: '1.65', color: 'var(--text-muted)' }}
-                  >
+                  <p className="card-text" style={{ fontSize: '0.94rem', lineHeight: '1.65' }}>
                     {benefit.desc}
                   </p>
                 </div>
@@ -482,7 +295,7 @@ export default function Careers() {
       </section>
 
       {/* ===== BOTTOM CTA STRIP ===== */}
-      <section className="section section-warm" style={{ textAlign: 'center' }}>
+      <section className="section section-cream" style={{ textAlign: 'center' }}>
         <div className="container">
           <AnimateIn>
             <div className="careers-cta-wrapper">
