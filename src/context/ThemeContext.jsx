@@ -13,10 +13,8 @@ export function ThemeProvider({ children }) {
       if (savedTheme === 'light' || savedTheme === 'dark') {
         return savedTheme;
       }
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
     }
+    // Always default to light mode on first visit
     return 'light';
   });
 
