@@ -186,7 +186,7 @@ export const BLOG_POSTS = [
     publishedAt: '2026-11-08T11:00:00Z',
     modifiedAt: '2026-11-08T11:00:00Z',
     readTime: '5 min read',
-    image: '/photos/lovelead_dining_table.jpeg',
+    image: '/photos/lovelead_dining_area.jpeg',
     imageAlt:
       'Inviting communal dining table setting at LoveLead Assisted Living where residents share fresh home-cooked meals',
     tags: ['Senior Nutrition', 'Culinary Care', 'Diabetic Health', 'Communal Dining'],
@@ -307,3 +307,4 @@ export const BLOG_CATEGORIES = [
   'Senior Wellness',
   'Memory Care',
 ];
+
