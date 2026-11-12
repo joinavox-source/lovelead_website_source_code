@@ -14,6 +14,8 @@ import WhyChooseUs from './pages/WhyChooseUs';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import Careers from './pages/Careers';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 import { storeUTMParams } from './utils/utm';
@@ -46,6 +48,8 @@ function AppContent() {
             <Route path="/why-choose-us" element={<WhyChooseUs />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />

@@ -268,7 +268,91 @@
     </image:image>
   </url>
 
-  <!-- 8. Privacy Policy -->
+  <!-- 8. Care Insights & Resources Blog -->
+  <url>
+    <loc>https://www.loveleadal.com/blog</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_living_area.jpeg</image:loc>
+      <image:title>LoveLead Assisted Living Care Blog &amp; Resources</image:title>
+      <image:caption>Senior care articles, family advice, and assisted living guidance in Cottage Grove, MN</image:caption>
+      <image:geo_location>Cottage Grove, Minnesota</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- 8a. Blog Post: Navigating Assisted Living Options -->
+  <url>
+    <loc>https://www.loveleadal.com/blog/navigating-assisted-living-options-cottage-grove-mn</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_frontyard2.jpeg</image:loc>
+      <image:title>Navigating Assisted Living Options in Cottage Grove, MN</image:title>
+      <image:caption>A family guide to senior living communities in Washington County</image:caption>
+      <image:geo_location>Cottage Grove, Minnesota</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- 8b. Blog Post: 1:3 Caregiver Ratio Benefits -->
+  <url>
+    <loc>https://www.loveleadal.com/blog/benefits-of-1-to-3-caregiver-resident-ratio</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_living_area.jpeg</image:loc>
+      <image:title>Benefits of a 1:3 Staff-to-Resident Ratio in Senior Care</image:title>
+      <image:caption>Why lower caregiver ratios reduce falls and hospitalizations</image:caption>
+      <image:geo_location>Cottage Grove, Minnesota</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- 8c. Blog Post: Direct Support Professionals Role -->
+  <url>
+    <loc>https://www.loveleadal.com/blog/understanding-direct-support-professionals-elder-care</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_kitchen.jpeg</image:loc>
+      <image:title>The Vital Role of Direct Support Professionals in Assisted Living</image:title>
+      <image:caption>How DSPs provide compassionate person-centered care</image:caption>
+      <image:geo_location>Cottage Grove, Minnesota</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- 8d. Blog Post: Nutrition and Dining in Senior Living -->
+  <url>
+    <loc>https://www.loveleadal.com/blog/nutrition-and-dining-in-residential-senior-living</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_dining_table.jpeg</image:loc>
+      <image:title>Nutritious Dining and Culinary Wellness for Seniors</image:title>
+      <image:caption>Home-cooked meals and communal dining in residential assisted living</image:caption>
+      <image:geo_location>Cottage Grove, Minnesota</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- 8e. Blog Post: Memory Care and Cognitive Engagement -->
+  <url>
+    <loc>https://www.loveleadal.com/blog/memory-care-and-cognitive-engagement-strategies</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.loveleadal.com/photos/lovelead_bedroom.jpeg</image:loc>
+      <image:title>Supporting Cognitive Wellness and Memory Health in Senior Living</image:title>
+      <image:caption>Gentle routines and tranquil environments for seniors experiencing memory loss</image:caption>
+      <image:geo_location>Cottage Grove, Minnesota</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- 9. Privacy Policy -->
   <url>
     <loc>https://www.loveleadal.com/privacy-policy</loc>
     <lastmod>2026-10-09</lastmod>
@@ -276,7 +360,7 @@
     <priority>0.5</priority>
   </url>
 
-  <!-- 9. Terms & Conditions -->
+  <!-- 10. Terms & Conditions -->
   <url>
     <loc>https://www.loveleadal.com/terms</loc>
     <lastmod>2026-10-09</lastmod>

@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { to: '/why-choose-us', label: 'Why Choose Us' },
   { to: '/gallery', label: 'Facility Tour' },
   { to: '/careers', label: 'Careers' },
+  { to: '/blog', label: 'Blog' },
   { to: '/contact', label: 'Contact' },
 ];
 

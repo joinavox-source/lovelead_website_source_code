@@ -7,6 +7,7 @@ const QUICK_LINKS = [
   { to: '/why-choose-us', label: 'Why Choose Us' },
   { to: '/gallery', label: 'Facility Photo Tour' },
   { to: '/careers', label: 'Careers' },
+  { to: '/blog', label: 'Care Blog & Resources' },
   { to: '/contact', label: 'Contact & Tours' },
 ];
 
