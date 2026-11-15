@@ -75,8 +75,12 @@ export default function Blog() {
     });
   }, [allPosts, selectedCategory, searchQuery]);
 
+  const hasMultiplePosts = allPosts.length > 1;
   const featuredPost = allPosts[0];
-  const regularPosts = filteredPosts;
+  const regularPosts =
+    hasMultiplePosts && selectedCategory === 'All Articles' && searchQuery.trim() === ''
+      ? filteredPosts.slice(1)
+      : filteredPosts;
 
   return (
     <main id="main-content" className="blog-page">
@@ -107,8 +111,8 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* ===== FEATURED ARTICLE BANNER (When No Search/Filter Active) ===== */}
-      {selectedCategory === 'All Articles' && searchQuery.trim() === '' && featuredPost && (
+      {/* ===== FEATURED ARTICLE BANNER (When More Than 1 Post & No Search Active) ===== */}
+      {hasMultiplePosts && selectedCategory === 'All Articles' && searchQuery.trim() === '' && featuredPost && (
         <section className="section section-warm blog-featured-section">
           <div className="container">
             <span className="section-tag" style={{ marginBottom: '0.75rem' }}>

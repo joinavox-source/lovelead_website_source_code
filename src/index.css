@@ -3942,6 +3942,270 @@ textarea::placeholder {
   color: #8AB4F8;
 }
 
+/* Article Intro Section & Typography */
+.blog-intro-section {
+  margin-bottom: 2.25rem;
+  padding-bottom: 0.5rem;
+}
+
+.blog-intro-lead {
+  font-size: 1.14rem;
+  font-weight: 500;
+  line-height: 1.82;
+  color: var(--text-main);
+  margin-bottom: 1.25rem;
+}
+
+[data-theme="dark"] .blog-intro-lead {
+  color: #E8F0FE;
+}
+
+.blog-intro-paragraph {
+  font-size: 1.02rem;
+  line-height: 1.78;
+  color: var(--text-main);
+  margin-bottom: 1.15rem;
+}
+
+[data-theme="dark"] .blog-intro-paragraph {
+  color: #E8F0FE;
+}
+
+/* Subheadings & Structured Subsections */
+.blog-section-subheading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-headings);
+  margin-top: 1rem;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .blog-section-subheading {
+  color: #FFFFFF;
+}
+
+.blog-subsection {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 0.5rem;
+}
+
+.blog-subsection h3 {
+  font-size: 1.28rem;
+  font-weight: 700;
+  color: var(--text-headings);
+  margin-top: 0;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .blog-subsection h3 {
+  color: #FFFFFF;
+}
+
+/* Blog Comparison Table */
+.blog-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 2rem 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--bg-surface);
+}
+
+[data-theme="dark"] .blog-table-wrapper {
+  border-color: rgba(210, 227, 252, 0.2);
+  background-color: var(--bg-surface);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.blog-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.blog-comparison-table thead th {
+  background-color: var(--bg-surface-alt);
+  color: var(--text-headings);
+  font-weight: 700;
+  padding: 0.95rem 1.15rem;
+  border-bottom: 2px solid var(--border-subtle);
+  white-space: nowrap;
+}
+
+.blog-comparison-table tbody td {
+  padding: 0.9rem 1.15rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.blog-comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.blog-comparison-table tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.018);
+}
+
+[data-theme="dark"] .blog-comparison-table thead th {
+  background-color: rgba(22, 70, 150, 0.45);
+  color: #FFFFFF;
+  border-bottom-color: rgba(210, 227, 252, 0.25);
+}
+
+[data-theme="dark"] .blog-comparison-table tbody td {
+  border-bottom-color: rgba(210, 227, 252, 0.12);
+  color: #E8F0FE;
+}
+
+[data-theme="dark"] .blog-comparison-table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Blog Frequently Asked Questions */
+.blog-faqs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin: 1.75rem 0 2.5rem 0;
+}
+
+.blog-faq-card {
+  padding: 1.4rem 1.65rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .blog-faq-card {
+  background-color: var(--bg-surface);
+  border-color: rgba(210, 227, 252, 0.18);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.blog-faq-question {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-headings);
+  margin-top: 0;
+  margin-bottom: 0.65rem;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .blog-faq-question {
+  color: #FFFFFF;
+}
+
+.blog-faq-answer p {
+  margin-bottom: 0.55rem;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-main);
+}
+
+.blog-faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+[data-theme="dark"] .blog-faq-answer p {
+  color: #D2E3FC;
+}
+
+/* Blog Facility Contact Card */
+.blog-facility-contact-card {
+  padding: 1.85rem 2rem;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-brand-pale);
+  background: linear-gradient(135deg, rgba(66, 133, 244, 0.05) 0%, rgba(26, 115, 232, 0.08) 100%);
+  margin: 2.25rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .blog-facility-contact-card {
+  background: linear-gradient(135deg, rgba(22, 70, 150, 0.55) 0%, rgba(13, 37, 85, 0.65) 100%);
+  border-color: rgba(138, 180, 248, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.blog-facility-name {
+  font-size: 1.38rem;
+  font-weight: 800;
+  color: var(--text-headings);
+  margin-top: 0;
+  margin-bottom: 0.45rem;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="dark"] .blog-facility-name {
+  color: #FFFFFF;
+}
+
+.blog-facility-address {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+[data-theme="dark"] .blog-facility-address {
+  color: #D2E3FC;
+}
+
+.blog-facility-phone,
+.blog-facility-website {
+  font-size: 0.98rem;
+  color: var(--text-main);
+  margin-bottom: 0.45rem;
+}
+
+[data-theme="dark"] .blog-facility-phone,
+[data-theme="dark"] .blog-facility-website {
+  color: #E8F0FE;
+}
+
+.blog-facility-phone a,
+.blog-facility-website a {
+  color: var(--color-brand);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .blog-facility-phone a,
+[data-theme="dark"] .blog-facility-website a {
+  color: #8AB4F8;
+}
+
+.blog-facility-cta-strip {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+[data-theme="dark"] .blog-facility-cta-strip {
+  border-top-color: rgba(210, 227, 252, 0.2);
+}
+
+.blog-facility-cta-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-brand-deep);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+[data-theme="dark"] .blog-facility-cta-text {
+  color: #AECBFA;
+}
+
 /* Inline Care Consultation Card */
 .blog-inline-cta-card {
   padding: 2rem 2.25rem !important;
@@ -6368,6 +6632,88 @@ textarea::placeholder {
   .blog-content-list li {
     font-size: 1.2rem !important;
     line-height: 1.8 !important;
+  }
+
+  .blog-intro-lead {
+    font-size: 1.4rem !important;
+    line-height: 1.88 !important;
+    margin-bottom: 1.6rem !important;
+  }
+
+  .blog-intro-paragraph {
+    font-size: 1.25rem !important;
+    line-height: 1.85 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .blog-section-subheading {
+    font-size: 1.65rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.15rem !important;
+  }
+
+  .blog-subsection h3 {
+    font-size: 1.65rem !important;
+    margin-bottom: 1.15rem !important;
+  }
+
+  .blog-comparison-table {
+    font-size: 1.15rem !important;
+  }
+
+  .blog-comparison-table thead th {
+    font-size: 1.2rem !important;
+    padding: 1.25rem 1.5rem !important;
+  }
+
+  .blog-comparison-table tbody td {
+    padding: 1.2rem 1.5rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .blog-faqs-container {
+    gap: 1.65rem !important;
+    margin: 2.5rem 0 3.5rem 0 !important;
+  }
+
+  .blog-faq-card {
+    padding: 2rem 2.35rem !important;
+  }
+
+  .blog-faq-question {
+    font-size: 1.45rem !important;
+    margin-bottom: 0.95rem !important;
+  }
+
+  .blog-faq-answer p {
+    font-size: 1.2rem !important;
+    line-height: 1.8 !important;
+  }
+
+  .blog-facility-contact-card {
+    padding: 2.5rem 2.85rem !important;
+    margin: 3rem 0 !important;
+  }
+
+  .blog-facility-name {
+    font-size: 1.85rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .blog-facility-address {
+    font-size: 1.25rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .blog-facility-phone,
+  .blog-facility-website {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.65rem !important;
+  }
+
+  .blog-facility-cta-text {
+    font-size: 1.3rem !important;
+    margin-bottom: 1rem !important;
   }
 
   .blog-inline-cta-card {

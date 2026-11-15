@@ -105,6 +105,22 @@ export default function BlogPost() {
     ],
   };
 
+  // Append FAQPage schema if post includes structured FAQs
+  const faqSection = post.contentSections?.find((sec) => sec.faqs && sec.faqs.length > 0);
+  if (faqSection) {
+    schemaData['@graph'].push({
+      '@type': 'FAQPage',
+      mainEntity: faqSection.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer.join(' '),
+        },
+      })),
+    });
+  }
+
   return (
     <main id="main-content" className="blog-post-page">
       <SEO
@@ -204,6 +220,17 @@ export default function BlogPost() {
 
         {/* ===== POST BODY CONTENT ===== */}
         <div className="container-text blog-post-body-container">
+          {/* Article Opening / Introduction */}
+          {post.introParagraphs && post.introParagraphs.length > 0 && (
+            <div className="blog-intro-section">
+              {post.introParagraphs.map((para, pIdx) => (
+                <p key={pIdx} className={pIdx === 0 ? 'blog-intro-lead' : 'blog-intro-paragraph'}>
+                  {para}
+                </p>
+              ))}
+            </div>
+          )}
+
           {/* Key Takeaways Card */}
           {post.takeaways && post.takeaways.length > 0 && (
             <aside className="blog-takeaways-box" aria-label="Key article takeaways">
@@ -235,7 +262,13 @@ export default function BlogPost() {
               <section key={idx} className="blog-content-section">
                 <h2>{sec.heading}</h2>
 
-                {sec.paragraphs.map((p, pIdx) => (
+                {sec.subheading && (
+                  <h3 className="blog-section-subheading">
+                    {sec.subheading}
+                  </h3>
+                )}
+
+                {sec.paragraphs && sec.paragraphs.map((p, pIdx) => (
                   <p key={pIdx}>{p}</p>
                 ))}
 
@@ -245,6 +278,105 @@ export default function BlogPost() {
                       <li key={bIdx}>{item}</li>
                     ))}
                   </ul>
+                )}
+
+                {/* Comparison Table */}
+                {sec.table && (
+                  <div className="blog-table-wrapper">
+                    <table className="blog-comparison-table">
+                      <thead>
+                        <tr>
+                          {sec.table.headers.map((h, hIdx) => (
+                            <th key={hIdx}>{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sec.table.rows.map((row, rIdx) => (
+                          <tr key={rIdx}>
+                            {row.map((cell, cIdx) => (
+                              <td key={cIdx}>{cell}</td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+
+                {/* Subsections (H3 elements) */}
+                {sec.subsections && sec.subsections.map((sub, sIdx) => (
+                  <div key={sIdx} className="blog-subsection">
+                    <h3>{sub.heading}</h3>
+
+                    {sub.paragraphs && sub.paragraphs.map((sp, spIdx) => (
+                      <p key={spIdx}>{sp}</p>
+                    ))}
+
+                    {sub.bulletList && sub.bulletList.length > 0 && (
+                      <ul className="blog-content-list">
+                        {sub.bulletList.map((sb, sbIdx) => (
+                          <li key={sbIdx}>{sb}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {sub.postParagraphs && sub.postParagraphs.map((spp, sppIdx) => (
+                      <p key={sppIdx}>{spp}</p>
+                    ))}
+                  </div>
+                ))}
+
+                {sec.postParagraphs && sec.postParagraphs.map((p, ppIdx) => (
+                  <p key={ppIdx}>{p}</p>
+                ))}
+
+                {/* Frequently Asked Questions */}
+                {sec.faqs && (
+                  <div className="blog-faqs-container">
+                    {sec.faqs.map((faq, fIdx) => (
+                      <div key={fIdx} className="blog-faq-card card card--surface">
+                        <h3 className="blog-faq-question">{faq.question}</h3>
+                        <div className="blog-faq-answer">
+                          {faq.answer.map((ans, aIdx) => (
+                            <p key={aIdx}>{ans}</p>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Direct Facility Contact Information Card */}
+                {sec.contactBlock && (
+                  <div className="blog-facility-contact-card card card--surface">
+                    <h3 className="blog-facility-name">{sec.contactBlock.name}</h3>
+                    <p className="blog-facility-address">{sec.contactBlock.address}</p>
+                    <p className="blog-facility-phone">
+                      <strong>Phone: </strong>
+                      <a href={`tel:${sec.contactBlock.phone.replace(/[^0-9+]/g, '')}`}>
+                        {sec.contactBlock.phone}
+                      </a>
+                    </p>
+                    <p className="blog-facility-website">
+                      <strong>Website: </strong>
+                      <a href={`https://${sec.contactBlock.website.replace(/^https?:\/\//, '')}`} target="_blank" rel="noopener noreferrer">
+                        {sec.contactBlock.website}
+                      </a>
+                    </p>
+                    {sec.contactBlock.cta && (
+                      <div className="blog-facility-cta-strip">
+                        <p className="blog-facility-cta-text">
+                          <strong>{sec.contactBlock.cta}</strong>
+                        </p>
+                        <div style={{ marginTop: '0.85rem' }}>
+                          <Link to="/contact" className="btn btn-primary btn-sm">
+                            Contact LoveLead Admissions &rarr;
+                          </Link>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 )}
               </section>
             ))}
