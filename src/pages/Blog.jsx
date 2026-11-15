@@ -2,8 +2,11 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import AnimateIn from '../components/AnimateIn';
-import SectionHeader from '../components/SectionHeader';
-import { getAllBlogPosts, BLOG_CATEGORIES } from '../data/blogData';
+import {
+  getAllBlogPosts,
+  getLatestBlogPosts,
+  getPopularBlogPosts,
+} from '../data/blogData';
 
 const BLOG_SCHEMA = {
   '@context': 'https://schema.org',
@@ -57,30 +60,27 @@ function formatDate(isoString) {
 }
 
 export default function Blog() {
-  const [selectedCategory, setSelectedCategory] = useState('All Articles');
+  const [activeTab, setActiveTab] = useState('all'); // 'all' | 'latest' | 'popular'
   const [searchQuery, setSearchQuery] = useState('');
 
   const allPosts = useMemo(() => getAllBlogPosts(), []);
+  const latestPosts = useMemo(() => getLatestBlogPosts(), []);
+  const popularPosts = useMemo(() => getPopularBlogPosts(), []);
 
+  // Filtered posts when searching
   const filteredPosts = useMemo(() => {
+    if (!searchQuery.trim()) return allPosts;
+    const q = searchQuery.toLowerCase().trim();
     return allPosts.filter((post) => {
-      const matchesCategory =
-        selectedCategory === 'All Articles' || post.category === selectedCategory;
-      const matchesSearch =
-        searchQuery.trim() === '' ||
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-      return matchesCategory && matchesSearch;
+      return (
+        post.title.toLowerCase().includes(q) ||
+        post.excerpt.toLowerCase().includes(q) ||
+        post.tags.some((tag) => tag.toLowerCase().includes(q))
+      );
     });
-  }, [allPosts, selectedCategory, searchQuery]);
+  }, [allPosts, searchQuery]);
 
-  const hasMultiplePosts = allPosts.length > 1;
-  const featuredPost = allPosts[0];
-  const regularPosts =
-    hasMultiplePosts && selectedCategory === 'All Articles' && searchQuery.trim() === ''
-      ? filteredPosts.slice(1)
-      : filteredPosts;
+  const isSearching = searchQuery.trim() !== '';
 
   return (
     <main id="main-content" className="blog-page">
@@ -111,86 +111,48 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* ===== FEATURED ARTICLE BANNER (When More Than 1 Post & No Search Active) ===== */}
-      {hasMultiplePosts && selectedCategory === 'All Articles' && searchQuery.trim() === '' && featuredPost && (
-        <section className="section section-warm blog-featured-section">
-          <div className="container">
-            <span className="section-tag" style={{ marginBottom: '0.75rem' }}>
-              Featured Elder Care Guide
-            </span>
-            <article className="card blog-featured-card">
-              <div className="blog-featured-grid">
-                <div className="blog-featured-img-wrap">
-                  <img
-                    src={featuredPost.image}
-                    alt={featuredPost.imageAlt}
-                    loading="lazy"
-                    className="blog-featured-img"
-                  />
-                  <span className="blog-card-category-badge">
-                    {featuredPost.category}
-                  </span>
-                </div>
-                <div className="blog-featured-body">
-                  <div className="blog-card-meta">
-                    <time dateTime={featuredPost.publishedAt}>
-                      {formatDate(featuredPost.publishedAt)}
-                    </time>
-                    <span className="blog-meta-dot">&bull;</span>
-                    <span>{featuredPost.readTime}</span>
-                  </div>
-                  <h2 className="blog-featured-title">
-                    <Link to={`/blog/${featuredPost.slug}`}>
-                      {featuredPost.title}
-                    </Link>
-                  </h2>
-                  <p className="blog-featured-excerpt">
-                    {featuredPost.excerpt}
-                  </p>
-                  <div className="blog-featured-footer">
-                    <div className="blog-author-compact">
-                      <span className="blog-author-name">{featuredPost.author.name}</span>
-                      <span className="blog-author-role">{featuredPost.author.role}</span>
-                    </div>
-                    <Link
-                      to={`/blog/${featuredPost.slug}`}
-                      className="btn btn-primary btn-sm"
-                      style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }}
-                    >
-                      <span>Read Full Guide</span>
-                      <span>&rarr;</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-      )}
-
-      {/* ===== ARTICLES LISTING SECTION ===== */}
+      {/* ===== NAVIGATION & SEARCH BAR ===== */}
       <section className="section section-cream blog-listing-section">
         <div className="container">
           <div className="blog-controls-wrapper">
-            {/* Category Filter Pills */}
-            <nav className="blog-category-nav" aria-label="Filter blog posts by category">
-              {BLOG_CATEGORIES.map((category) => (
-                <button
-                  key={category}
-                  type="button"
-                  onClick={() => setSelectedCategory(category)}
-                  className={`blog-category-pill ${
-                    selectedCategory === category ? 'blog-category-pill--active' : ''
-                  }`}
-                >
-                  <span>{category}</span>
-                  {category !== 'All Articles' && (
-                    <span className="blog-category-count">
-                      {allPosts.filter((p) => p.category === category).length}
-                    </span>
-                  )}
-                </button>
-              ))}
+            {/* View Switcher Pills */}
+            <nav className="blog-category-nav" aria-label="Browse blog sections">
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('all');
+                  setSearchQuery('');
+                }}
+                className={`blog-category-pill ${
+                  activeTab === 'all' && !isSearching ? 'blog-category-pill--active' : ''
+                }`}
+              >
+                <span>All Articles</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('latest');
+                  setSearchQuery('');
+                }}
+                className={`blog-category-pill ${
+                  activeTab === 'latest' && !isSearching ? 'blog-category-pill--active' : ''
+                }`}
+              >
+                <span>Latest Blogs</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('popular');
+                  setSearchQuery('');
+                }}
+                className={`blog-category-pill ${
+                  activeTab === 'popular' && !isSearching ? 'blog-category-pill--active' : ''
+                }`}
+              >
+                <span>Most Popular Blogs</span>
+              </button>
             </nav>
 
             {/* Keyword Search Input */}
@@ -220,104 +182,253 @@ export default function Blog() {
             </div>
           </div>
 
-          {/* Results Counter if Filter Active */}
-          {(selectedCategory !== 'All Articles' || searchQuery.trim() !== '') && (
-            <div className="blog-filter-status">
-              <p>
-                Showing <strong>{regularPosts.length}</strong> {regularPosts.length === 1 ? 'article' : 'articles'}
-                {selectedCategory !== 'All Articles' ? ` in "${selectedCategory}"` : ''}
-                {searchQuery ? ` matching "${searchQuery}"` : ''}
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSelectedCategory('All Articles');
-                  setSearchQuery('');
-                }}
-                className="blog-reset-filter-btn"
-              >
-                Reset All Filters
-              </button>
-            </div>
-          )}
+          {/* ===== SEARCH RESULTS VIEW ===== */}
+          {isSearching ? (
+            <div className="blog-search-results-container">
+              <div className="blog-filter-status">
+                <p>
+                  Showing <strong>{filteredPosts.length}</strong> {filteredPosts.length === 1 ? 'article' : 'articles'} matching &ldquo;{searchQuery}&rdquo;
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  className="blog-reset-filter-btn"
+                >
+                  Clear Search
+                </button>
+              </div>
 
-          {/* Articles Grid */}
-          {regularPosts.length > 0 ? (
-            <div className="blog-posts-grid">
-              {regularPosts.map((post, idx) => (
-                <AnimateIn key={post.slug} delay={idx * 0.06}>
-                  <article className="card card-hover blog-card">
-                    <div className="blog-card-media">
-                      <Link to={`/blog/${post.slug}`} tabIndex="-1" aria-hidden="true">
-                        <img
-                          src={post.image}
-                          alt={post.imageAlt}
-                          loading="lazy"
-                          className="blog-card-img"
-                        />
-                      </Link>
-                      <span className="blog-card-category-badge">
-                        {post.category}
-                      </span>
-                    </div>
+              {filteredPosts.length > 0 ? (
+                <div className="blog-posts-grid">
+                  {filteredPosts.map((post, idx) => (
+                    <AnimateIn key={post.slug} delay={idx * 0.05}>
+                      <article className="card card-hover blog-card">
+                        <div className="blog-card-media">
+                          <Link to={`/blog/${post.slug}`} tabIndex="-1" aria-hidden="true">
+                            <img
+                              src={post.image}
+                              alt={post.imageAlt}
+                              loading="lazy"
+                              className="blog-card-img"
+                            />
+                          </Link>
+                          <span className="blog-card-category-badge">
+                            {post.category}
+                          </span>
+                        </div>
 
-                    <div className="blog-card-body">
-                      <header className="blog-card-meta">
-                        <time dateTime={post.publishedAt}>
-                          {formatDate(post.publishedAt)}
-                        </time>
-                        <span className="blog-meta-dot">&bull;</span>
-                        <span>{post.readTime}</span>
-                      </header>
+                        <div className="blog-card-body">
+                          <header className="blog-card-meta">
+                            <time dateTime={post.publishedAt}>
+                              {formatDate(post.publishedAt)}
+                            </time>
+                            <span className="blog-meta-dot">&bull;</span>
+                            <span>{post.readTime}</span>
+                          </header>
 
-                      <h3 className="blog-card-title">
-                        <Link to={`/blog/${post.slug}`}>
-                          {post.title}
-                        </Link>
-                      </h3>
+                          <h3 className="blog-card-title">
+                            <Link to={`/blog/${post.slug}`}>
+                              {post.title}
+                            </Link>
+                          </h3>
 
-                      <p className="blog-card-excerpt">
-                        {post.excerpt}
-                      </p>
+                          <p className="blog-card-excerpt">
+                            {post.excerpt}
+                          </p>
 
-                      <footer className="blog-card-footer">
-                        <span className="blog-author-compact-name">
-                          {post.author.name}
-                        </span>
-                        <Link
-                          to={`/blog/${post.slug}`}
-                          className="blog-read-more-link"
-                          aria-label={`Read full article: ${post.title}`}
-                        >
-                          <span>Read Article</span>
-                          <span aria-hidden="true">&rarr;</span>
-                        </Link>
-                      </footer>
-                    </div>
-                  </article>
-                </AnimateIn>
-              ))}
+                          <footer className="blog-card-footer">
+                            <span className="blog-author-compact-name">
+                              {post.author.name}
+                            </span>
+                            <Link
+                              to={`/blog/${post.slug}`}
+                              className="blog-read-more-link"
+                              aria-label={`Read full article: ${post.title}`}
+                            >
+                              <span>Read Article</span>
+                              <span aria-hidden="true">&rarr;</span>
+                            </Link>
+                          </footer>
+                        </div>
+                      </article>
+                    </AnimateIn>
+                  ))}
+                </div>
+              ) : (
+                <div className="blog-no-results card card--surface">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ color: 'var(--color-brand)', marginBottom: '1rem' }}>
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    <line x1="8" y1="11" x2="14" y2="11" />
+                  </svg>
+                  <h3>No matching care articles found</h3>
+                  <p>We couldn&apos;t find any articles matching your search criteria. Try a different keyword or browse our latest publications.</p>
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    className="btn btn-primary btn-sm"
+                    style={{ marginTop: '1rem' }}
+                  >
+                    View All Articles
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
-            <div className="blog-no-results card card--surface">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ color: 'var(--color-brand)', marginBottom: '1rem' }}>
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                <line x1="8" y1="11" x2="14" y2="11" />
-              </svg>
-              <h3>No matching care articles found</h3>
-              <p>We couldn&apos;t find any articles matching your search criteria. Try a different keyword or browse all categories.</p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSelectedCategory('All Articles');
-                  setSearchQuery('');
-                }}
-                className="btn btn-primary btn-sm"
-                style={{ marginTop: '1rem' }}
-              >
-                View All Articles
-              </button>
+            <div className="blog-sections-wrapper">
+              {/* ===== 1. LATEST BLOGS SECTION ===== */}
+              {(activeTab === 'all' || activeTab === 'latest') && (
+                <section className="blog-content-block blog-latest-block" id="latest-blogs">
+                  <div className="blog-section-header">
+                    <div className="blog-section-header-left">
+                      <span className="section-tag">Recent Publications</span>
+                      <h2 className="section-title">Latest Blogs</h2>
+                      <p className="section-subtitle">
+                        Stay informed with our newest guides, clinical insights, and elder care recommendations.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="blog-posts-grid">
+                    {latestPosts.map((post, idx) => (
+                      <AnimateIn key={`latest-${post.slug}`} delay={idx * 0.06}>
+                        <article className="card card-hover blog-card">
+                          <div className="blog-card-media">
+                            <Link to={`/blog/${post.slug}`} tabIndex="-1" aria-hidden="true">
+                              <img
+                                src={post.image}
+                                alt={post.imageAlt}
+                                loading="lazy"
+                                className="blog-card-img"
+                              />
+                            </Link>
+                            <span className="blog-card-category-badge">
+                              {post.category}
+                            </span>
+                          </div>
+
+                          <div className="blog-card-body">
+                            <header className="blog-card-meta">
+                              <time dateTime={post.publishedAt}>
+                                {formatDate(post.publishedAt)}
+                              </time>
+                              <span className="blog-meta-dot">&bull;</span>
+                              <span>{post.readTime}</span>
+                            </header>
+
+                            <h3 className="blog-card-title">
+                              <Link to={`/blog/${post.slug}`}>
+                                {post.title}
+                              </Link>
+                            </h3>
+
+                            <p className="blog-card-excerpt">
+                              {post.excerpt}
+                            </p>
+
+                            <footer className="blog-card-footer">
+                              <span className="blog-author-compact-name">
+                                {post.author.name}
+                              </span>
+                              <Link
+                                to={`/blog/${post.slug}`}
+                                className="blog-read-more-link"
+                                aria-label={`Read full article: ${post.title}`}
+                              >
+                                <span>Read Article</span>
+                                <span aria-hidden="true">&rarr;</span>
+                              </Link>
+                            </footer>
+                          </div>
+                        </article>
+                      </AnimateIn>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* ===== 2. MOST POPULAR BLOGS SECTION ===== */}
+              {(activeTab === 'all' || activeTab === 'popular') && (
+                <section className="blog-content-block blog-popular-block" id="popular-blogs">
+                  <div className="blog-section-header blog-section-header--popular">
+                    <div className="blog-section-header-left">
+                      <span className="section-tag section-tag--warm">Community Favorites</span>
+                      <h2 className="section-title">Most Popular Blogs</h2>
+                      <p className="section-subtitle">
+                        Our highest-rated, most read care guides trusted by families in Cottage Grove and Washington County.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="blog-popular-showcase-container">
+                    {popularPosts.map((post) => (
+                      <AnimateIn key={`pop-${post.slug}`}>
+                        <article className="card blog-popular-showcase-card">
+                          <div className="blog-popular-grid">
+                            <div className="blog-popular-media">
+                              <Link to={`/blog/${post.slug}`} tabIndex="-1" aria-hidden="true" className="blog-popular-img-link">
+                                <img
+                                  src={post.image}
+                                  alt={post.imageAlt}
+                                  loading="lazy"
+                                  className="blog-popular-img"
+                                />
+                              </Link>
+                              
+                            </div>
+
+                            <div className="blog-popular-content">
+                              <div className="blog-popular-meta">
+                                <span className="blog-card-category-badge">
+                                  {post.category}
+                                </span>
+                                <span className="blog-meta-dot">&bull;</span>
+                                <time dateTime={post.publishedAt}>
+                                  {formatDate(post.publishedAt)}
+                                </time>
+                                <span className="blog-meta-dot">&bull;</span>
+                                <span>{post.readTime}</span>
+                              </div>
+
+                              <h3 className="blog-popular-title">
+                                <Link to={`/blog/${post.slug}`}>
+                                  {post.title}
+                                </Link>
+                              </h3>
+
+                              <p className="blog-popular-excerpt">
+                                {post.excerpt}
+                              </p>
+
+                              {/* Popular Highlights Chips */}
+                              <div className="blog-popular-highlights" aria-label="Key topics in this popular guide">
+                                <span className="blog-popular-highlight-chip">24/7 Awake Caregivers</span>
+                                <span className="blog-popular-highlight-chip">Assisted Living vs Nursing Home</span>
+                                <span className="blog-popular-highlight-chip">Licensing &amp; UDALSA</span>
+                                <span className="blog-popular-highlight-chip">Admissions Checklist &amp; FAQs</span>
+                              </div>
+
+                              <div className="blog-popular-footer">
+                                <div className="blog-author-compact">
+                                  <span className="blog-author-name">{post.author.name}</span>
+                                  <span className="blog-author-role">{post.author.role}</span>
+                                </div>
+                                <Link
+                                  to={`/blog/${post.slug}`}
+                                  className="btn btn-primary btn-sm blog-popular-cta-btn"
+                                >
+                                  <span>Read Most Popular Guide</span>
+                                  <span aria-hidden="true">&rarr;</span>
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </article>
+                      </AnimateIn>
+                    ))}
+                  </div>
+                </section>
+              )}
             </div>
           )}
         </div>
@@ -346,4 +457,3 @@ export default function Blog() {
     </main>
   );
 }
-

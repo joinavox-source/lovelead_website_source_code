@@ -11,6 +11,7 @@ export const BLOG_POSTS = [
     excerpt:
       'Choosing the right assisted living home for an aging parent or loved one is an important decision. Families want to find a place where their loved ones can get the help they need and still have comfort, independence, and meaningful relationships when everyday activities get harder.',
     category: 'Assisted Living Guide',
+    isPopular: true,
     publishedAt: '2026-11-15T09:00:00Z',
     modifiedAt: '2026-11-15T09:00:00Z',
     readTime: '8 min read',
@@ -538,6 +539,17 @@ export const BLOG_POSTS = [
 
 export function getAllBlogPosts() {
   return [...BLOG_POSTS].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+}
+
+export function getLatestBlogPosts(limit) {
+  const posts = getAllBlogPosts();
+  return limit ? posts.slice(0, limit) : posts;
+}
+
+export function getPopularBlogPosts(limit) {
+  const posts = getAllBlogPosts().filter((p) => p.isPopular);
+  const result = posts.length > 0 ? posts : getAllBlogPosts();
+  return limit ? result.slice(0, limit) : result;
 }
 
 export function getBlogPostBySlug(slug) {
